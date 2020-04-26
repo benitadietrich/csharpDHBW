@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{939E346D-FE69-4921-8DE7-4088CC9E6F3D}</ProjectGuid>
+    <ProjectGuid>{1C5A6BCB-318D-43EE-9894-53A79A872090}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Aufgabenblatt1</RootNamespace>
-    <AssemblyName>Aufgabenblatt1</AssemblyName>
+    <RootNamespace>Aufgabe06</RootNamespace>
+    <AssemblyName>Aufgabe06</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,11 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employee.cs" />
+    <Compile Include="Gender.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PetraMaier.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

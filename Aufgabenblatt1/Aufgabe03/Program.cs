@@ -10,7 +10,6 @@ namespace Aufgabe_3
     {
         static void Main(string[] args)
         {
-                /* Fehler: Springt nie in die Drive Methode von LKW, wieso?*/
 
                 Fahrzeug A = new Fahrzeug
                 {

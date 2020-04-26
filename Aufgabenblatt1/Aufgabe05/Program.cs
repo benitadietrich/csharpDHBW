@@ -12,11 +12,12 @@ namespace Aufgabe_5
         {
             string a = "Es ist heute ein sehr schöner Tag in Horb am Neckar.";
             string b = "Diese Zeichenkette ist nicht lang, denke ich.";
-            string c = "Tabulatoren\tsind auch Leerzeichen";
+            string c = "Tabulatoren\tsind auch Leerzeichen.";
 
             Console.WriteLine("a: " + a.CountWords());
             Console.WriteLine("b: " + b.CountWords());
             Console.WriteLine("c: " + c.CountWords());
+            Console.ReadKey();
         }
 
         static int CountWords(this string str)

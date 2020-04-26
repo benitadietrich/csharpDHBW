@@ -33,8 +33,8 @@ namespace Aufgabe02
                         break;
 
                     case "hilfe":
-                        Console.WriteLine("\n------\n" + "Es existieren folgende Kommandos:\n"
-                            + "- zählen\n" + "- beenden\n" + "- hilfe\n" + "\n------\n");
+                        Console.WriteLine("\n-----------------------\n" + "Es existieren folgende Kommandos:\n"
+                            + "- zählen\n" + "- beenden\n" + "- hilfe\n" + "\n-----------------------\n");
                         break;
 
                 }

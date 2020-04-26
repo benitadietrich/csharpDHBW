@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aufgabenblatt1
+namespace Aufgabe6
 {
-    class Program
+    public enum Gender
     {
-        static void Main(string[] args)
-        {
-        }
+        Female,
+        Male
     }
 }
