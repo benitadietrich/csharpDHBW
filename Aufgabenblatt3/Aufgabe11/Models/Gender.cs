@@ -8,7 +8,7 @@ namespace Aufgabe11.Models
 {
     public enum Gender
     {
-        Männlich,
-        Weiblich
+        Male,
+        Female
     }
 }

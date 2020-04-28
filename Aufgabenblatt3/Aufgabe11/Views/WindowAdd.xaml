@@ -8,40 +8,48 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <StackPanel Margin="5,15,5,0">
-            <StackPanel Margin="5" Orientation="Horizontal">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
                 <Label Content="Vorname:" Width="100" HorizontalContentAlignment="Right"/>
                 <TextBox Text="{Binding Firstname, Mode=TwoWay}" BorderThickness="1" Width="350"/>
             </StackPanel>
-            <StackPanel Margin="5" Orientation="Horizontal">
+            <StackPanel Grid.Row="1" Margin="5" Orientation="Horizontal">
                 <Label Content="Nachname:" Width="100" HorizontalContentAlignment="Right"/>
                 <TextBox Text="{Binding Lastname, Mode=TwoWay}" BorderThickness="1" Width="350"/>
             </StackPanel>
-            <StackPanel Margin="5" Orientation="Horizontal">
+            <StackPanel Grid.Row="2" Margin="5" Orientation="Horizontal">
                 <Label Content="Geschlecht:" Width="100" HorizontalContentAlignment="Right"/>
                 <ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding Gender}" Width="350"/>
             </StackPanel>
-            <StackPanel Margin="5" Orientation="Horizontal">
+            <StackPanel Grid.Row="3" Margin="5" Orientation="Horizontal">
                 <Label Content="Straße:" Width="100" HorizontalContentAlignment="Right"/>
                 <TextBox Text="{Binding Street, Mode=TwoWay}" BorderThickness="1" Width="350"/>
             </StackPanel>
-            <StackPanel Margin="5" Orientation="Horizontal">
+            <StackPanel Grid.Row="4" Margin="5" Orientation="Horizontal">
                 <Label Content="Hausnummer:" Width="100" HorizontalContentAlignment="Right"/>
                 <TextBox Text="{Binding StreetNumber, Mode=TwoWay}" BorderThickness="1" Width="350"/>
             </StackPanel>
-            <StackPanel Margin="5" Orientation="Horizontal">
+            <StackPanel Grid.Row="5" Margin="5" Orientation="Horizontal">
                 <Label Content="Postleitzahl:" Width="100" HorizontalContentAlignment="Right"/>
                 <TextBox Text="{Binding PostCode, Mode=TwoWay}" BorderThickness="1" Width="350"/>
             </StackPanel>
-            <StackPanel Margin="5" Orientation="Horizontal">
+            <StackPanel Grid.Row="6" Margin="5" Orientation="Horizontal">
                 <Label Content="Ort:" Width="100" HorizontalContentAlignment="Right"/>
                 <TextBox Text="{Binding City, Mode=TwoWay}" BorderThickness="1" Width="350"/>
             </StackPanel>
 
-        </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="7" Orientation="Horizontal">
             <Button Content="OK" Command="{Binding OkCommand}" Margin="5" Width="100" Height="30"/>
             <Button Content="Abbrechen" Command="{Binding CancelCommand}" Margin="5" Width="100" Height="30"/>
         </StackPanel>

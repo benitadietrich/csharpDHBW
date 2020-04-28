@@ -15,13 +15,7 @@ namespace Aufgabe11.ViewModels
         public Employee Model { get; set; }
         public ICommand OkCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public Array Genders
-        {
-            get
-            {
-                return Enum.GetValues(typeof(Gender));
-            }
-        }
+        public Array Genders => Enum.GetValues(typeof(Gender));
 
         public string Firstname
         {
