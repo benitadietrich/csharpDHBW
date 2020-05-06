@@ -20,10 +20,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
-                <Label Content="Vorname:" Width="100" HorizontalContentAlignment="Right"/>
-                <TextBox Text="{Binding Firstname, Mode=TwoWay}" BorderThickness="1" Width="350"/>
-            </StackPanel>
+             
             <StackPanel Grid.Row="1" Margin="5" Orientation="Horizontal">
                 <Label Content="Nachname:" Width="100" HorizontalContentAlignment="Right"/>
                 <TextBox Text="{Binding Lastname, Mode=TwoWay}" BorderThickness="1" Width="350"/>

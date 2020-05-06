@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="af7aff2c-3694-452a-b1aa-51473ee961f4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Aufgabe12_ServiceLibrary/CustomerService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ae648692-301e-4738-bd03-23087f2311db" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Aufgabe12_ServiceLibrary/CustomerService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="222f5103-6c60-477e-a11d-5f37bb1a84f6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Aufgabe12_ServiceLibrary/CustomerService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9364601e-2b21-4b90-92c0-f5fed0f6d50a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Aufgabe12_ServiceLibrary/CustomerService/mex" />
+    <MetadataFile FileName="Aufgabe12_ServiceLibrary.xsd" MetadataType="Schema" ID="e28a5712-e232-411a-89a5-682f6ab7cdba" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Aufgabe12_ServiceLibrary/CustomerService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
