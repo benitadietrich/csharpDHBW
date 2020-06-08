@@ -1,0 +1,57 @@
+﻿<Window x:Class="Aufgabe13.Views.WindowAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Hinzufügen" Height="360" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
+            <Label Content="Vorname:" Width="100" HorizontalContentAlignment="Right"/>
+            <TextBox Text="{Binding Firstname, Mode=TwoWay}" BorderThickness="1" Width="350"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="5" Orientation="Horizontal">
+            <Label Content="Nachname:" Width="100" HorizontalContentAlignment="Right"/>
+            <TextBox Text="{Binding Lastname, Mode=TwoWay}" BorderThickness="1" Width="350"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Margin="5" Orientation="Horizontal">
+            <Label Content="Geschlecht:" Width="100" HorizontalContentAlignment="Right"/>
+            <ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding Gender}" Width="350"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Margin="5" Orientation="Horizontal">
+            <Label Content="Straße:" Width="100" HorizontalContentAlignment="Right"/>
+            <TextBox Text="{Binding Street, Mode=TwoWay}" BorderThickness="1" Width="350"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Margin="5" Orientation="Horizontal">
+            <Label Content="Hausnummer:" Width="100" HorizontalContentAlignment="Right"/>
+            <TextBox Text="{Binding StreetNumber, Mode=TwoWay}" BorderThickness="1" Width="350"/>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Margin="5" Orientation="Horizontal">
+            <Label Content="Postleitzahl:" Width="100" HorizontalContentAlignment="Right"/>
+            <TextBox Text="{Binding PostCode, Mode=TwoWay}" BorderThickness="1" Width="350"/>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Margin="5" Orientation="Horizontal">
+            <Label Content="Ort:" Width="100" HorizontalContentAlignment="Right"/>
+            <TextBox Text="{Binding City, Mode=TwoWay}" BorderThickness="1" Width="350"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Orientation="Horizontal">
+            <Button Content="OK" Command="{Binding OkCommand}" Margin="5" Width="100" Height="30"/>
+            <Button Content="Abbrechen" Command="{Binding CancelCommand}" Margin="5" Width="100" Height="30"/>
+        </StackPanel>
+    </Grid>
+</Window>
