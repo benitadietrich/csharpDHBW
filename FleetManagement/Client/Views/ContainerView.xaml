@@ -1,0 +1,97 @@
+﻿<Window x:Class="Client.Views.ContainerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Client.Views"
+        xmlns:local="clr-namespace:Client.Views"
+        mc:Ignorable="d"
+        Title="Flottenmanagement" Height="700" Width="1100"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <views:SubmoduleSelector x:Key="TemplateSelector" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Height="335" VerticalAlignment="Top" Width="227" Margin="13,26,10,0">
+
+            <Label FontSize="15" Content="Menü" HorizontalAlignment="Center" FontWeight="Medium"/>
+
+            <Menu BorderBrush="Black" BorderThickness="1" Margin="0,0,10,0" >
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+
+                <MenuItem Header="Start" Command="{Binding OpenHomeCommand}" Width="Auto" />
+                <MenuItem Header="Kosten/Monat" Padding="10,10,-30,7" Width="Auto"/>
+                <MenuItem Header="Kosten/Geschäftsbereich" Padding="10,10,-125,7" Width="Auto"/>
+                <MenuItem Header="Fahrzeuge" ></MenuItem>
+                <MenuItem Header="Mitarbeiter" ></MenuItem>
+                <MenuItem Header="Geschäftsbereiche" Padding="10,10,-100,7" Width="Auto" />
+
+            </Menu>
+
+        </StackPanel >
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Left" Height="53" Margin="2,0,0,0" VerticalAlignment="Top" Width="790" >
+            <Menu Margin="0,0,-298,0">
+                <MenuItem Header="New" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="FileOutline" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentSaveOutline" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Delete">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="DeleteOutline" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" ShowsPreview="True" Grid.ColumnSpan="2" Background="#f44336" />
+        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Height="165" Margin="10,366,13,-27" VerticalAlignment="Top" Width="227">
+            <Label FontSize="15" Content="Administration" HorizontalAlignment="Center" FontWeight="Medium"/>
+            <Menu BorderBrush="Black" BorderThickness="1" Margin="0,0,10,0">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Header="Benutzer" />
+                <MenuItem Header="Logout" />
+            </Menu>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Height="584" VerticalAlignment="Top" Width="822" Margin="10,10,0,0">
+            <ContentControl Grid.Column="1" Content="{Binding ActiveViewModel}" ContentTemplateSelector="{StaticResource TemplateSelector}">
+                <ContentControl.Resources>
+                    <DataTemplate x:Key="homeViewTemplate">
+                        <views:HomeView />
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </StackPanel>
+
+
+    </Grid>
+</Window>
