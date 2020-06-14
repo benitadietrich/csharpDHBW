@@ -6,7 +6,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Client.Views"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="450">
+        Title="Login" Height="300" Width="450" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="0,0,0,-2" Background="#fff5f5">
         <Grid.ColumnDefinitions>

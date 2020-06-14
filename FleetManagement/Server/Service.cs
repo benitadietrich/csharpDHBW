@@ -2,11 +2,6 @@
 using Server.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
-using System.CodeDom;
 
 namespace Server
 {
@@ -70,12 +65,17 @@ namespace Server
         public string ChangePassword(User user, string oldPw, string newPw, string newPwWdh)
         {
 
-            if (BCrypt.Net.BCrypt.Verify(oldPw, user.Password))
+            var userNew = _userRepository.GetUser(user.Username);
+            if (BCrypt.Net.BCrypt.Verify(oldPw, userNew.Password))
             {
-                if (BCrypt.Net.BCrypt.Verify(newPw, newPwWdh))
+                if (newPw == newPwWdh)
                 {
-                    user.Password = BCrypt.Net.BCrypt.HashPassword(newPw);
-                    return "Passwort wurde erfolgreich geändert";
+                    var newHash = BCrypt.Net.BCrypt.ValidateAndReplacePassword(oldPw, userNew.Password, newPw);
+                    user.Password = newHash;
+                    if (_userRepository.SetPassword(userNew.Id, newHash))
+                        return "Passwort wurde erfolgreich geändert";
+                    else
+                        return "Passwort konnte nicht geändert werden";
                 }
                 return "Die neuen Passwörter stimmen nicht überein";
             }
@@ -95,6 +95,33 @@ namespace Server
         public bool RemoveVehicle()
         {
             throw new NotImplementedException();
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return _userRepository.GetAll();
+        }
+
+        public void EditUser(User newUser)
+        {
+            _userRepository.UpdateUser(newUser);
+
+        }
+
+        public void DeleteUser(User user)
+        {
+            var u = _userRepository.GetUser(user.Username);
+            _userRepository.Delete(u);
+        }
+
+        public void AddUser(User user)
+        {
+            if (user.Password == null)
+            {
+                user.Password = BCrypt.Net.BCrypt.HashPassword("geheim");
+            }
+            user.Username = user.Username.ToLower();
+            _userRepository.Save(user);
         }
     }
 }

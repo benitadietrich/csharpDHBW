@@ -46,5 +46,17 @@ namespace Server
         [OperationContract]
         string ChangePassword(User user, string oldPw, string newPw, string newPwWdh);
 
+        [OperationContract]
+        List<User> GetAllUsers();
+
+        [OperationContract]
+        void DeleteUser(User user);
+
+        [OperationContract]
+        void AddUser(User user);
+
+        [OperationContract]
+        void EditUser(User newUser);
+
     }
 }

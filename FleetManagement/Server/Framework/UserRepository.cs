@@ -14,9 +14,56 @@ namespace Server.Framework
         {
             using (var session = NHibernateHelper.OpenSession())
             {
-                return session.Query<User>()
-                      .Where(x => x.Username == username).FirstOrDefault();
+                try
+                {
+                    return session.Query<User>()
+                          .Where(x => x.Username == username.ToLower()).FirstOrDefault();
+                }
+                catch
+                {
+                    return null;
+                }
 
+            }
+        }
+
+        public bool SetPassword(int userId, string newHash)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        var sessionUser = session.Get<User>(userId);
+                        sessionUser.Password = newHash;
+                        session.SaveOrUpdate(sessionUser);
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+
+                }
+            }
+        }
+
+        public bool UpdateUser(User newUser)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var sessionUser = session.Get<User>(newUser.Id);
+                    newUser.Password = sessionUser.Password;
+                    sessionUser = newUser;
+                    session.Merge(newUser);
+                    transaction.Commit();
+                    return true;
+
+                }
             }
         }
     }

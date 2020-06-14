@@ -582,6 +582,30 @@ namespace Client.FleetServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ChangePassword", ReplyAction="http://tempuri.org/IService/ChangePasswordResponse")]
         System.Threading.Tasks.Task<string> ChangePasswordAsync(Client.FleetServiceReference.User user, string oldPw, string newPw, string newPwWdh);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllUsers", ReplyAction="http://tempuri.org/IService/GetAllUsersResponse")]
+        System.Collections.Generic.List<Client.FleetServiceReference.User> GetAllUsers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllUsers", ReplyAction="http://tempuri.org/IService/GetAllUsersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.User>> GetAllUsersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteUser", ReplyAction="http://tempuri.org/IService/DeleteUserResponse")]
+        void DeleteUser(Client.FleetServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteUser", ReplyAction="http://tempuri.org/IService/DeleteUserResponse")]
+        System.Threading.Tasks.Task DeleteUserAsync(Client.FleetServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddUser", ReplyAction="http://tempuri.org/IService/AddUserResponse")]
+        void AddUser(Client.FleetServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddUser", ReplyAction="http://tempuri.org/IService/AddUserResponse")]
+        System.Threading.Tasks.Task AddUserAsync(Client.FleetServiceReference.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditUser", ReplyAction="http://tempuri.org/IService/EditUserResponse")]
+        void EditUser(Client.FleetServiceReference.User newUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditUser", ReplyAction="http://tempuri.org/IService/EditUserResponse")]
+        System.Threading.Tasks.Task EditUserAsync(Client.FleetServiceReference.User newUser);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -697,6 +721,38 @@ namespace Client.FleetServiceReference {
         
         public System.Threading.Tasks.Task<string> ChangePasswordAsync(Client.FleetServiceReference.User user, string oldPw, string newPw, string newPwWdh) {
             return base.Channel.ChangePasswordAsync(user, oldPw, newPw, newPwWdh);
+        }
+        
+        public System.Collections.Generic.List<Client.FleetServiceReference.User> GetAllUsers() {
+            return base.Channel.GetAllUsers();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.User>> GetAllUsersAsync() {
+            return base.Channel.GetAllUsersAsync();
+        }
+        
+        public void DeleteUser(Client.FleetServiceReference.User user) {
+            base.Channel.DeleteUser(user);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserAsync(Client.FleetServiceReference.User user) {
+            return base.Channel.DeleteUserAsync(user);
+        }
+        
+        public void AddUser(Client.FleetServiceReference.User user) {
+            base.Channel.AddUser(user);
+        }
+        
+        public System.Threading.Tasks.Task AddUserAsync(Client.FleetServiceReference.User user) {
+            return base.Channel.AddUserAsync(user);
+        }
+        
+        public void EditUser(Client.FleetServiceReference.User newUser) {
+            base.Channel.EditUser(newUser);
+        }
+        
+        public System.Threading.Tasks.Task EditUserAsync(Client.FleetServiceReference.User newUser) {
+            return base.Channel.EditUserAsync(newUser);
         }
     }
 }
