@@ -44,10 +44,16 @@ namespace Client.Controller
 
             try
             {
-                socket.AddUser(user);
-                MessageBox.Show("Benutzer wurde erfolgreich hinzugefügt");
-                view.DialogResult = true;
-                view.Close();
+                if(socket.AddUser(user))
+                {
+                    MessageBox.Show("Benutzer wurde erfolgreich hinzugefügt");
+                    view.DialogResult = true;
+                    view.Close();
+                } else
+                {
+                    MessageBox.Show("Der Benutzername ist bereits vergeben");  
+                }
+                    
 
             }
             catch

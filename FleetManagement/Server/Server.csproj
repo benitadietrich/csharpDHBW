@@ -116,6 +116,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\BusinessUnitRepository.cs" />
+    <Compile Include="Framework\EmployeeRepository.cs" />
     <Compile Include="Framework\NHibernateHelper.cs" />
     <Compile Include="Framework\Repository.cs" />
     <Compile Include="Framework\UserRepository.cs" />

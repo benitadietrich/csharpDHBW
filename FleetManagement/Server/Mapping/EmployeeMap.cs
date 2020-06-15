@@ -14,7 +14,7 @@ namespace Server.Mapping
             Map(x => x.EmployeeNumber).Not.Nullable().Unique();
             Map(x => x.Salutation).Length(50);
             Map(x => x.Title).Length(50);
-            References(x => x.BusinessUnitId).Not.Nullable();
+            References(x => x.BusinessUnitId).Column("BusinessUnitId").Not.Nullable();
         }
     }
 }

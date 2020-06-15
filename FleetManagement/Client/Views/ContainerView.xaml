@@ -46,7 +46,7 @@
                 <MenuItem Header="Kosten/Geschäftsbereich" Padding="10,10,-125,7" Width="Auto"/>
                 <MenuItem Header="Fahrzeuge" ></MenuItem>
                 <MenuItem Header="Mitarbeiter" ></MenuItem>
-                <MenuItem Header="Geschäftsbereiche" Padding="10,10,-100,7" Width="Auto" />
+                <MenuItem Header="Geschäftsbereiche" Command="{Binding OpenUnitCommand}" Padding="10,10,-100,7" Width="Auto" />
 
             </Menu>
 
@@ -79,8 +79,8 @@
                         <VirtualizingStackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
-                <MenuItem Header="Benutzer"  Command="{Binding OpenUserCommand}" />
-                <MenuItem Header="Logout" />
+                <MenuItem Header="Benutzer" IsEnabled="{Binding IsAdmin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding OpenUserCommand}" />
+                <MenuItem Header="Logout" Command="{Binding LogoutCommand}"/>
             </Menu>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Height="584" VerticalAlignment="Top" Width="822" Margin="10,10,0,0">
@@ -91,6 +91,9 @@
                     </DataTemplate>
                     <DataTemplate x:Key="userViewTemplate">
                         <views:UserView />
+                    </DataTemplate>
+                    <DataTemplate x:Key="businessUnitViewTemplate">
+                        <views:BusinessUnitView />
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>

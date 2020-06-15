@@ -14,9 +14,20 @@ namespace Client.ViewModels
     {
         ViewModelBase activeViewModel;
 
-        public bool IsAdmin { get; set; }
+        private bool isAdmin;
+        public bool IsAdmin 
+        {
+            get => isAdmin;
+            set
+            {
+                isAdmin = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand OpenHomeCommand { get; set; }
         public ICommand OpenUserCommand { get; set; }
+
+        public ICommand OpenUnitCommand { get; set; }
 
         private ICommand newCommand;
         public ICommand NewCommand
@@ -49,6 +60,8 @@ namespace Client.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public ICommand LogoutCommand { get; set; }
 
 
         public ViewModelBase ActiveViewModel

@@ -5,8 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+            d:DesignHeight="504" d:DesignWidth="842"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DataGrid IsReadOnly="True" Grid.Row="1" Height="224" Margin="10,10,10,0"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding BusinessUnits}" SelectedItem="{Binding SelectedUnit}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="100" Header="Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn  Header="Beschreibung"  Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Grid.Row="0" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="#f44336" Content="Geschäftsbereichverwaltung" VerticalAlignment="Center" Width="842" Height="25"/>
+        <TextBox Grid.Row="2" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="#f44336" VerticalAlignment="Center" Width="842" Height="25">
+            <TextBox.Text>
+                <Binding Path="SelectedUnit.Name"></Binding>
+            </TextBox.Text>
+        </TextBox>
+        <StackPanel Grid.Row="4">
+            <TextBox Margin="10,30,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="350" materialDesign:HintAssist.Hint="Name" Text="{Binding SelectedUnit.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="350" materialDesign:HintAssist.Hint="Beschreibung" Text="{Binding SelectedUnit.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
     </Grid>
 </UserControl>

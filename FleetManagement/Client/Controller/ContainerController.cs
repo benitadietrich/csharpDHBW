@@ -21,8 +21,16 @@ namespace Client.Controller
             {
                 OpenHomeCommand = new RelayCommand(ExecuteOpenHomeCommand),
                 OpenUserCommand = new RelayCommand(ExecuteOpenUserCommand),
+                OpenUnitCommand = new RelayCommand(ExecuteOpenUnitCommand),
+                LogoutCommand = new RelayCommand(ExecuteLogout)
             };
 
+            Login();
+
+        }
+
+        private void Login()
+        {
             var loginWindowController = new LoginController();
             user = loginWindowController.LoginUser(socket);
 
@@ -33,11 +41,11 @@ namespace Client.Controller
             {
                 containerViewModel.IsAdmin = user.IsAdmin;
                 containerView.ShowDialog();
-            } else
+            }
+            else
             {
                 containerView.Close();
             }
-
         }
 
         private void ExecuteOpenHomeCommand(object obj)
@@ -48,11 +56,21 @@ namespace Client.Controller
 
         private void ExecuteOpenUserCommand(object obj)
         {
-            var userController = new UserController(user, socket);
+            var userController = new UserController(user, socket, containerViewModel);
             containerViewModel.ActiveViewModel = userController.Initialize();
-            containerViewModel.DeleteCommand = new RelayCommand(userController.ExecuteDeleteCommand, userController.CanExecuteDeleteCommand);
-            containerViewModel.SaveCommand = new RelayCommand(userController.ExecuteSaveCommand);
-            containerViewModel.NewCommand = new RelayCommand(userController.ExecuteNewCommand);
+        }
+
+        private void ExecuteOpenUnitCommand(object obj)
+        {
+            var unitController = new BusinessUnitController(socket, containerViewModel);
+            containerViewModel.ActiveViewModel = unitController.Initialize();
+            
+        }
+
+        private void ExecuteLogout(object obj)
+        {
+            containerView.Hide();
+            Login();
         }
 
     }

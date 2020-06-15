@@ -9,9 +9,21 @@ namespace Server
     {
         private static readonly string _DATABASE = "D:/git/csharpDHBW/FleetManagement/Server/Database/FleetManagement.db";
         private UserRepository _userRepository = new UserRepository(_DATABASE);
-        public bool AddBusinessUnit()
+        private EmployeeRepository _employeeReposiotry = new EmployeeRepository(_DATABASE);
+        private BusinessUnitRepository _businessUnitRepository = new BusinessUnitRepository(_DATABASE);
+
+        public bool AddBusinessUnit(BusinessUnit businessUnit)
         {
-            throw new NotImplementedException();
+            var b = _businessUnitRepository.GetBusinessUnit(businessUnit.Id);
+            if (b != null)
+            {
+                return false;
+            }
+            else
+            {
+                _businessUnitRepository.Save(businessUnit);
+                return true;
+            }
         }
 
         public bool AddEmployee()
@@ -26,7 +38,7 @@ namespace Server
 
         public List<BusinessUnit> GetAllBusinessUnits()
         {
-            throw new NotImplementedException();
+            return _businessUnitRepository.GetAll();
         }
 
         public List<Employee> GetAllEmployees()
@@ -82,9 +94,18 @@ namespace Server
             return "Das alte Passwort ist falsch";
         }
 
-        public bool RemoveBusinessUnit()
+        public bool RemoveBusinessUnit(BusinessUnit businessUnit)
         {
-            throw new NotImplementedException();
+            var b = _businessUnitRepository.GetBusinessUnit(businessUnit.Id);
+            _businessUnitRepository.Delete(b);
+            return true;
+
+        }
+
+        public bool CanRemoveBusinessUnit(BusinessUnit businessUnit)
+        {
+            var b = _businessUnitRepository.GetBusinessUnit(businessUnit.Id);
+            return _employeeReposiotry.IsEmployeeReferred(b);
         }
 
         public bool RemoveEmployee()
@@ -114,14 +135,26 @@ namespace Server
             _userRepository.Delete(u);
         }
 
-        public void AddUser(User user)
+        public bool AddUser(User user)
         {
             if (user.Password == null)
             {
                 user.Password = BCrypt.Net.BCrypt.HashPassword("geheim");
             }
-            user.Username = user.Username.ToLower();
-            _userRepository.Save(user);
+            if (_userRepository.GetUser(user.Username) != null)
+                return false;
+            else
+            {
+                user.Username = user.Username.ToLower();
+                _userRepository.Save(user);
+                return true;
+            }
+
+        }
+
+        public void EditBusinessUnit(BusinessUnit businessUnit)
+        {
+            _businessUnitRepository.UpdateBusinessUnit(businessUnit);
         }
     }
 }

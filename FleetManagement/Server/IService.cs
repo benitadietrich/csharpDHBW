@@ -32,10 +32,10 @@ namespace Server
         List<Employee> GetAllEmployees();
 
         [OperationContract]
-        bool AddBusinessUnit();
+        bool AddBusinessUnit(BusinessUnit businessUnit);
 
         [OperationContract]
-        bool RemoveBusinessUnit();
+        bool RemoveBusinessUnit(BusinessUnit businessUnit);
 
         [OperationContract]
         List<BusinessUnit> GetAllBusinessUnits();
@@ -53,10 +53,16 @@ namespace Server
         void DeleteUser(User user);
 
         [OperationContract]
-        void AddUser(User user);
+        bool AddUser(User user);
 
         [OperationContract]
         void EditUser(User newUser);
+
+        [OperationContract]
+        void EditBusinessUnit(BusinessUnit businessUnit);
+
+        [OperationContract]
+        bool CanRemoveBusinessUnit(BusinessUnit businessUnit);
 
     }
 }

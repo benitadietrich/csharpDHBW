@@ -10,11 +10,13 @@ namespace Client.Controller
         public User user;
         public ServiceClient socket;
         private UserViewModel uViewModel;
+        private ContainerViewModel container;
 
-        public UserController(User user, ServiceClient socket)
+        public UserController(User user, ServiceClient socket, ContainerViewModel container)
         {
             this.user = user;
             this.socket = socket;
+            this.container = container;
         }
 
         public override ViewModelBase Initialize()
@@ -26,6 +28,12 @@ namespace Client.Controller
                 SelectedUser = null,
                 EntriesUser = socket.GetAllUsers()
             };
+
+            container.DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
+            container.SaveCommand = new RelayCommand(ExecuteSaveCommand);
+            container.NewCommand = new RelayCommand(ExecuteNewCommand);
+
+            container.ActiveViewModel = uViewModel;
 
             return uViewModel;
         }
@@ -43,6 +51,7 @@ namespace Client.Controller
             {
                 System.Windows.Forms.MessageBox.Show("Ein Fehler ist aufgetreten, bitte versuchen Sie es noch einmal");
             }
+
             Initialize();
 
         }
@@ -50,9 +59,11 @@ namespace Client.Controller
         {
             var addUser = new AddUserController();
             var user = addUser.AddUser(socket);
-            uViewModel.Users.Add(user);
-            uViewModel.EntriesUser.Add(user);
-
+            if (user != null)
+            {
+                uViewModel.Users.Add(user);
+                uViewModel.EntriesUser.Add(user);
+            }
             Initialize();
         }
 
@@ -79,7 +90,20 @@ namespace Client.Controller
 
         public bool CanExecuteDeleteCommand(object obj)
         {
-            return (uViewModel.SelectedUser != null) ? true : false;
+            if(uViewModel.SelectedUser != null)
+            {
+                if(uViewModel.SelectedUser.Username == user.Username)
+                {
+                    return false;
+                } else
+                {
+                    return true;
+                }
+            } else
+            {
+                return false;
+            }
+
         }
     }
 }

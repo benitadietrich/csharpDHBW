@@ -21,7 +21,7 @@
             <RowDefinition Height="200"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="1" Height="224" Margin="10,10,10,0"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False" >
+        <DataGrid IsReadOnly="True" Grid.Row="1" Height="224" Margin="10,10,10,0"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="200" Header="Benutzername" Binding="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTextColumn Width="200" Header="Vorname"  Binding="{Binding Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
