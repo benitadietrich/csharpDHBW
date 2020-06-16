@@ -109,6 +109,18 @@
   <wsdl:message name="IService_CanRemoveBusinessUnit_OutputMessage">
     <wsdl:part name="parameters" element="tns:CanRemoveBusinessUnitResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_CanRemoveEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:CanRemoveEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IService_CanRemoveEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CanRemoveEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_EditEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IService_EditEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditEmployeeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="AddVehicle">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/AddVehicle" message="tns:IService_AddVehicle_InputMessage" />
@@ -177,6 +189,14 @@
     <wsdl:operation name="CanRemoveBusinessUnit">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/CanRemoveBusinessUnit" message="tns:IService_CanRemoveBusinessUnit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/CanRemoveBusinessUnitResponse" message="tns:IService_CanRemoveBusinessUnit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CanRemoveEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CanRemoveEmployee" message="tns:IService_CanRemoveEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CanRemoveEmployeeResponse" message="tns:IService_CanRemoveEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/EditEmployee" message="tns:IService_EditEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/EditEmployeeResponse" message="tns:IService_EditEmployee_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -327,6 +347,24 @@
     </wsdl:operation>
     <wsdl:operation name="CanRemoveBusinessUnit">
       <soap:operation soapAction="http://tempuri.org/IService/CanRemoveBusinessUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanRemoveEmployee">
+      <soap:operation soapAction="http://tempuri.org/IService/CanRemoveEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditEmployee">
+      <soap:operation soapAction="http://tempuri.org/IService/EditEmployee" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -121,6 +121,7 @@
     <Compile Include="Framework\NHibernateHelper.cs" />
     <Compile Include="Framework\Repository.cs" />
     <Compile Include="Framework\UserRepository.cs" />
+    <Compile Include="Framework\VehicleRepository.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Mapping\BusinessUnitMap.cs" />
     <Compile Include="Mapping\EmployeeMap.cs" />

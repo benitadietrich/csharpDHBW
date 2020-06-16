@@ -28,6 +28,40 @@ namespace Server.Framework
 
 
         }
+
+        public bool UpdateEmployee(Employee emp)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Merge(emp);
+                    transaction.Commit();
+                    return true;
+
+                }
+            }
+        }
+
+        public Employee GetEmployee(int id)
+        {
+            using(var session = NHibernateHelper.OpenSession())
+            {
+                using ( var transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        return session.Query<Employee>()
+                               .Where(x => x.Id == id).FirstOrDefault();
+
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }
 

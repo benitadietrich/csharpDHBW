@@ -14,7 +14,7 @@ namespace Server.Models
         public int Id { get; set; }
 
         [DataMember]
-        public String LicensePlate { get; set; }
+        public string LicensePlate { get; set; }
 
         [DataMember]
         public string Brand { get; set; }

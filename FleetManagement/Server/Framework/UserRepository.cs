@@ -58,7 +58,6 @@ namespace Server.Framework
                 {
                     var sessionUser = session.Get<User>(newUser.Id);
                     newUser.Password = sessionUser.Password;
-                    sessionUser = newUser;
                     session.Merge(newUser);
                     transaction.Commit();
                     return true;

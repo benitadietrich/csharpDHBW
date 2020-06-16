@@ -45,7 +45,7 @@
                 <MenuItem Header="Kosten/Monat" Padding="10,10,-30,7" Width="Auto"/>
                 <MenuItem Header="Kosten/Geschäftsbereich" Padding="10,10,-125,7" Width="Auto"/>
                 <MenuItem Header="Fahrzeuge" ></MenuItem>
-                <MenuItem Header="Mitarbeiter" ></MenuItem>
+                <MenuItem Header="Mitarbeiter" Command="{Binding OpenEmployeeCommand}" ></MenuItem>
                 <MenuItem Header="Geschäftsbereiche" Command="{Binding OpenUnitCommand}" Padding="10,10,-100,7" Width="Auto" />
 
             </Menu>
@@ -94,6 +94,9 @@
                     </DataTemplate>
                     <DataTemplate x:Key="businessUnitViewTemplate">
                         <views:BusinessUnitView />
+                    </DataTemplate>
+                    <DataTemplate x:Key="employeeViewTemplate">
+                        <views:EmployeeView />
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>

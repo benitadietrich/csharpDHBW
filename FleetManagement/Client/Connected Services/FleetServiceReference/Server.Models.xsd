@@ -19,12 +19,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Vehicle" nillable="true" type="tns:Vehicle" />
-  <xs:complexType name="ArrayOfEmployee">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Employee" nillable="true" type="tns:Employee" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfEmployee" nillable="true" type="tns:ArrayOfEmployee" />
   <xs:complexType name="Employee">
     <xs:sequence>
       <xs:element minOccurs="0" name="BusinessUnitId" nillable="true" type="tns:BusinessUnit" />
@@ -45,6 +39,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BusinessUnit" nillable="true" type="tns:BusinessUnit" />
+  <xs:complexType name="ArrayOfEmployee">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Employee" nillable="true" type="tns:Employee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmployee" nillable="true" type="tns:ArrayOfEmployee" />
   <xs:complexType name="ArrayOfBusinessUnit">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessUnit" nillable="true" type="tns:BusinessUnit" />

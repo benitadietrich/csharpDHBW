@@ -23,10 +23,10 @@ namespace Server
         List<Vehicle> GetAllVehicles();
 
         [OperationContract]
-        bool AddEmployee();
+        bool AddEmployee(Employee emp);
 
         [OperationContract]
-        bool RemoveEmployee();
+        bool RemoveEmployee(Employee emp);
 
         [OperationContract]
         List<Employee> GetAllEmployees();
@@ -63,6 +63,12 @@ namespace Server
 
         [OperationContract]
         bool CanRemoveBusinessUnit(BusinessUnit businessUnit);
+
+        [OperationContract]
+        bool CanRemoveEmployee(Employee emp);
+
+        [OperationContract]
+        void EditEmployee(Employee emp);
 
     }
 }

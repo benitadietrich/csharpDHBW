@@ -1,6 +1,4 @@
-﻿using Client.Controller;
-using Client.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Client.Views
 {
     /// <summary>
-    /// Interaktionslogik für EmployeeView.xaml
+    /// Interaktionslogik für AddEmployeeView.xaml
     /// </summary>
-    public partial class EmployeeView : UserControl
+    public partial class AddEmployeeView : Window
     {
-        public EmployeeView()
+        public AddEmployeeView()
         {
             InitializeComponent();
         }

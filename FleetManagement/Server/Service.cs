@@ -11,6 +11,7 @@ namespace Server
         private UserRepository _userRepository = new UserRepository(_DATABASE);
         private EmployeeRepository _employeeReposiotry = new EmployeeRepository(_DATABASE);
         private BusinessUnitRepository _businessUnitRepository = new BusinessUnitRepository(_DATABASE);
+        private VehicleRepository _vehicleRepository = new VehicleRepository(_DATABASE);
 
         public bool AddBusinessUnit(BusinessUnit businessUnit)
         {
@@ -26,9 +27,17 @@ namespace Server
             }
         }
 
-        public bool AddEmployee()
+        public bool AddEmployee(Employee emp)
         {
-            throw new NotImplementedException();
+            var e = _employeeReposiotry.GetEmployee(emp.EmployeeNumber);
+            if(e != null)
+            {
+                return false;
+            } else
+            {
+                _employeeReposiotry.Save(emp);
+                return true;
+            }
         }
 
         public bool AddVehicle()
@@ -43,7 +52,7 @@ namespace Server
 
         public List<Employee> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            return _employeeReposiotry.GetAll();
         }
 
         public List<Vehicle> GetAllVehicles()
@@ -108,9 +117,17 @@ namespace Server
             return _employeeReposiotry.IsEmployeeReferred(b);
         }
 
-        public bool RemoveEmployee()
+        public bool CanRemoveEmployee(Employee emp)
         {
-            throw new NotImplementedException();
+            var e = _employeeReposiotry.GetEmployee(emp.Id);
+            return _vehicleRepository.IsVehicleReferredToEmp(e);
+        }
+
+        public bool RemoveEmployee(Employee emp)
+        {
+            var e = _employeeReposiotry.GetEmployee(emp.Id);
+            _employeeReposiotry.Delete(e);
+            return true;
         }
 
         public bool RemoveVehicle()
@@ -155,6 +172,11 @@ namespace Server
         public void EditBusinessUnit(BusinessUnit businessUnit)
         {
             _businessUnitRepository.UpdateBusinessUnit(businessUnit);
+        }
+
+        public void EditEmployee(Employee emp)
+        {
+            _employeeReposiotry.UpdateEmployee(emp);
         }
     }
 }

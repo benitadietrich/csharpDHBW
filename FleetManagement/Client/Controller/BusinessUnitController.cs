@@ -44,12 +44,20 @@ namespace Client.Controller
 
         public void ExecuteDeleteCommand(object obj)
         {
-            var curr = bViewModel.SelectedUnit;
-            bViewModel.BusinessUnits.Remove(curr);
-            bViewModel.EntriesUnits.Remove(curr);
-            socket.RemoveBusinessUnit(curr);
+            if (socket.CanRemoveBusinessUnit(bViewModel.SelectedUnit) == true)
+            {
+                MessageBox.Show("Diesem Objekt sind noch Daten zugeordnet.");
+            }
+            else
+            {
 
-            Initialize();
+                var curr = bViewModel.SelectedUnit;
+                bViewModel.BusinessUnits.Remove(curr);
+                bViewModel.EntriesUnits.Remove(curr);
+                socket.RemoveBusinessUnit(curr);
+
+                Initialize();
+            }
 
         }
         public void ExecuteNewCommand(object obj)
@@ -89,14 +97,8 @@ namespace Client.Controller
         {
             if (bViewModel.SelectedUnit != null)
             {
-                if (socket.CanRemoveBusinessUnit(bViewModel.SelectedUnit) == true)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                return true;
+
             }
             else
             {

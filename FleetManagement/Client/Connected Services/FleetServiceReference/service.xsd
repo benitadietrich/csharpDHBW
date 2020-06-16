@@ -39,7 +39,9 @@
   </xs:element>
   <xs:element name="AddEmployee">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="emp" nillable="true" type="q2:Employee" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddEmployeeResponse">
@@ -51,7 +53,9 @@
   </xs:element>
   <xs:element name="RemoveEmployee">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="emp" nillable="true" type="q3:Employee" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveEmployeeResponse">
@@ -69,14 +73,14 @@
   <xs:element name="GetAllEmployeesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="GetAllEmployeesResult" nillable="true" type="q2:ArrayOfEmployee" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="GetAllEmployeesResult" nillable="true" type="q4:ArrayOfEmployee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddBusinessUnit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q3:BusinessUnit" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q5:BusinessUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -90,7 +94,7 @@
   <xs:element name="RemoveBusinessUnit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q4:BusinessUnit" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q6:BusinessUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -109,7 +113,7 @@
   <xs:element name="GetAllBusinessUnitsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="GetAllBusinessUnitsResult" nillable="true" type="q5:ArrayOfBusinessUnit" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="GetAllBusinessUnitsResult" nillable="true" type="q7:ArrayOfBusinessUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -124,14 +128,14 @@
   <xs:element name="LoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="LoginResult" nillable="true" type="q6:User" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="LoginResult" nillable="true" type="q8:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangePassword">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="user" nillable="true" type="q7:User" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="user" nillable="true" type="q9:User" />
         <xs:element minOccurs="0" name="oldPw" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="newPw" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="newPwWdh" nillable="true" type="xs:string" />
@@ -153,14 +157,14 @@
   <xs:element name="GetAllUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q8:ArrayOfUser" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q10:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="user" nillable="true" type="q9:User" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="user" nillable="true" type="q11:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -172,7 +176,7 @@
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="user" nillable="true" type="q10:User" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="user" nillable="true" type="q12:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -186,7 +190,7 @@
   <xs:element name="EditUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="newUser" nillable="true" type="q11:User" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="newUser" nillable="true" type="q13:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -198,7 +202,7 @@
   <xs:element name="EditBusinessUnit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q12:BusinessUnit" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q14:BusinessUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -210,7 +214,7 @@
   <xs:element name="CanRemoveBusinessUnit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q13:BusinessUnit" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q15:BusinessUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -219,6 +223,32 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="CanRemoveBusinessUnitResult" type="xs:boolean" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CanRemoveEmployee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="emp" nillable="true" type="q16:Employee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CanRemoveEmployeeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CanRemoveEmployeeResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditEmployee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="emp" nillable="true" type="q17:Employee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditEmployeeResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

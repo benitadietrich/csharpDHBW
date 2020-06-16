@@ -22,6 +22,7 @@ namespace Client.Controller
                 OpenHomeCommand = new RelayCommand(ExecuteOpenHomeCommand),
                 OpenUserCommand = new RelayCommand(ExecuteOpenUserCommand),
                 OpenUnitCommand = new RelayCommand(ExecuteOpenUnitCommand),
+                OpenEmployeeCommand = new RelayCommand(ExecuteOpenEmployeeCommand),
                 LogoutCommand = new RelayCommand(ExecuteLogout)
             };
 
@@ -65,6 +66,12 @@ namespace Client.Controller
             var unitController = new BusinessUnitController(socket, containerViewModel);
             containerViewModel.ActiveViewModel = unitController.Initialize();
             
+        }
+
+        private void ExecuteOpenEmployeeCommand(object obj)
+        {
+            var empController = new EmployeeController(socket, containerViewModel);
+            containerViewModel.ActiveViewModel = empController.Initialize();
         }
 
         private void ExecuteLogout(object obj)

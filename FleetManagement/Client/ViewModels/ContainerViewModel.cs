@@ -29,6 +29,8 @@ namespace Client.ViewModels
 
         public ICommand OpenUnitCommand { get; set; }
 
+        public ICommand OpenEmployeeCommand { get; set; }
+
         private ICommand newCommand;
         public ICommand NewCommand
         {

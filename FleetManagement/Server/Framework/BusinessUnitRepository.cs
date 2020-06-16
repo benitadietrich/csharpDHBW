@@ -37,8 +37,7 @@ namespace Server.Framework
             using (var session = NHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
-                {
-                    var sessionUnit = session.Get<BusinessUnit>(businessUnit.Id);
+                { 
                     session.Merge(businessUnit);
                     transaction.Commit();
                     return true;
