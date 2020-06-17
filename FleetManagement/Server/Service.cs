@@ -162,6 +162,7 @@ namespace Server
                 return false;
             else
             {
+                if (user.Username == null) return false;
                 user.Username = user.Username.ToLower();
                 _userRepository.Save(user);
                 return true;
