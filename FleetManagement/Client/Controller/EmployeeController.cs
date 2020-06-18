@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
@@ -31,16 +33,14 @@ namespace Client.Controller
             container.SaveCommand = new RelayCommand(ExecuteSaveCommand);
             container.NewCommand = new RelayCommand(ExecuteNewCommand);
 
-            
-
             return eViewModel;
         }
 
         void LoadModel()
         {
             int oldselid = 0;
-            if(eViewModel!=null)
-                oldselid=eViewModel.SelectedBusinessUnit.Id;
+            if (eViewModel != null)
+                oldselid = eViewModel.SelectedBusinessUnit.Id;
 
             eViewModel = new EmployeeViewModel()
             {
@@ -52,7 +52,7 @@ namespace Client.Controller
             };
             if (oldselid != 0)
             {
-                eViewModel.SelectedBusinessUnit= eViewModel.BusinessUnits.Single(x=> x.Id==oldselid);
+                eViewModel.SelectedBusinessUnit = eViewModel.BusinessUnits.Single(x => x.Id == oldselid);
             }
 
             container.ActiveViewModel = eViewModel;
@@ -62,10 +62,18 @@ namespace Client.Controller
 
         public void ExecuteDeleteCommand(object obj)
         {
-            var curr = eViewModel.SelectedEmployee;
-            eViewModel.Employees.Remove(curr);
-            eViewModel.EntriesEmployees.Remove(curr);
-            socket.RemoveEmployee(curr);
+            DialogResult result = (DialogResult)System.Windows.MessageBox.Show("Sind Sie sicher, dass Sie den Mitarbeiter entfernen wollen?", "Relation löschen", (MessageBoxButton)MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                var curr = eViewModel.SelectedEmployee;
+                eViewModel.Employees.Remove(curr);
+                eViewModel.EntriesEmployees.Remove(curr);
+                socket.RemoveEmployee(curr);
+            }
+            else
+            {
+                return;
+            }
 
         }
         public void ExecuteNewCommand(object obj)
@@ -88,8 +96,16 @@ namespace Client.Controller
 
             if (selectedEmp != null)
             {
-                selectedEmp.BusinessUnitId = eViewModel.SelectedBusinessUnit;
-                socket.EditEmployee(selectedEmp);
+                if (selectedEmp.EmployeeNumber == 0)
+                {
+                    System.Windows.MessageBox.Show("Bitte geben Sie eine Personalnummer an!");
+                }
+                else
+                {
+                    selectedEmp.BusinessUnitId = eViewModel.SelectedBusinessUnit;
+                    socket.EditEmployee(selectedEmp);
+                }
+
             }
 
             /*

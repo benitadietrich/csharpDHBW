@@ -22,20 +22,6 @@ namespace Server.Models
         [DataMember]
         public string Description { get; set; }
 
-        [DataContractFormat]
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-            if (!(obj is BusinessUnit))
-            {
-                return false;
-            }
-            return (this.Name == ((BusinessUnit)obj).Name)
-                && (this.Description == ((BusinessUnit)obj).Description);
-        }
 
     }
 

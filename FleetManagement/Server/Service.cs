@@ -7,7 +7,7 @@ namespace Server
 {
     public class Service : IService
     {
-        private static readonly string _DATABASE = "C:/Users/DietrichB/source/repos/csharpDHBW/FleetManagement/Server/Database/FleetManagement.db";
+        private static readonly string _DATABASE = "Database/FleetManagement.db";
         private UserRepository _userRepository = new UserRepository(_DATABASE);
         private EmployeeRepository _employeeReposiotry = new EmployeeRepository(_DATABASE);
         private BusinessUnitRepository _businessUnitRepository = new BusinessUnitRepository(_DATABASE);

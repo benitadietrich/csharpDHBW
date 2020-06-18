@@ -15,6 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}">
 
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
@@ -48,11 +49,11 @@
                 </MultiBinding>
             </TextBox.Text>
         </TextBox>
-        <TextBox Grid.Column="0" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Personalnummer" Text="{Binding SelectedEmployee.EmployeeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Anrede" Text="{Binding SelectedEmployee.Salutation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Titel" Text="{Binding SelectedEmployee.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Grid.Column="0" Grid.Row="4" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="250" materialDesign:HintAssist.Hint="Vorname" Text="{Binding SelectedEmployee.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="350" materialDesign:HintAssist.Hint="Nachname" Text="{Binding SelectedEmployee.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="0" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="220" materialDesign:HintAssist.Hint="Personalnummer" Text="{Binding SelectedEmployee.EmployeeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="220" materialDesign:HintAssist.Hint="Anrede" Text="{Binding SelectedEmployee.Salutation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="2" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="220" materialDesign:HintAssist.Hint="Titel" Text="{Binding SelectedEmployee.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="350" materialDesign:HintAssist.Hint="Vorname" Text="{Binding SelectedEmployee.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Right" VerticalContentAlignment="Center" Width="350" materialDesign:HintAssist.Hint="Nachname" Text="{Binding SelectedEmployee.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
                   materialDesign:HintAssist.Hint="Geschäftsbereich"
                   Grid.Row="5" Grid.ColumnSpan="3" 

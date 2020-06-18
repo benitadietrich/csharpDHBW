@@ -36,6 +36,7 @@ namespace Client.Controller
 
         public void ExecuteAddEmployeeCommand(object obj)
         {
+
             emp = new Employee()
             {
                 EmployeeNumber = viewModel.EmployeeNumber,
@@ -45,25 +46,31 @@ namespace Client.Controller
                 Title = viewModel.Title,
                 BusinessUnitId = viewModel.SelectedBusinessUnit
             };
-
-            try
+            if (emp.EmployeeNumber == 0)
             {
-                if (socket.AddEmployee(emp))
-                {
-                    MessageBox.Show("Mitarbeiter wurde erfolgreich hinzugefügt");
-                    view.DialogResult = true;
-                    view.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Diese Personalnummer ist bereits vergeben");
-                }
-
-
+                MessageBox.Show("Die Personalnummer darf nicht null sein");
             }
-            catch
+            else
             {
-                MessageBox.Show("Ein Fehler ist aufgetreten überprüfen Sie ihre Eingaben");
+                try
+                {
+                    if (socket.AddEmployee(emp))
+                    {
+                        MessageBox.Show("Mitarbeiter wurde erfolgreich hinzugefügt");
+                        view.DialogResult = true;
+                        view.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Diese Personalnummer ist bereits vergeben");
+                    }
+
+
+                }
+                catch
+                {
+                    MessageBox.Show("Ein Fehler ist aufgetreten überprüfen Sie ihre Eingaben");
+                }
             }
 
         }

@@ -16,8 +16,8 @@ namespace Server.Mapping
             Id(x => x.Id).GeneratedBy.Native();
             Map(x => x.StartDate).Not.Nullable();
             Map(x => x.EndDate);
-            References(x => x.VehicleId).Not.Nullable();
-            References(x => x.EmployeeId).Not.Nullable();
+            References(x => x.VehicleId).Column("VehicleId").Not.Nullable();
+            References(x => x.EmployeeId).Not.Nullable().Column("EmployeeId");
 
         }
     }
