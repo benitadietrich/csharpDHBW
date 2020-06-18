@@ -60,7 +60,7 @@
                   VerticalAlignment="Center"
                   Width="300" 
                   Name="Geschäftsbereich" 
-                  SelectedItem="{Binding SelectedBusinessUnit, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
+                  SelectedItem="{Binding SelectedBusinessUnit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   ItemsSource="{Binding BusinessUnits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   IsSynchronizedWithCurrentItem="True"
                   IsReadOnly="True"  >

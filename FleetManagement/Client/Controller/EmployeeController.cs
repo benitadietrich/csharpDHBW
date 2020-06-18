@@ -1,6 +1,7 @@
 ﻿using Client.FleetServiceReference;
 using Client.Framework;
 using Client.ViewModels;
+using NHibernate.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,23 +25,39 @@ namespace Client.Controller
 
         public override ViewModelBase Initialize()
         {
+            LoadModel();
+
+            container.DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
+            container.SaveCommand = new RelayCommand(ExecuteSaveCommand);
+            container.NewCommand = new RelayCommand(ExecuteNewCommand);
+
+            
+
+            return eViewModel;
+        }
+
+        void LoadModel()
+        {
+            int oldselid = 0;
+            if(eViewModel!=null)
+                oldselid=eViewModel.SelectedBusinessUnit.Id;
 
             eViewModel = new EmployeeViewModel()
             {
                 Employees = new ObservableCollection<Employee>(socket.GetAllEmployees()),
                 EntriesEmployees = socket.GetAllEmployees(),
                 SelectedEmployee = null,
-                BusinessUnits = new ObservableCollection<BusinessUnit>( socket.GetAllBusinessUnits()),
+                BusinessUnits = new ObservableCollection<BusinessUnit>(socket.GetAllBusinessUnits()),
                 SelectedBusinessUnit = null,
             };
-
-            container.DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
-            container.SaveCommand = new RelayCommand(ExecuteSaveCommand);
-            container.NewCommand = new RelayCommand(ExecuteNewCommand);
+            if (oldselid != 0)
+            {
+                eViewModel.SelectedBusinessUnit= eViewModel.BusinessUnits.Single(x=> x.Id==oldselid);
+            }
 
             container.ActiveViewModel = eViewModel;
 
-            return eViewModel;
+
         }
 
         public void ExecuteDeleteCommand(object obj)
@@ -50,21 +67,18 @@ namespace Client.Controller
             eViewModel.EntriesEmployees.Remove(curr);
             socket.RemoveEmployee(curr);
 
-            Initialize();
-
         }
         public void ExecuteNewCommand(object obj)
         {
             var addEmp = new AddEmployeeController();
             var emp = addEmp.AddEmp(socket);
 
-            if(emp != null)
+            if (emp != null)
             {
                 eViewModel.EntriesEmployees.Add(emp);
                 eViewModel.Employees.Add(emp);
             }
 
-            Initialize();
 
         }
 
@@ -72,25 +86,35 @@ namespace Client.Controller
         {
             var selectedEmp = eViewModel.SelectedEmployee;
 
-            var frontEmps = eViewModel.EntriesEmployees;
             if (selectedEmp != null)
             {
                 selectedEmp.BusinessUnitId = eViewModel.SelectedBusinessUnit;
-                frontEmps.Add(selectedEmp);
-            }
-            var databaseEmps = eViewModel.Employees;
-            foreach (Employee emp in databaseEmps)
-            {
-                foreach (Employee front in frontEmps)
-                {
-                    if (emp.Id == front.Id)
-                    {
-                        socket.EditEmployee(emp);
-                    }
-                }
+                socket.EditEmployee(selectedEmp);
             }
 
-            Initialize();
+            /*
+
+            var databaseEmps = eViewModel.Employees;
+
+            foreach (Employee emp in (from y in databaseEmps where
+                                      frontEmps.FirstOrDefault(k => k.Id == y.Id) != null select y))
+            {
+                socket.EditEmployee(emp);
+            }
+            
+            */
+            /*            foreach (Employee emp in databaseEmps)
+                        {
+                            foreach (Employee front in frontEmps)
+                            {
+                                if (emp.Id == front.Id)
+                                {
+                                    socket.EditEmployee(emp);
+                                }
+                            }
+                        }*/
+
+            LoadModel();
         }
 
         public bool CanExecuteDeleteCommand(object obj)
@@ -112,5 +136,6 @@ namespace Client.Controller
             }
 
         }
+
     }
 }
