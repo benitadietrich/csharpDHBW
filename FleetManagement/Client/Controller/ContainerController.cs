@@ -1,4 +1,5 @@
-﻿using Client.FleetServiceReference;
+﻿using Autofac;
+using Client.FleetServiceReference;
 using Client.Framework;
 using Client.ViewModels;
 using Client.Views;
@@ -32,7 +33,7 @@ namespace Client.Controller
 
         private void Login()
         {
-            var loginWindowController = new LoginController();
+            var loginWindowController = App.Container.Resolve<LoginController>();
             user = loginWindowController.LoginUser(socket);
 
             containerViewModel.ActiveViewModel = new HomeController(user, socket).Initialize();
