@@ -5,41 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="504" d:DesignWidth="842"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="564" d:DesignWidth="822"
              xmlns:fleetProxy="clr-namespace:Client.FleetServiceReference"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        FontFamily="{DynamicResource MaterialDesignFont}">
-
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="75"></RowDefinition>
-            <RowDefinition Height="75"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="50*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="17*"></RowDefinition>
+            <RowDefinition Height="17*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280" />
-            <ColumnDefinition Width="280" />
-            <ColumnDefinition Width="280" />
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="30*" />
         </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.ColumnSpan="3" IsReadOnly="True" Grid.Row="1" Height="224" Margin="10,10,10,0"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}"  AutoGenerateColumns="False" >
+        <DataGrid Grid.ColumnSpan="3" IsReadOnly="True" Grid.Row="1" Height="253" Margin="10,10,10,0"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}"  AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Width="100" Header="Personal Nr." Binding="{Binding EmployeeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTextColumn Width="300" Header="Vorname"  Binding="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn Width="300" Header="Nachname" Binding="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Width="30*" Header="Personal Nr." Binding="{Binding EmployeeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Width="30*" Header="Vorname"  Binding="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Width="30*" Header="Nachname" Binding="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label Grid.ColumnSpan="3" Grid.Row="0" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="#f44336" Content="Mitarbeiterverwaltung" VerticalAlignment="Center" Width="842" Height="25"/>
-        <TextBox Grid.ColumnSpan="3" Grid.Row="2" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="#f44336" VerticalAlignment="Center" Width="842" Height="25">
+        <Label Grid.ColumnSpan="3" Grid.Row="0" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="{StaticResource PrimaryHueMidBrush}" Content="Mitarbeiterverwaltung" VerticalAlignment="Center" Width="842" Height="25"/>
+        <TextBox Grid.ColumnSpan="3" Grid.Row="2" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="{StaticResource PrimaryHueMidBrush}" VerticalAlignment="Center" Width="842" Height="25">
             <TextBox.Text>
                 <MultiBinding StringFormat="{} {0} {1} ({2})">
                     <Binding Path="SelectedEmployee.FirstName"></Binding>
@@ -48,22 +47,27 @@
                 </MultiBinding>
             </TextBox.Text>
         </TextBox>
-        <TextBox Grid.Column="0" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Personalnummer" Text="{Binding SelectedEmployee.EmployeeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Anrede" Text="{Binding SelectedEmployee.Salutation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="3" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Titel" Text="{Binding SelectedEmployee.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Grid.Column="0" Grid.Row="4" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="250" materialDesign:HintAssist.Hint="Vorname" Text="{Binding SelectedEmployee.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="350" materialDesign:HintAssist.Hint="Nachname" Text="{Binding SelectedEmployee.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                  materialDesign:HintAssist.Hint="Geschäftsbereich"
-                  Grid.Row="5" Grid.ColumnSpan="3" 
-                  HorizontalAlignment="Center" 
-                  VerticalAlignment="Center"
-                  Width="300" 
-                  Name="Geschäftsbereich" 
-                  SelectedItem="{Binding SelectedBusinessUnit, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
-                  ItemsSource="{Binding BusinessUnits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                  IsSynchronizedWithCurrentItem="True"
-                  IsReadOnly="True"  >
+        <TextBox Grid.Column="0" Grid.Row="3" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="220" materialDesign:HintAssist.Hint="Personalnummer" Text="{Binding SelectedEmployee.EmployeeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="220" materialDesign:HintAssist.Hint="Anrede" Text="{Binding SelectedEmployee.Salutation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="2" Grid.Row="3" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="220" materialDesign:HintAssist.Hint="Titel" Text="{Binding SelectedEmployee.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="0" Grid.Row="4" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="220" materialDesign:HintAssist.Hint="Vorname" Text="{Binding SelectedEmployee.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="220" materialDesign:HintAssist.Hint="Nachname" Text="{Binding SelectedEmployee.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <ComboBox
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+            materialDesign:HintAssist.Hint="Geschäftsbereich"
+            Grid.Row="4" 
+            Grid.Column="2"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            Width="220" 
+            Margin="27,20,27,36"
+            Name="Geschäftsbereich" 
+            SelectedItem="{Binding SelectedBusinessUnit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            ItemsSource="{Binding BusinessUnits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            IsSynchronizedWithCurrentItem="True"
+            IsReadOnly="True"  >
+
             <ComboBox.ItemTemplate>
                 <DataTemplate DataType="fleetProxy:BusinessUnit">
                     <TextBlock Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

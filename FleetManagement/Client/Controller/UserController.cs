@@ -21,21 +21,26 @@ namespace Client.Controller
 
         public override ViewModelBase Initialize()
         {
-
-            uViewModel = new UserViewModel()
-            {
-                Users = new ObservableCollection<User>(socket.GetAllUsers()),
-                SelectedUser = null,
-                EntriesUser = socket.GetAllUsers()
-            };
+            LoadModel();
 
             container.DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
             container.SaveCommand = new RelayCommand(ExecuteSaveCommand);
             container.NewCommand = new RelayCommand(ExecuteNewCommand);
 
-            container.ActiveViewModel = uViewModel;
 
             return uViewModel;
+        }
+
+        public void LoadModel()
+        {
+            uViewModel = new UserViewModel()
+            {
+                Users = new ObservableCollection<User>(socket.GetAllUsers()),
+                SelectedUser = null,
+            };
+
+            container.ActiveViewModel = uViewModel;
+            
         }
 
         public void ExecuteDeleteCommand(object obj)
@@ -44,7 +49,6 @@ namespace Client.Controller
             if (user.Username != curr.Username)
             {
                 uViewModel.Users.Remove(curr);
-                uViewModel.EntriesUser.Remove(curr);
                 socket.DeleteUser(curr);
             }
             else if (curr != null)
@@ -52,7 +56,6 @@ namespace Client.Controller
                 System.Windows.Forms.MessageBox.Show("Ein Fehler ist aufgetreten, bitte versuchen Sie es noch einmal");
             }
 
-            Initialize();
 
         }
         public void ExecuteNewCommand(object obj)
@@ -62,30 +65,25 @@ namespace Client.Controller
             if (user != null)
             {
                 uViewModel.Users.Add(user);
-                uViewModel.EntriesUser.Add(user);
             }
-            Initialize();
+
         }
 
         public void ExecuteSaveCommand(object obj)
         {
-            var frontUsers = uViewModel.EntriesUser;
-            if (uViewModel.SelectedUser != null) frontUsers.Add(uViewModel.SelectedUser);
-            var databaseUsers = uViewModel.Users;
-            foreach (User user in databaseUsers)
-            {
-                foreach (User front in frontUsers)
-                {
-                    if (user.Id == front.Id)
-                    {
-                        socket.EditUser(user);
-                    }
+            var selectedUser = uViewModel.SelectedUser;
 
-                }
+            if (selectedUser != null)
+            {
+                
+                    
+                    socket.EditUser(selectedUser);
+                
+
             }
 
 
-            Initialize();
+            LoadModel();
         }
 
         public bool CanExecuteDeleteCommand(object obj)

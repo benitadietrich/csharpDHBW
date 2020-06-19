@@ -9,10 +9,6 @@
         Title="Login" Height="300" Width="450" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="0,0,0,-2" Background="#fff5f5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="146*"/>
-            <ColumnDefinition Width="75*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
             <RowDefinition Height="50"/>
@@ -20,10 +16,13 @@
             <RowDefinition Height="75*"/>
         </Grid.RowDefinitions>
 
-        <Label FontWeight="Bold" FontSize="25" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Margin="184,8,34.053,8"/>
+        <Label FontWeight="Bold" FontSize="25" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74"/>
         <TextBox VerticalContentAlignment="Bottom" materialDesign:HintAssist.Hint="Benutzername" Text="{Binding Username}" Grid.Row="1" Width="350" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
         <TextBox VerticalContentAlignment="Bottom" materialDesign:HintAssist.Hint="Passwort"  Width="350" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Password}" Grid.Row="2" Grid.ColumnSpan="2" />
-        <Button Grid.Row="3" Width="200" Margin="124,28,118,31"  Command="{Binding LoginCommand}" Content="Anmelden" Grid.ColumnSpan="2" Height="Auto"/>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <Button materialDesign:ButtonAssist.CornerRadius="5" Grid.Row="3" Width="200"  Command="{Binding LoginCommand}" Content="Anmelden" Grid.ColumnSpan="2" Height="40"/>
+            
+        </StackPanel>
 
     </Grid>
 </Window>

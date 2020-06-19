@@ -14,7 +14,7 @@ namespace Server
     public interface IService
     {
         [OperationContract]
-        bool AddVehicle();
+        bool AddVehicle(Vehicle vehicle);
 
         [OperationContract]
         bool RemoveVehicle();
@@ -69,6 +69,12 @@ namespace Server
 
         [OperationContract]
         void EditEmployee(Employee emp);
+
+        [OperationContract]
+        List<VehicleToEmployeeRelation> GetAllRelations();
+
+        [OperationContract]
+        void RemoveRelation(VehicleToEmployeeRelation rel);
 
     }
 }

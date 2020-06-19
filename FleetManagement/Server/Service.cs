@@ -7,11 +7,12 @@ namespace Server
 {
     public class Service : IService
     {
-        private static readonly string _DATABASE = "D:/git/csharpDHBW/FleetManagement/Server/Database/FleetManagement.db";
+        private static readonly string _DATABASE = "Database/FleetManagement.db";
         private UserRepository _userRepository = new UserRepository(_DATABASE);
         private EmployeeRepository _employeeReposiotry = new EmployeeRepository(_DATABASE);
         private BusinessUnitRepository _businessUnitRepository = new BusinessUnitRepository(_DATABASE);
         private VehicleRepository _vehicleRepository = new VehicleRepository(_DATABASE);
+        private VehicleToEmployeeRelationRepository _relationRepository = new VehicleToEmployeeRelationRepository(_DATABASE);
 
         public bool AddBusinessUnit(BusinessUnit businessUnit)
         {
@@ -29,20 +30,29 @@ namespace Server
 
         public bool AddEmployee(Employee emp)
         {
-            var e = _employeeReposiotry.GetEmployee(emp.EmployeeNumber);
-            if(e != null)
+            var e = _employeeReposiotry.GetEmployeeByNumber(emp.EmployeeNumber);
+            if (e != null)
             {
                 return false;
-            } else
+            }
+            else
             {
                 _employeeReposiotry.Save(emp);
                 return true;
             }
         }
 
-        public bool AddVehicle()
+        public bool AddVehicle(Vehicle vehicle)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _vehicleRepository.Save(vehicle);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<BusinessUnit> GetAllBusinessUnits()
@@ -57,7 +67,7 @@ namespace Server
 
         public List<Vehicle> GetAllVehicles()
         {
-            throw new NotImplementedException();
+            return _vehicleRepository.GetAll();
         }
 
         public User Login(string username, string password)
@@ -178,6 +188,16 @@ namespace Server
         public void EditEmployee(Employee emp)
         {
             _employeeReposiotry.UpdateEmployee(emp);
+        }
+
+        public List<VehicleToEmployeeRelation> GetAllRelations()
+        {
+            return new List<VehicleToEmployeeRelation>();
+        }
+
+        public void RemoveRelation(VehicleToEmployeeRelation rel)
+        {
+            _relationRepository.Delete(rel);
         }
     }
 }

@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Server.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Server.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfVehicle">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Vehicle" nillable="true" type="tns:Vehicle" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfVehicle" nillable="true" type="tns:ArrayOfVehicle" />
   <xs:complexType name="Vehicle">
     <xs:sequence>
       <xs:element minOccurs="0" name="Brand" nillable="true" type="xs:string" />
@@ -19,6 +13,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Vehicle" nillable="true" type="tns:Vehicle" />
+  <xs:complexType name="ArrayOfVehicle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Vehicle" nillable="true" type="tns:Vehicle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVehicle" nillable="true" type="tns:ArrayOfVehicle" />
   <xs:complexType name="Employee">
     <xs:sequence>
       <xs:element minOccurs="0" name="BusinessUnitId" nillable="true" type="tns:BusinessUnit" />
@@ -68,4 +68,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="ArrayOfVehicleToEmployeeRelation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VehicleToEmployeeRelation" nillable="true" type="tns:VehicleToEmployeeRelation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVehicleToEmployeeRelation" nillable="true" type="tns:ArrayOfVehicleToEmployeeRelation" />
+  <xs:complexType name="VehicleToEmployeeRelation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeId" nillable="true" type="tns:Employee" />
+      <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VehicleId" nillable="true" type="tns:Vehicle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VehicleToEmployeeRelation" nillable="true" type="tns:VehicleToEmployeeRelation" />
 </xs:schema>

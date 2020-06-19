@@ -26,20 +26,23 @@ namespace Client.Controller
         public override ViewModelBase Initialize()
         {
 
-            bViewModel = new BusinessUnitViewModel()
-            {
-                BusinessUnits = new ObservableCollection<BusinessUnit>(socket.GetAllBusinessUnits()),
-                SelectedUnit = null,
-                EntriesUnits = socket.GetAllBusinessUnits()
-            };
+            LoadModel();
 
             container.DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
             container.SaveCommand = new RelayCommand(ExecuteSaveCommand);
             container.NewCommand = new RelayCommand(ExecuteNewCommand);
 
-            container.ActiveViewModel = bViewModel;
-
             return bViewModel;
+        }
+
+        public void LoadModel()
+        {
+            bViewModel = new BusinessUnitViewModel()
+            {
+                BusinessUnits = new ObservableCollection<BusinessUnit>(socket.GetAllBusinessUnits()),
+                SelectedUnit = null
+            };
+            container.ActiveViewModel = bViewModel;
         }
 
         public void ExecuteDeleteCommand(object obj)
@@ -53,10 +56,8 @@ namespace Client.Controller
 
                 var curr = bViewModel.SelectedUnit;
                 bViewModel.BusinessUnits.Remove(curr);
-                bViewModel.EntriesUnits.Remove(curr);
                 socket.RemoveBusinessUnit(curr);
 
-                Initialize();
             }
 
         }
@@ -67,30 +68,21 @@ namespace Client.Controller
             if (unit != null)
             {
                 bViewModel.BusinessUnits.Add(unit);
-                bViewModel.EntriesUnits.Add(unit);
             }
-            Initialize();
+           
 
         }
 
         public void ExecuteSaveCommand(object obj)
         {
-            var frontUnits = bViewModel.EntriesUnits;
-            if (bViewModel.SelectedUnit != null)
-                frontUnits.Add(bViewModel.SelectedUnit);
-            var databaseUnits = bViewModel.BusinessUnits;
-            foreach (BusinessUnit unit in databaseUnits)
-            {
-                foreach (BusinessUnit front in frontUnits)
-                {
-                    if (unit.Id == front.Id)
-                    {
-                        socket.EditBusinessUnit(unit);
-                    }
-                }
+            var selectedUnit = bViewModel.SelectedUnit;
+
+            if (selectedUnit != null)
+            {      
+                    socket.EditBusinessUnit(selectedUnit);
             }
 
-            Initialize();
+            LoadModel();
         }
 
         public bool CanExecuteDeleteCommand(object obj)

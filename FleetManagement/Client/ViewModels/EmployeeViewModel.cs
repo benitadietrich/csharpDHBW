@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Client.ViewModels
 {
@@ -21,7 +22,11 @@ namespace Client.ViewModels
             set
             {
                 selectedEmployee = value;
+
+                if (selectedEmployee != null)
+                    SelectedBusinessUnit = BusinessUnits.Single(x=> x.Id== selectedEmployee.BusinessUnitId.Id);
                 OnPropertyChanged();
+                
             }
         }
 

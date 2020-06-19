@@ -22,6 +22,9 @@ namespace Client.Views
             if (item is EmployeeViewModel)
                 return contentControl.FindResource("employeeViewTemplate") as DataTemplate;
 
+            if (item is VehicleViewModel)
+                return contentControl.FindResource("vehicleViewTemplate") as DataTemplate;
+
             return null;
         }
     }

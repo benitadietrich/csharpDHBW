@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Client.Views
 {
     /// <summary>
-    /// Interaktionslogik für VehicleView.xaml
+    /// Interaktionslogik für AddVehicleView.xaml
     /// </summary>
-    public partial class VehicleView : Window
+    public partial class AddVehicleView : Window
     {
-        public VehicleView()
+        public AddVehicleView()
         {
             InitializeComponent();
         }

@@ -15,7 +15,7 @@ namespace Client.ViewModels
         ViewModelBase activeViewModel;
 
         private bool isAdmin;
-        public bool IsAdmin 
+        public bool IsAdmin
         {
             get => isAdmin;
             set
@@ -30,6 +30,7 @@ namespace Client.ViewModels
         public ICommand OpenUnitCommand { get; set; }
 
         public ICommand OpenEmployeeCommand { get; set; }
+        public ICommand OpenVehiclesCommand { get; set; }
 
         private ICommand newCommand;
         public ICommand NewCommand
@@ -43,15 +44,15 @@ namespace Client.ViewModels
         }
 
         private ICommand saveCommand;
-        public ICommand SaveCommand 
-        { 
-            get => saveCommand; 
+        public ICommand SaveCommand
+        {
+            get => saveCommand;
             set
             {
                 saveCommand = value;
                 OnPropertyChanged();
             }
-}
+        }
         public ICommand deleteCommand;
         public ICommand DeleteCommand
         {

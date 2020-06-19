@@ -5,8 +5,60 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="504" d:DesignWidth="842"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="46*"></RowDefinition>
+            <RowDefinition Height="46*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DataGrid IsReadOnly="True" Grid.Row="1" Height="224" Margin="10"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="30*" Header="Kennzeichen" Binding="{Binding LicensePlate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Width="30*" Header="Marke"  Binding="{Binding Brand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Width="30*" Header="Modell" Binding="{Binding Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Row="0" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="#f44336" Content="Fahrzeugverwaltung" VerticalAlignment="Center" Margin="10,0,10,0" Width="842" Height="Auto"/>
+
+        <TabControl HorizontalAlignment="Left" Height="229" Grid.Row="2" VerticalAlignment="Top" Width="822" Margin="10,10,10,0">
+            <TabItem Header="Allgemein">
+                <Grid Background="#eeeeee">
+                    <TextBox Text="{Binding SelectedVehicle.LicensePlate}" materialDesign:HintAssist.Hint="Kennzeichen" Margin="23,10,518,166"/>
+                    <TextBox Text="{Binding SelectedVehicle.Brand}" materialDesign:HintAssist.Hint="Marke" Margin="23,40,518,136"/>
+                    <TextBox Text="{Binding SelectedVehicle.Model}" materialDesign:HintAssist.Hint="Modell" Margin="449,40,55,136"/>
+                    <TextBox Text="{Binding SelectedVehicle.Insurance}" materialDesign:HintAssist.Hint="Versicherung/Jahr (EUR)" Margin="23,70,518,106"/>
+                    <DatePicker materialDesign:HintAssist.Hint="Beginn" HorizontalAlignment="Left" Margin="74,135,0,0" VerticalAlignment="Top" Width="154" SelectedDate="{Binding SelectedVehicle.LeasingFrom, Mode=TwoWay}" ></DatePicker>
+                    <DatePicker materialDesign:HintAssist.Hint="Ende" HorizontalAlignment="Left" Margin="308,135,0,0" VerticalAlignment="Top" Width="154" SelectedDate="{Binding SelectedVehicle.LeasingTo, Mode=TwoWay}"/>
+                    <TextBox Text="{Binding SelectedVehicle.LeasingRate}" materialDesign:HintAssist.Hint="Leasingrate (EUR)" Width="154" Margin="515,135,74,41"/>
+                    <Border BorderBrush="{StaticResource SecondaryAccentBrush}" BorderThickness="1" HorizontalAlignment="Left" Height="60" Margin="41,118,0,0" VerticalAlignment="Top" Width="720">
+                        <Label Background="#eeeeee" Foreground="{StaticResource SecondaryAccentBrush}" Content="Leasing" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="33" Margin="307,-12,0,0"/>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Mitarbeiter">
+                <Grid Background="#FFE5E5E5">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Content="+" Height="20" Width="20" Margin="10,10,786,171"></Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Content="-" Height="20" Width="20"  Margin="35,10,761,171"></Button>
+                    <DataGrid Margin="10,35,10,10" IsReadOnly="True" Grid.Row="1" Height="150"  VerticalAlignment="Top" Name="Mitarbeiter" ItemsSource="{Binding SelectedRelations}" SelectedItem="{Binding SelectedRelation}" AutoGenerateColumns="False" >
+                        <DataGrid.Columns>
+                                <DataGridTextColumn Width="30*" Header="Mitarbeiter" Binding="{Binding EmployeeId.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Width="30*" Header="Beginn"  Binding="{Binding LeasingFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <DataGridTextColumn Width="30*" Header="Ende" Binding="{Binding LeasingTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

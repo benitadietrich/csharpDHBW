@@ -117,6 +117,7 @@
     <Compile Include="Controller\AddBusinessUnitController.cs" />
     <Compile Include="Controller\AddEmployeeController.cs" />
     <Compile Include="Controller\AddUserController.cs" />
+    <Compile Include="Controller\AddVehicleController.cs" />
     <Compile Include="Controller\BusinessUnitController.cs" />
     <Compile Include="Controller\ChangePasswordController.cs" />
     <Compile Include="Controller\ContainerController.cs" />
@@ -125,9 +126,11 @@
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\SubmoduleController.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Controller\VehicleController.cs" />
     <Compile Include="ViewModels\AddBusinessUnitViewModel.cs" />
     <Compile Include="ViewModels\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AddUserViewModel.cs" />
+    <Compile Include="ViewModels\AddVehicleViewModel.cs" />
     <Compile Include="ViewModels\BusinessUnitViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswortViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
@@ -135,6 +138,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViewModel.cs" />
     <Compile Include="Views\AddBusinessUnitView.xaml.cs">
       <DependentUpon>AddBusinessUnitView.xaml</DependentUpon>
     </Compile>
@@ -143,6 +147,9 @@
     </Compile>
     <Compile Include="Views\AddUserView.xaml.cs">
       <DependentUpon>AddUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddVehicleView.xaml.cs">
+      <DependentUpon>AddVehicleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BusinessUnitView.xaml.cs">
       <DependentUpon>BusinessUnitView.xaml</DependentUpon>
@@ -181,9 +188,6 @@
     <Compile Include="Views\VehiclesView.xaml.cs">
       <DependentUpon>VehiclesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VehicleView.xaml.cs">
-      <DependentUpon>VehicleView.xaml</DependentUpon>
-    </Compile>
     <Page Include="Views\AddBusinessUnitView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddVehicleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -236,10 +244,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\VehicleView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -269,6 +273,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\FleetServiceReference\Client.FleetServiceReference.Vehicle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FleetServiceReference\Client.FleetServiceReference.VehicleToEmployeeRelation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\FleetServiceReference\Server.Models.xsd">

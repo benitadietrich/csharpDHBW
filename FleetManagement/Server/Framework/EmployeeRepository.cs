@@ -1,5 +1,6 @@
 ﻿using Server.Models;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Server.Framework
 {
@@ -56,6 +57,24 @@ namespace Server.Framework
 
                     }
                     catch
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        public Employee GetEmployeeByNumber(int number)
+        {
+            using(var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        return session.Query<Employee>()
+                            .Where(x => x.EmployeeNumber == number).FirstOrDefault();
+                    } catch
                     {
                         return null;
                     }

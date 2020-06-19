@@ -2,59 +2,45 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Description;
+
 
 namespace Host
 {
     class Program
     {
-        public static void Main(string[] _args)
+        static void Main(string[] args)
         {
-            Console.WriteLine("Starting FleetManagement Service...");
-
-            // Create base address
-            Uri serviceAddress = new Uri("http://localhost:8733/Design_Time_Addresses/Server/Service/");
-            // Create ServiceHost
-            using (ServiceHost host = new ServiceHost(typeof(Service), serviceAddress))
+            Uri baseAddress = new Uri("http://localhost:8733/Design_Time_Addresses/Server/Service/");
+            using (ServiceHost host = new ServiceHost(typeof(Service), baseAddress))
             {
-                ServiceMetadataBehavior smb = new ServiceMetadataBehavior
-                {
-                    HttpGetEnabled = true,
-                    MetadataExporter = {
-                        PolicyVersion = PolicyVersion.Policy15
-                    }
-                };
-                ServiceDebugBehavior sdb = host.Description.Behaviors.Find<ServiceDebugBehavior>();
-                sdb.IncludeExceptionDetailInFaults = true;
-
+                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
+                smb.HttpGetEnabled = true;
+                smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
                 host.Description.Behaviors.Add(smb);
-                host.Description.Behaviors.Remove<ServiceDebugBehavior>();
-                host.Description.Behaviors.Add(sdb);
 
-                WSHttpBinding wsBinding = new WSHttpBinding(SecurityMode.Message)
+                var binding = new WSHttpBinding(SecurityMode.Message)
                 {
                     AllowCookies = true,
-                    ReliableSession = {
-                        Enabled = true
-                    },
-                    TransactionFlow = false
+                    TransactionFlow = true,
+                    ReliableSession = { Enabled = false }
                 };
 
-                host.AddServiceEndpoint(typeof(IService), wsBinding, serviceAddress);
-
+                host.AddServiceEndpoint(typeof(IService), binding, baseAddress);
                 host.Open();
 
-                Console.WriteLine($"Burgerama Service ready at {serviceAddress}.");
+                Console.WriteLine("The service is ready at {0}", baseAddress);
                 Console.WriteLine("Press <Enter> to stop the service.");
                 Console.ReadLine();
 
+                // Close the ServiceHost.
                 host.Close();
             }
 
-            Console.WriteLine("Goodbye.");
         }
     }
 }
