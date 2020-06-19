@@ -133,6 +133,7 @@
     <Compile Include="Framework\Repository.cs" />
     <Compile Include="Framework\UserRepository.cs" />
     <Compile Include="Framework\VehicleRepository.cs" />
+    <Compile Include="Framework\VehicleToEmployeeRelationRepository.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Mapping\BusinessUnitMap.cs" />
     <Compile Include="Mapping\EmployeeMap.cs" />

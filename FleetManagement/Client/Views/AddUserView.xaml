@@ -16,15 +16,15 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="24*"></RowDefinition>
+            <RowDefinition Height="24*"></RowDefinition>
+            <RowDefinition Height="24*"></RowDefinition>
+            <RowDefinition Height="24*"></RowDefinition>
+            <RowDefinition Height="28*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="350" materialDesign:HintAssist.Hint="Vorname" Text="{Binding Firstname}"></TextBox>
-        <TextBox Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="350" materialDesign:HintAssist.Hint="Nachname" Text="{Binding Lastname}"></TextBox>
-        <TextBox Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="350" materialDesign:HintAssist.Hint="Benutzername" Text="{Binding Username}"></TextBox>
+        <TextBox Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="350" materialDesign:HintAssist.Hint="Vorname" Text="{Binding Firstname}"></TextBox>
+        <TextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="350" materialDesign:HintAssist.Hint="Nachname" Text="{Binding Lastname}"></TextBox>
+        <TextBox Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="350" materialDesign:HintAssist.Hint="Benutzername" Text="{Binding Username}"></TextBox>
         <CheckBox Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Administrator?" IsChecked="{Binding IsAdmin}" ></CheckBox>
         <Button Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Command="{Binding AddUserCommand}">Hinzufügen</Button>
     </Grid>

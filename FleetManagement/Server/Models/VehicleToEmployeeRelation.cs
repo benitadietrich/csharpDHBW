@@ -23,7 +23,6 @@ namespace Server.Models
         public Vehicle VehicleId { get; set; }
 
         [DataMember]
-
         public Employee EmployeeId { get; set; }
 
     }

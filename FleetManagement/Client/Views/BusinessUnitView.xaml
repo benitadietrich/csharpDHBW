@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
-            d:DesignHeight="504" d:DesignWidth="842"
+            d:DesignHeight="564" d:DesignWidth="822"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -15,13 +15,13 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="50*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="44*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid IsReadOnly="True" Grid.Row="1" Height="224" Margin="10,10,10,0"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding BusinessUnits}" SelectedItem="{Binding SelectedUnit}" AutoGenerateColumns="False">
+        <DataGrid IsReadOnly="True" Grid.Row="1" Height="253" Margin="10,10,10,0"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding BusinessUnits}" SelectedItem="{Binding SelectedUnit}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="100" Header="Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTextColumn  Header="Beschreibung"  Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

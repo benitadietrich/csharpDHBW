@@ -1,0 +1,41 @@
+﻿<Window x:Class="Client.Views.AddVehicleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Views"
+        mc:Ignorable="d"
+        Title="Fahrzeug hinzufügen" Height="450" Width="700" WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <TextBox Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Kennzeichen" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding LicensePlate}"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" materialDesign:HintAssist.Hint="Marke" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Brand}"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="0" materialDesign:HintAssist.Hint="Model" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Model}"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Versicherung/Jahr (EUR)" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Insurance}"></TextBox>
+
+        <DatePicker Grid.Row="2" Grid.Column="0" materialDesign:HintAssist.Hint="Start" SelectedDate="{Binding LeasingFrom}" Width="250"></DatePicker>
+        <DatePicker Grid.Row="2" Grid.Column="1" materialDesign:HintAssist.Hint="Ende" SelectedDate="{Binding LeasingTo}" Width="250"></DatePicker>
+        <TextBox Grid.Row="3" Grid.Column="0" materialDesign:HintAssist.Hint="Leasingrate (EUR)" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding LeasingRate}"></TextBox>
+
+        <Button Content="Hinzufügen" Grid.Row="4" Grid.ColumnSpan="2" Width="250" Command="{Binding AddCommand}"></Button>
+    </Grid>
+</Window>

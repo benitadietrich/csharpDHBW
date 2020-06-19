@@ -513,15 +513,124 @@ namespace Client.FleetServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VehicleToEmployeeRelation", Namespace="http://schemas.datacontract.org/2004/07/Server.Models")]
+    [System.SerializableAttribute()]
+    public partial class VehicleToEmployeeRelation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.FleetServiceReference.Employee EmployeeIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime EndDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime StartDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.FleetServiceReference.Vehicle VehicleIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.FleetServiceReference.Employee EmployeeId {
+            get {
+                return this.EmployeeIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmployeeIdField, value) != true)) {
+                    this.EmployeeIdField = value;
+                    this.RaisePropertyChanged("EmployeeId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime EndDate {
+            get {
+                return this.EndDateField;
+            }
+            set {
+                if ((this.EndDateField.Equals(value) != true)) {
+                    this.EndDateField = value;
+                    this.RaisePropertyChanged("EndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime StartDate {
+            get {
+                return this.StartDateField;
+            }
+            set {
+                if ((this.StartDateField.Equals(value) != true)) {
+                    this.StartDateField = value;
+                    this.RaisePropertyChanged("StartDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.FleetServiceReference.Vehicle VehicleId {
+            get {
+                return this.VehicleIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VehicleIdField, value) != true)) {
+                    this.VehicleIdField = value;
+                    this.RaisePropertyChanged("VehicleId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FleetServiceReference.IService")]
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddVehicle", ReplyAction="http://tempuri.org/IService/AddVehicleResponse")]
-        bool AddVehicle();
+        bool AddVehicle(Client.FleetServiceReference.Vehicle vehicle);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddVehicle", ReplyAction="http://tempuri.org/IService/AddVehicleResponse")]
-        System.Threading.Tasks.Task<bool> AddVehicleAsync();
+        System.Threading.Tasks.Task<bool> AddVehicleAsync(Client.FleetServiceReference.Vehicle vehicle);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveVehicle", ReplyAction="http://tempuri.org/IService/RemoveVehicleResponse")]
         bool RemoveVehicle();
@@ -630,6 +739,18 @@ namespace Client.FleetServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditEmployee", ReplyAction="http://tempuri.org/IService/EditEmployeeResponse")]
         System.Threading.Tasks.Task EditEmployeeAsync(Client.FleetServiceReference.Employee emp);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllRelations", ReplyAction="http://tempuri.org/IService/GetAllRelationsResponse")]
+        System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation> GetAllRelations();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllRelations", ReplyAction="http://tempuri.org/IService/GetAllRelationsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation>> GetAllRelationsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveRelation", ReplyAction="http://tempuri.org/IService/RemoveRelationResponse")]
+        void RemoveRelation(Client.FleetServiceReference.VehicleToEmployeeRelation rel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveRelation", ReplyAction="http://tempuri.org/IService/RemoveRelationResponse")]
+        System.Threading.Tasks.Task RemoveRelationAsync(Client.FleetServiceReference.VehicleToEmployeeRelation rel);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -659,12 +780,12 @@ namespace Client.FleetServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public bool AddVehicle() {
-            return base.Channel.AddVehicle();
+        public bool AddVehicle(Client.FleetServiceReference.Vehicle vehicle) {
+            return base.Channel.AddVehicle(vehicle);
         }
         
-        public System.Threading.Tasks.Task<bool> AddVehicleAsync() {
-            return base.Channel.AddVehicleAsync();
+        public System.Threading.Tasks.Task<bool> AddVehicleAsync(Client.FleetServiceReference.Vehicle vehicle) {
+            return base.Channel.AddVehicleAsync(vehicle);
         }
         
         public bool RemoveVehicle() {
@@ -809,6 +930,22 @@ namespace Client.FleetServiceReference {
         
         public System.Threading.Tasks.Task EditEmployeeAsync(Client.FleetServiceReference.Employee emp) {
             return base.Channel.EditEmployeeAsync(emp);
+        }
+        
+        public System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation> GetAllRelations() {
+            return base.Channel.GetAllRelations();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation>> GetAllRelationsAsync() {
+            return base.Channel.GetAllRelationsAsync();
+        }
+        
+        public void RemoveRelation(Client.FleetServiceReference.VehicleToEmployeeRelation rel) {
+            base.Channel.RemoveRelation(rel);
+        }
+        
+        public System.Threading.Tasks.Task RemoveRelationAsync(Client.FleetServiceReference.VehicleToEmployeeRelation rel) {
+            return base.Channel.RemoveRelationAsync(rel);
         }
     }
 }

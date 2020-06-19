@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="504" d:DesignWidth="842"
+             d:DesignHeight="564" d:DesignWidth="822"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="404"/>
-            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="12*"></RowDefinition>
         </Grid.RowDefinitions>
         <Image Source="/Resources/lamborghini_rot.jpg" Grid.Row="1" HorizontalAlignment="Center" Height="304"  VerticalAlignment="Center" Width="423"/>
-        <Label Grid.Row="0" Background="#dbdbdb" FontWeight="Bold" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Content="Willkommen bei Flottenmanagement - Wir starten jetzt durch!" Height="40" VerticalAlignment="Center" Width="822" Margin="0,0,20,0"/>
-        <Button FontWeight="Light" Grid.Row="2" Command="{Binding OpenChangePasswordCommand}" Content="Passwort ändern" Width="175" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+        <Label Grid.Row="0" Foreground="White" FontWeight="Medium" Background="{StaticResource PrimaryHueMidBrush}"  FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Content="Willkommen bei Flottenmanagement - Wir starten jetzt durch!" Height="40" VerticalAlignment="Center" Width="822" />
+        <Button materialDesign:ButtonAssist.CornerRadius="5" Grid.Row="2" Command="{Binding OpenChangePasswordCommand}" Content="Passwort ändern" Width="175" HorizontalAlignment="Right" Margin="0,0,20,0"/>
 
     </Grid>
 </UserControl>

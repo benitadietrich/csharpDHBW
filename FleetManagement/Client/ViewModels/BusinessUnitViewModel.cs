@@ -20,6 +20,5 @@ namespace Client.ViewModels
             }
         }
 
-        public List<BusinessUnit> EntriesUnits { get; set; }
     }
 }

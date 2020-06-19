@@ -1,28 +1,32 @@
 ﻿using Client.FleetServiceReference;
 using Client.Framework;
+using Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Client.ViewModels
 {
-    class UserViewModel : ViewModelBase
+    class VehiclesViewModel : ViewModelBase
     {
-        public ObservableCollection<User> Users { get; set; }
+        public ObservableCollection<Vehicle> Vehicles { get; set; }
 
-        private User selectedUser;
-        public User SelectedUser
+        private Vehicle selectedVehicle;
+
+        public Vehicle SelectedVehicle
         {
-            get => selectedUser;
+            get => selectedVehicle;
             set
             {
-                selectedUser = value;
+                selectedVehicle = value;
                 OnPropertyChanged();
             }
         }
+
+        public ObservableCollection<VehicleToEmployeeRelation>
+
     }
 }
