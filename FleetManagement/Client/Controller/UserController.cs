@@ -27,7 +27,6 @@ namespace Client.Controller
             container.SaveCommand = new RelayCommand(ExecuteSaveCommand);
             container.NewCommand = new RelayCommand(ExecuteNewCommand);
 
-
             return uViewModel;
         }
 
@@ -74,11 +73,8 @@ namespace Client.Controller
             var selectedUser = uViewModel.SelectedUser;
 
             if (selectedUser != null)
-            {
-                
-                    
-                    socket.EditUser(selectedUser);
-                
+            { 
+                    socket.EditUser(selectedUser);         
 
             }
 

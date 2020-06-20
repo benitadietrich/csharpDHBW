@@ -76,10 +76,10 @@ namespace Client.Controller
             containerViewModel.ActiveViewModel = empController.Initialize();
         }
 
-        private void ExecuteOpenVehiclesCommand(object obj)
+        public void ExecuteOpenVehiclesCommand(object obj)
         {
-            var vehController = new VehicleController(socket, containerViewModel);
-            containerViewModel.ActiveViewModel = vehController.Initialize();
+            var vehiclecontroller = new VehiclesViewController(socket, containerViewModel);
+            containerViewModel.ActiveViewModel = vehiclecontroller.Initialize();
         }
 
         private void ExecuteLogout(object obj)

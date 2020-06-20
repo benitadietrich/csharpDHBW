@@ -89,7 +89,7 @@ namespace Client.Controller
         public void ExecuteNewCommand(object obj)
         {
             var addVeh = new AddVehicleController();
-            var emp = addVeh.AddVehicle(socket);
+            var emp = addVeh.AddVehicle();
 
             if (emp != null)
             {

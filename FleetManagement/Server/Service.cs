@@ -140,9 +140,17 @@ namespace Server
             return true;
         }
 
-        public bool RemoveVehicle()
+        public bool RemoveVehicle(Vehicle veh)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _vehicleRepository.Delete(veh);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<User> GetAllUsers()
@@ -195,9 +203,43 @@ namespace Server
             return new List<VehicleToEmployeeRelation>();
         }
 
-        public void RemoveRelation(VehicleToEmployeeRelation rel)
+        public bool RemoveRelation(VehicleToEmployeeRelation rel)
         {
-            _relationRepository.Delete(rel);
+            try
+            {
+                _relationRepository.Delete(rel);
+                return true;
+
+            }
+            catch
+            {
+                return false;
+            }
         }
+
+        public bool AddRelation(VehicleToEmployeeRelation rel)
+        {
+            try
+            {
+
+                _relationRepository.Save(rel);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<VehicleToEmployeeRelation> GetRelationFromVehicle(Vehicle vehicle)
+        {
+            return _relationRepository.GetRelationFromVehicle(vehicle);
+        }
+
+        public void EditVehicle(Vehicle veh)
+        {
+            _vehicleRepository.UpdateVehicle(veh);
+        }
+
     }
 }

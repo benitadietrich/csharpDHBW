@@ -17,7 +17,7 @@ namespace Server
         bool AddVehicle(Vehicle vehicle);
 
         [OperationContract]
-        bool RemoveVehicle();
+        bool RemoveVehicle(Vehicle veh);
 
         [OperationContract]
         List<Vehicle> GetAllVehicles();
@@ -74,7 +74,16 @@ namespace Server
         List<VehicleToEmployeeRelation> GetAllRelations();
 
         [OperationContract]
-        void RemoveRelation(VehicleToEmployeeRelation rel);
+        bool RemoveRelation(VehicleToEmployeeRelation rel);
+
+        [OperationContract]
+        bool AddRelation(VehicleToEmployeeRelation rel);
+
+        [OperationContract]
+        List<VehicleToEmployeeRelation> GetRelationFromVehicle(Vehicle vehicle);
+
+        [OperationContract]
+        void EditVehicle(Vehicle veh);
 
     }
 }

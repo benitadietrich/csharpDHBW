@@ -38,7 +38,7 @@ namespace Server.Framework
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Save(entity);
+                    session.SaveOrUpdate(entity);
                     transaction.Commit();
                 }
             }

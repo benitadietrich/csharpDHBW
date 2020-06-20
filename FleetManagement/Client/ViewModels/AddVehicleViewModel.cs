@@ -7,26 +7,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Client.ViewModels
+namespace Client.ViewModel
 {
-    class AddVehicleViewModel : ViewModelBase
+    public class AddVehicleViewModel: ViewModelBase
     {
-        public int Id { get; set; }
-
-        public string Brand { get; set; }
-
-        public string LicensePlate { get; set; }
-
-        public string Model { get; set; }
-
-        public float Insurance { get; set; }
-
-        public DateTime LeasingFrom { get; set; }
-
-        public DateTime LeasingTo { get; set; }
-
-        public float LeasingRate { get; set; }
-
         public ICommand AddCommand { get; set; }
+
+        private Vehicle vehicle = new Vehicle() { LeasingFrom = DateTime.Now , LeasingTo = DateTime.Now };
+        public Vehicle Vehicle
+        {
+            get
+            {
+                return vehicle;
+            }
+            set
+            {
+                vehicle = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

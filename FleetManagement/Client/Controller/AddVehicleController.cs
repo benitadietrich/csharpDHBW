@@ -1,70 +1,35 @@
 ﻿using Client.FleetServiceReference;
 using Client.Framework;
-using Client.ViewModels;
 using Client.Views;
+using Client.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Client.Controller
 {
-    class AddVehicleController
+    public class AddVehicleController
     {
-        private AddVehicleView view;
-        private AddVehicleViewModel viewModel;
-        private ServiceClient socket;
-        private Vehicle vehicle;
+        public AddVehicleWindow addVehicleWindow;
+        public AddVehicleViewModel addVehicleViewModel;
 
-        public Vehicle AddVehicle(ServiceClient socket)
+        public Vehicle AddVehicle()
         {
-            this.socket = socket;
-            view = new AddVehicleView();
-            viewModel = new AddVehicleViewModel()
+            addVehicleWindow = new AddVehicleWindow();
+            addVehicleViewModel = new AddVehicleViewModel()
             {
-                AddCommand = new RelayCommand(ExecuteAddVehicleCommand)
+                AddCommand = new RelayCommand(ExecuteAddCommand),
             };
-
-            view.DataContext = viewModel;
-
-            return view.ShowDialog() == true ? vehicle : null;
+            addVehicleWindow.DataContext = addVehicleViewModel;
+            return addVehicleWindow.ShowDialog() == true ? addVehicleViewModel.Vehicle : null;
         }
 
-        public void ExecuteAddVehicleCommand(object obj)
+        private void ExecuteAddCommand(object obj)
         {
-            vehicle = new Vehicle()
-            {
-                Brand = viewModel.Brand,
-                Insurance = viewModel.Insurance,
-                LeasingFrom = viewModel.LeasingFrom,
-                LeasingTo = viewModel.LeasingTo,
-                LeasingRate = viewModel.LeasingRate,
-                LicensePlate = viewModel.LicensePlate,
-                Model = viewModel.Model
-            };
-
-            try
-            {
-                if (socket.AddVehicle(vehicle))
-                {
-                    MessageBox.Show("Fahrzeug wurde erfolgreich hinzugefügt");
-                    view.DialogResult = true;
-                    view.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Ein Fahrzeug mit diesem Kennzeichen existiert bereits");
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Ein Fehler ist aufgetreten überprüfen Sie ihre Eingaben");
-            }
-
+            addVehicleWindow.DialogResult = true;
+            addVehicleWindow.Close();
         }
     }
 }

@@ -36,5 +36,17 @@ namespace Server.Framework
 
             }
         }
+
+        public void UpdateVehicle(Vehicle veh)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Merge(veh);
+                    transaction.Commit();
+                }
+            }
+        }
     }
 }

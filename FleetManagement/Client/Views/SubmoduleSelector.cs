@@ -1,4 +1,5 @@
-﻿using Client.ViewModels;
+﻿using Client.ViewModel;
+using Client.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,7 +23,7 @@ namespace Client.Views
             if (item is EmployeeViewModel)
                 return contentControl.FindResource("employeeViewTemplate") as DataTemplate;
 
-            if (item is VehicleViewModel)
+            if (item is VehiclesViewModel)
                 return contentControl.FindResource("vehicleViewTemplate") as DataTemplate;
 
             return null;

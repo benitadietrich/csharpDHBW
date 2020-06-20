@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Client.ViewModels
 {
-    class ContainerViewModel : ViewModelBase
+    public class ContainerViewModel : ViewModelBase
     {
         ViewModelBase activeViewModel;
 

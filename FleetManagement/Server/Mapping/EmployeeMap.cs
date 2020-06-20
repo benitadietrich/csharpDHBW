@@ -7,6 +7,7 @@ namespace Server.Mapping
     {
         public EmployeeMap()
         {
+
             Table("Employees");
             Id(x => x.Id).GeneratedBy.Native();
             Map(x => x.FirstName).Length(50).Not.Nullable();

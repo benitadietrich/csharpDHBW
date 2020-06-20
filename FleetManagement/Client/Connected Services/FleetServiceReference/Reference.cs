@@ -633,10 +633,10 @@ namespace Client.FleetServiceReference {
         System.Threading.Tasks.Task<bool> AddVehicleAsync(Client.FleetServiceReference.Vehicle vehicle);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveVehicle", ReplyAction="http://tempuri.org/IService/RemoveVehicleResponse")]
-        bool RemoveVehicle();
+        bool RemoveVehicle(Client.FleetServiceReference.Vehicle veh);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveVehicle", ReplyAction="http://tempuri.org/IService/RemoveVehicleResponse")]
-        System.Threading.Tasks.Task<bool> RemoveVehicleAsync();
+        System.Threading.Tasks.Task<bool> RemoveVehicleAsync(Client.FleetServiceReference.Vehicle veh);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllVehicles", ReplyAction="http://tempuri.org/IService/GetAllVehiclesResponse")]
         System.Collections.Generic.List<Client.FleetServiceReference.Vehicle> GetAllVehicles();
@@ -747,10 +747,28 @@ namespace Client.FleetServiceReference {
         System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation>> GetAllRelationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveRelation", ReplyAction="http://tempuri.org/IService/RemoveRelationResponse")]
-        void RemoveRelation(Client.FleetServiceReference.VehicleToEmployeeRelation rel);
+        bool RemoveRelation(Client.FleetServiceReference.VehicleToEmployeeRelation rel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveRelation", ReplyAction="http://tempuri.org/IService/RemoveRelationResponse")]
-        System.Threading.Tasks.Task RemoveRelationAsync(Client.FleetServiceReference.VehicleToEmployeeRelation rel);
+        System.Threading.Tasks.Task<bool> RemoveRelationAsync(Client.FleetServiceReference.VehicleToEmployeeRelation rel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddRelation", ReplyAction="http://tempuri.org/IService/AddRelationResponse")]
+        bool AddRelation(Client.FleetServiceReference.VehicleToEmployeeRelation rel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddRelation", ReplyAction="http://tempuri.org/IService/AddRelationResponse")]
+        System.Threading.Tasks.Task<bool> AddRelationAsync(Client.FleetServiceReference.VehicleToEmployeeRelation rel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetRelationFromVehicle", ReplyAction="http://tempuri.org/IService/GetRelationFromVehicleResponse")]
+        System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation> GetRelationFromVehicle(Client.FleetServiceReference.Vehicle vehicle);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetRelationFromVehicle", ReplyAction="http://tempuri.org/IService/GetRelationFromVehicleResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation>> GetRelationFromVehicleAsync(Client.FleetServiceReference.Vehicle vehicle);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditVehicle", ReplyAction="http://tempuri.org/IService/EditVehicleResponse")]
+        void EditVehicle(Client.FleetServiceReference.Vehicle veh);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditVehicle", ReplyAction="http://tempuri.org/IService/EditVehicleResponse")]
+        System.Threading.Tasks.Task EditVehicleAsync(Client.FleetServiceReference.Vehicle veh);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -788,12 +806,12 @@ namespace Client.FleetServiceReference {
             return base.Channel.AddVehicleAsync(vehicle);
         }
         
-        public bool RemoveVehicle() {
-            return base.Channel.RemoveVehicle();
+        public bool RemoveVehicle(Client.FleetServiceReference.Vehicle veh) {
+            return base.Channel.RemoveVehicle(veh);
         }
         
-        public System.Threading.Tasks.Task<bool> RemoveVehicleAsync() {
-            return base.Channel.RemoveVehicleAsync();
+        public System.Threading.Tasks.Task<bool> RemoveVehicleAsync(Client.FleetServiceReference.Vehicle veh) {
+            return base.Channel.RemoveVehicleAsync(veh);
         }
         
         public System.Collections.Generic.List<Client.FleetServiceReference.Vehicle> GetAllVehicles() {
@@ -940,12 +958,36 @@ namespace Client.FleetServiceReference {
             return base.Channel.GetAllRelationsAsync();
         }
         
-        public void RemoveRelation(Client.FleetServiceReference.VehicleToEmployeeRelation rel) {
-            base.Channel.RemoveRelation(rel);
+        public bool RemoveRelation(Client.FleetServiceReference.VehicleToEmployeeRelation rel) {
+            return base.Channel.RemoveRelation(rel);
         }
         
-        public System.Threading.Tasks.Task RemoveRelationAsync(Client.FleetServiceReference.VehicleToEmployeeRelation rel) {
+        public System.Threading.Tasks.Task<bool> RemoveRelationAsync(Client.FleetServiceReference.VehicleToEmployeeRelation rel) {
             return base.Channel.RemoveRelationAsync(rel);
+        }
+        
+        public bool AddRelation(Client.FleetServiceReference.VehicleToEmployeeRelation rel) {
+            return base.Channel.AddRelation(rel);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddRelationAsync(Client.FleetServiceReference.VehicleToEmployeeRelation rel) {
+            return base.Channel.AddRelationAsync(rel);
+        }
+        
+        public System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation> GetRelationFromVehicle(Client.FleetServiceReference.Vehicle vehicle) {
+            return base.Channel.GetRelationFromVehicle(vehicle);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation>> GetRelationFromVehicleAsync(Client.FleetServiceReference.Vehicle vehicle) {
+            return base.Channel.GetRelationFromVehicleAsync(vehicle);
+        }
+        
+        public void EditVehicle(Client.FleetServiceReference.Vehicle veh) {
+            base.Channel.EditVehicle(veh);
+        }
+        
+        public System.Threading.Tasks.Task EditVehicleAsync(Client.FleetServiceReference.Vehicle veh) {
+            return base.Channel.EditVehicleAsync(veh);
         }
     }
 }
