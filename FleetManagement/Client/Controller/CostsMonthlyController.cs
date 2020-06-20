@@ -30,7 +30,7 @@ namespace Client.Controller
 
             viewModel = new CostsMonthlyViewModel()
             {
-                Costs = new ObservableCollection<CostsMonthlyModel>(GetData())
+                Costs = GetData()
             };
 
             container.DeleteCommand = new RelayCommand(EmptyCommand, DisabledCommand);
@@ -40,26 +40,30 @@ namespace Client.Controller
             return viewModel;
         }
 
-        private List<CostsMonthlyModel> GetData()
+        private Dictionary<DateTime, CostsMonthlyModel> GetData()
         {
             var res = new List<CostsMonthlyModel>();
             var veh = socket.GetAllVehicles();
+            if (veh.Count() == 0) return null;
+            var min = veh.Min(v => v.LeasingFrom);
+            var max = veh.Max(v => v.LeasingTo);
 
-            veh.ForEach(vehicle =>
+            Dictionary<DateTime, CostsMonthlyModel> costsMonthly = new Dictionary<DateTime, CostsMonthlyModel>();
+
+            for (var i = min; i < max; i = i.AddMonths(1))
             {
-                for (var i = vehicle.LeasingFrom; i < vehicle.LeasingTo; i = i.AddMonths(1))
+                var vehm = veh.Where(v => v.LeasingFrom <= i && v.LeasingTo >= i);
+                var costs = Convert.ToDecimal(vehm.Select(v => v.LeasingRate + v.Insurance / 12).Sum());
+                var x = new CostsMonthlyModel()
                 {
-                    res.Add(new CostsMonthlyModel()
-                    {
-                        Month = string.Format("{0} {1}", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i.Month), i.Year),
-                        Ammount = 1,
-                        Costs = Convert.ToDecimal(vehicle.LeasingRate + (vehicle.Insurance / 12))
-                    });
-                }
-            });
+                    Ammount = vehm.Count(),
+                    Costs = costs,
+                    CostDisplay = string.Format("€ {0}", costs.ToString("0.00"))
+                };
+                costsMonthly.Add(i, x);
+            }
 
-            return res.GroupBy(x => x.Month).Select(y => new CostsMonthlyModel() 
-            { Month = y.Key, Ammount = y.Count(), Costs = y.Sum(z => z.Costs), CostDisplay = string.Format("€ {0}", y.Sum(z => z.Costs).ToString("0.00")) }).OrderByDescending(z => z.Costs).ToList();
+            return costsMonthly;
 
         }
 

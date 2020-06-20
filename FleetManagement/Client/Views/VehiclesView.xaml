@@ -48,13 +48,13 @@
             <TabItem Header="Mitarbeiter">
                 <Grid Background="#FFE5E5E5">
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Command="{Binding AddEmployeeCommand}" Content="+" Height="20" Width="20" Margin="10,10,786,171"></Button>
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Command="{Binding DeleteEmployeeCommand}" Content="-" Height="20" Width="20"  Margin="35,10,761,171"></Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Command="{Binding RemoveEmployeeCommand}" Content="-" Height="20" Width="20"  Margin="35,10,761,171"></Button>
                     <DataGrid Margin="10,35,10,10" IsReadOnly="True" Grid.Row="1" Height="150"  VerticalAlignment="Top" Name="Mitarbeiter" ItemsSource="{Binding Relations}" SelectedItem="{Binding SelectedRelation}" AutoGenerateColumns="False" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="30*" Header="Vorname" materialDesign:HintAssist.HelperText="Vorname" Binding="{Binding EmployeeId.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             <DataGridTextColumn Width="30*" Header="Nachname" Binding="{Binding EmployeeId.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            <DataGridTextColumn Width="30*" Header="Beginn"  Binding="{Binding LeasingFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <DataGridTextColumn Width="30*" Header="Ende" Binding="{Binding LeasingTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Width="30*" Header="Beginn"  Binding="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Width="30*" Header="Ende" Binding="{Binding EndTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </DataGrid.Columns>
 
                     </DataGrid>

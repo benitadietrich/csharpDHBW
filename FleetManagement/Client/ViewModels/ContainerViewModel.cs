@@ -34,6 +34,8 @@ namespace Client.ViewModels
 
         public ICommand OpenCostsMonthCommand { get; set; }
 
+        public ICommand OpenCostsUnitCommand { get; set; }
+
         private ICommand newCommand;
         public ICommand NewCommand
         {

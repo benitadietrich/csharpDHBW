@@ -51,6 +51,8 @@ namespace Client.Controller
             {
                 var relation = addRelationViewModel.Relation;
                 relation.EmployeeId = addRelationViewModel.SelectedEmployee;
+                relation.StartDate = DateTime.UtcNow;
+                relation.EndDate = null;
                 relation.VehicleId = vehicle;
                 return relation;
             }

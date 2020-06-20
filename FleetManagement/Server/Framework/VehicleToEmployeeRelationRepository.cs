@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Server.Framework
 {
-    class VehicleToEmployeeRelationRepository : Repository<VehicleToEmployeeRelation>
+    public class VehicleToEmployeeRelationRepository : Repository<VehicleToEmployeeRelation>
     {
         public VehicleToEmployeeRelationRepository(string databaseFile) : base(databaseFile)
         {

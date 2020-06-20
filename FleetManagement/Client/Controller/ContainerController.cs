@@ -26,6 +26,7 @@ namespace Client.Controller
                 OpenEmployeeCommand = new RelayCommand(ExecuteOpenEmployeeCommand),
                 OpenVehiclesCommand = new RelayCommand(ExecuteOpenVehiclesCommand),
                 OpenCostsMonthCommand = new RelayCommand(ExecuteOpenCostsMonthCommand),
+                OpenCostsUnitCommand = new RelayCommand(ExecuteOpenCostsUnitCommand),
                 LogoutCommand = new RelayCommand(ExecuteLogout)
             };
 
@@ -87,6 +88,12 @@ namespace Client.Controller
         {
             var costmcontroller = new CostsMonthlyController(socket, containerViewModel);
             containerViewModel.ActiveViewModel = costmcontroller.Initialize();
+        }
+
+        public void ExecuteOpenCostsUnitCommand(object obj)
+        {
+            var costbcontroller = new CostsBusinessUnitController(socket, containerViewModel);
+            containerViewModel.ActiveViewModel = costbcontroller.Initialize();
         }
 
         private void ExecuteLogout(object obj)

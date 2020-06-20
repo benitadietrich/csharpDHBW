@@ -122,6 +122,7 @@
     <Compile Include="Controller\BusinessUnitController.cs" />
     <Compile Include="Controller\ChangePasswordController.cs" />
     <Compile Include="Controller\ContainerController.cs" />
+    <Compile Include="Controller\CostsBusinessUnitController.cs" />
     <Compile Include="Controller\CostsMonthlyController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
     <Compile Include="Controller\HomeController.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Controller\VehicleController.cs" />
     <Compile Include="Controller\VehiclesViewController.cs" />
+    <Compile Include="Models\CostsBusinessUnitModel.cs" />
     <Compile Include="Models\CostsMonthlyModel.cs" />
     <Compile Include="ViewModels\AddBusinessUnitViewModel.cs" />
     <Compile Include="ViewModels\AddEmployeeViewModel.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="ViewModels\BusinessUnitViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswortViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
+    <Compile Include="ViewModels\CostsBusinessUnitViewModel.cs" />
     <Compile Include="ViewModels\CostsMonthlyViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{E09A9F0D-037F-4EA9-8408-1F703808CC6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Tests", "Server.Tests\Server.Tests.csproj", "{B2014F8B-F11A-4FB7-84F2-ECD04A27C997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Tests", "Server.Tests\Client.Tests.csproj", "{B2014F8B-F11A-4FB7-84F2-ECD04A27C997}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

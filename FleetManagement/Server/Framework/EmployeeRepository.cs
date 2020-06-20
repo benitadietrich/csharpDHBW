@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Server.Framework
 {
-    class EmployeeRepository : Repository<Employee>
+    public class EmployeeRepository : Repository<Employee>
     {
         public EmployeeRepository(string databaseFile) : base(databaseFile)
         {

@@ -44,7 +44,7 @@
                     <Separator Height="1" />
                     <MenuItem Header="Kosten/Monat" Command="{Binding OpenCostsMonthCommand}" Padding="10,10,-30,7" Width="Auto"/>
                     <Separator Height="1" />
-                    <MenuItem Header="Kosten/Geschäftsbereich" Padding="10,10,-125,7" Width="Auto"/>
+                    <MenuItem Header="Kosten/Geschäftsbereich" Command="{Binding OpenCostsUnitCommand}" Padding="10,10,-125,7" Width="Auto"/>
                     <Separator Height="1" />
                     <MenuItem Header="Fahrzeuge" Padding="10,10,-30,7"  Command="{Binding OpenVehiclesCommand}"></MenuItem>
                     <Separator Height="1" />
@@ -113,6 +113,9 @@
                     </DataTemplate>
                     <DataTemplate x:Key="costsMonthViewTemplate">
                         <views:CostsMonthlyView />
+                    </DataTemplate>
+                    <DataTemplate x:Key="costsUnitViewTemplate">
+                        <views:CostBusinessUnitView />
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>

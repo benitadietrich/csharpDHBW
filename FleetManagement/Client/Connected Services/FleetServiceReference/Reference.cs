@@ -526,7 +526,7 @@ namespace Client.FleetServiceReference {
         private Client.FleetServiceReference.Employee EmployeeIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime EndDateField;
+        private System.Nullable<System.DateTime> EndDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -561,7 +561,7 @@ namespace Client.FleetServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime EndDate {
+        public System.Nullable<System.DateTime> EndDate {
             get {
                 return this.EndDateField;
             }

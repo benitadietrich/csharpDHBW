@@ -77,7 +77,7 @@
   <xs:complexType name="VehicleToEmployeeRelation">
     <xs:sequence>
       <xs:element minOccurs="0" name="EmployeeId" nillable="true" type="tns:Employee" />
-      <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="VehicleId" nillable="true" type="tns:Vehicle" />

@@ -14,6 +14,19 @@ namespace Server
         private VehicleRepository _vehicleRepository = new VehicleRepository(_DATABASE);
         private VehicleToEmployeeRelationRepository _relationRepository = new VehicleToEmployeeRelationRepository(_DATABASE);
 
+        public Service()
+        {
+        }
+
+        public Service(UserRepository u, EmployeeRepository e, BusinessUnitRepository b, VehicleRepository v, VehicleToEmployeeRelationRepository r)
+        {
+            _userRepository = u;
+            _employeeReposiotry = e;
+            _businessUnitRepository = b;
+            _vehicleRepository = v;
+            _relationRepository = r;
+        }
+
         public bool AddBusinessUnit(BusinessUnit businessUnit)
         {
             var b = _businessUnitRepository.GetBusinessUnit(businessUnit.Id);
@@ -201,7 +214,7 @@ namespace Server
 
         public List<VehicleToEmployeeRelation> GetAllRelations()
         {
-            return new List<VehicleToEmployeeRelation>();
+            return _relationRepository.GetAll();
         }
 
         public bool RemoveRelation(VehicleToEmployeeRelation rel)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Server.Framework
 {
-    class VehicleRepository : Repository<Vehicle>
+    public class VehicleRepository : Repository<Vehicle>
     {
         public VehicleRepository(string databaseFile) : base(databaseFile)
         {
