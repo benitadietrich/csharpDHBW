@@ -44,10 +44,9 @@ namespace Client.Controller
             vehiclesViewModel = new VehiclesViewModel()
             {
                 Vehicles = new ObservableCollection<Vehicle>(socket.GetAllVehicles()),
-                entryVehicles = socket.GetAllVehicles().ToList(),
-                AddEmployeeToVehicle = new RelayCommand(ExecuteAddEmployeeToVehicleCommand),
-                RemoveEmployeeFromVehicle = new RelayCommand(ExecuteRemoveEmployeeFromVehicleCommand, CanExecuteDeleteEmpCommand),
-                vehiclesViewController = this,
+                AddEmployeeCommand = new RelayCommand(ExecuteAddEmployeeToVehicleCommand),
+                RemoveEmployeeCommand = new RelayCommand(ExecuteRemoveEmployeeFromVehicleCommand, CanExecuteDeleteEmpCommand),
+                controller = this,
                 SelectedVehicle = null,
             };
 
@@ -60,31 +59,17 @@ namespace Client.Controller
             AddVehicleController addVehicleController = new AddVehicleController();
             Vehicle vehicle = addVehicleController.AddVehicle();
             if (vehicle == null) return;
-            var result = socket.AddVehicle(vehicle);
-            if (result == false) System.Windows.MessageBox.Show("Fehler beim Hinzufügen der Fahrzeuge!");
+            if (socket.GetAllVehicles().Find(x => x.LicensePlate == vehicle.LicensePlate.ToLower().Replace(" ", "-")) != null)
+                System.Windows.MessageBox.Show("Ein Fahrzeug mit diesem Kennzeichen existiert bereits");
+            if (!socket.AddVehicle(vehicle))
+                System.Windows.MessageBox.Show("Fehler beim Hinzufügen der Fahrzeuge!");
+
             LoadModel();
 
         }
 
         public void ExecuteSaveVehicleCommand(Object obj)
         {
-            /*if (vehiclesViewModel.SelectedVehicle != null)
-            {
-                //If Lists are equaly long
-                if (vehiclesViewModel.Vehicles.Count == vehiclesViewModel.entryVehicles.Count)
-                {
-                    //Change every Input
-                    for (int i = 0; i < vehiclesViewModel.Vehicles.Count; i++)
-                    {
-                        if (vehiclesViewModel.entryVehicles[i] != vehiclesViewModel.Vehicles[i])
-                        {
-                            var result = socket.ChangeVehicle(vehiclesViewModel.entryVehicles[i], vehiclesViewModel.Vehicles[i]);
-                            if (result == false) System.Windows.MessageBox.Show("Fehler beim Ändern der Fahrzeuge!");
-                        }
-                    }
-                    parent.restartVehicleCommand();
-                }
-            }*/
 
             var selectedVehicle = vehiclesViewModel.SelectedVehicle;
 
@@ -99,7 +84,7 @@ namespace Client.Controller
 
         public void ExecuteDeleteVehicleCommand(Object obj)
         {
-            foreach(VehicleToEmployeeRelation rel in vehiclesViewModel.Relations)
+            foreach (VehicleToEmployeeRelation rel in vehiclesViewModel.Relations)
             {
                 socket.RemoveRelation(rel);
             }
@@ -122,12 +107,15 @@ namespace Client.Controller
 
         private void ExecuteAddEmployeeToVehicleCommand(Object obj)
         {
-            if (vehiclesViewModel.SelectedVehicle == null) System.Windows.MessageBox.Show("Bitte wählen Sie ein Fahrzeug.");
-            if (vehiclesViewModel.SelectedVehicle != null)
+            if (vehiclesViewModel.SelectedVehicle == null)
+                System.Windows.MessageBox.Show("Bitte wählen Sie ein Fahrzeug.");
+
+            else
             {
                 var relation = new AddRelationController().AddRelation(socket, vehiclesViewModel.SelectedVehicle);
-                var result = socket.AddRelation(relation);
-                if (result == false) System.Windows.MessageBox.Show("Fehler beim Hinzufügen der Relation");
+
+                if (!socket.AddRelation(relation))
+                    System.Windows.MessageBox.Show("Fehler beim Hinzufügen der Relation");
             }
 
             LoadModel();
@@ -138,7 +126,7 @@ namespace Client.Controller
             if (vehiclesViewModel.SelectedRelation != null)
             {
                 DialogResult dialogResult = (DialogResult)System.Windows.MessageBox.Show("Sind Sie sicher, dass Sie die Verknüpfung zum ausgewählten Mitarbeiter entfernen wollen?", "Relation Löschen", (MessageBoxButton)MessageBoxButtons.YesNo);
-                if(dialogResult == DialogResult.Yes)
+                if (dialogResult == DialogResult.Yes)
                 {
                     var result = socket.RemoveRelation(vehiclesViewModel.SelectedRelation);
                     if (result == false) System.Windows.MessageBox.Show("Fehler beim Löschen der Relation");
@@ -165,8 +153,8 @@ namespace Client.Controller
                     vehiclesViewModel.Relations.Add(rel);
                 }
             }
-            
 
-        } 
+
+        }
     }
 }

@@ -26,6 +26,9 @@ namespace Client.Views
             if (item is VehiclesViewModel)
                 return contentControl.FindResource("vehicleViewTemplate") as DataTemplate;
 
+            if (item is CostsMonthlyViewModel)
+                return contentControl.FindResource("costsMonthViewTemplate") as DataTemplate;
+
             return null;
         }
     }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Client.Views
 {
     /// <summary>
-    /// Interaktionslogik für CostMonthView.xaml
+    /// Interaktionslogik für CostsMonthlyView.xaml
     /// </summary>
-    public partial class CostMonthView : UserControl
+    public partial class CostsMonthlyView : UserControl
     {
-        public CostMonthView()
+        public CostsMonthlyView()
         {
             InitializeComponent();
         }

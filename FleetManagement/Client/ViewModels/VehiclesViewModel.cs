@@ -26,16 +26,16 @@ namespace Client.ViewModels
                 selectedVehicle = value;
 
                 if (selectedVehicle != null)
-                    vehiclesViewController.GetUsersToVehicle(selectedVehicle);
+                    controller.GetUsersToVehicle(selectedVehicle);
 
                 OnPropertyChanged();
             }
         }
 
-        public ICommand AddEmployeeToVehicle { get; set; }
-        public ICommand RemoveEmployeeFromVehicle { get; set; }
+        public ICommand AddEmployeeCommand { get; set; }
+        public ICommand RemoveEmployeeCommand { get; set; }
 
-        public VehiclesViewController vehiclesViewController;
+        public VehiclesViewController controller;
 
         private VehicleToEmployeeRelation selectedRelation = new VehicleToEmployeeRelation();
 

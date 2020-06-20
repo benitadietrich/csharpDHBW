@@ -15,85 +15,51 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="46*"></RowDefinition>
+            <RowDefinition Height="46*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Background="{StaticResource PrimaryHueMidBrush}" FontWeight="Medium" VerticalContentAlignment="Center" Foreground="White" FontSize="14" Grid.Row="0" Content="Fahrzeuge Verwalten" Margin="0,0,0,5"></Label>
-
-        <DataGrid IsReadOnly="True" Grid.Row="1" Height="224" VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding Vehicles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedVehicle, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" AutoGenerateColumns="False" CanUserAddRows="False" RowHeaderWidth="0">
+        <DataGrid IsReadOnly="True" Grid.Row="1" Height="224" Margin="10"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header="Kennzeichen" Binding="{Binding LicensePlate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTextColumn Width="*" Header="Marke"  Binding="{Binding Brand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn Width="*" Header="Modell"  Binding="{Binding Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Width="30*" Header="Kennzeichen" Binding="{Binding LicensePlate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Width="30*" Header="Marke"  Binding="{Binding Brand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Width="30*" Header="Modell" Binding="{Binding Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="2">
+        <Label Grid.Row="0" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="#f44336" Content="Fahrzeugverwaltung" VerticalAlignment="Center" Margin="10,0,10,0" Width="842" Height="Auto"/>
 
-            <TabControl Margin="10">
-                <TabItem Header="Allgemein">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="5*"></RowDefinition>
-                            <RowDefinition Height="2*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
+        <TabControl HorizontalAlignment="Left" Height="229" Grid.Row="2" VerticalAlignment="Top" Width="822" Margin="10,10,10,0">
+            <TabItem Header="Allgemein">
+                <Grid Background="#eeeeee">
+                    <TextBox ToolTip="Kennzeichen" Text="{Binding SelectedVehicle.LicensePlate}" materialDesign:HintAssist.Hint="Kennzeichen" Margin="23,10,518,166"/>
+                    <TextBox ToolTip="Marke" Text="{Binding SelectedVehicle.Brand}" materialDesign:HintAssist.Hint="Marke" Margin="23,40,518,136"/>
+                    <TextBox ToolTip="Modell" Text="{Binding SelectedVehicle.Model}" materialDesign:HintAssist.Hint="Modell" Margin="449,40,55,136"/>
+                    <TextBox ToolTip="Versciherung/Jahr (EUR)" Text="{Binding SelectedVehicle.Insurance}" materialDesign:HintAssist.Hint="Versicherung/Jahr (EUR)" Margin="23,70,518,106"/>
+                    <DatePicker materialDesign:HintAssist.Hint="Beginn" HorizontalAlignment="Left" Margin="74,135,0,0" VerticalAlignment="Top" Width="154" SelectedDate="{Binding SelectedVehicle.LeasingFrom, Mode=TwoWay}" ></DatePicker>
+                    <DatePicker materialDesign:HintAssist.Hint="Ende" HorizontalAlignment="Left" Margin="308,135,0,0" VerticalAlignment="Top" Width="154" SelectedDate="{Binding SelectedVehicle.LeasingTo, Mode=TwoWay}"/>
+                    <TextBox Text="{Binding SelectedVehicle.LeasingRate}"  PreviewTextInput="TextBox_PreviewTextInput" materialDesign:HintAssist.Hint="Leasingrate (EUR)" Width="154" Margin="515,135,74,41"/>
+                    <Border BorderBrush="{StaticResource SecondaryAccentBrush}" BorderThickness="1" HorizontalAlignment="Left" Height="60" Margin="41,118,0,0" VerticalAlignment="Top" Width="720">
+                        <Label Background="#eeeeee" Foreground="{StaticResource SecondaryAccentBrush}" Content="Leasing" HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="33" Margin="307,-12,0,0"/>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Mitarbeiter">
+                <Grid Background="#FFE5E5E5">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Command="{Binding AddEmployeeCommand}" Content="+" Height="20" Width="20" Margin="10,10,786,171"></Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Command="{Binding DeleteEmployeeCommand}" Content="-" Height="20" Width="20"  Margin="35,10,761,171"></Button>
+                    <DataGrid Margin="10,35,10,10" IsReadOnly="True" Grid.Row="1" Height="150"  VerticalAlignment="Top" Name="Mitarbeiter" ItemsSource="{Binding Relations}" SelectedItem="{Binding SelectedRelation}" AutoGenerateColumns="False" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="30*" Header="Vorname" materialDesign:HintAssist.HelperText="Vorname" Binding="{Binding EmployeeId.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Width="30*" Header="Nachname" Binding="{Binding EmployeeId.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Width="30*" Header="Beginn"  Binding="{Binding LeasingFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Width="30*" Header="Ende" Binding="{Binding LeasingTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataGrid.Columns>
 
-                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-                            <TextBox Text="{Binding SelectedVehicle.LicensePlate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Kennzeichen" Margin="10,30,10,0" Height="25"></TextBox>
-                            <TextBox Text="{Binding SelectedVehicle.Brand}" Margin="10,30,10,0" Height="25" materialDesign:HintAssist.Hint="Marke" ></TextBox>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
-                            <Label Content="Versicherung/Jahr (EUR)"/>
-                            <TextBox Text="{Binding SelectedVehicle.Insurance}" Margin="10,0,10,0" Height="25"/>
-                            <Label Content="Modell"/>
-                            <TextBox Text="{Binding SelectedVehicle.Model}" Margin="10,0,10,0" Height="25"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
-                            <Label Content="Leasing" Margin="0,0,40,0"></Label>
-                            <Label Content="Beginn" Margin="0,15,0,0"></Label>
-                            <DatePicker Margin="10,15,15,30" SelectedDate="{Binding SelectedVehicle.LeasingFrom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="104"/>
-
-                            <Label Content="Ende" Margin="0,15,0,0"></Label>
-                            <DatePicker Margin="10,15,15,30" SelectedDate="{Binding SelectedVehicle.LeasingTo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="108"></DatePicker>
-
-                            <Label Content="Leasingrate" Margin="10" ></Label>
-                            <TextBox Margin="10,15,0,30" Text="{Binding SelectedVehicle.LeasingRate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="117" Height="25" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
-                        </StackPanel>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Mitarbeiter">
-
-                    <StackPanel Orientation="Vertical">
-
-                        <StackPanel Orientation="Horizontal" Margin="12,10">
-                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Height="20" Width="20" Content="-" Command="{Binding RemoveEmployeeFromVehicle}" Margin="0,0,10,0" ></Button>
-                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Height="20" Width="20" Content="+" Command="{Binding AddEmployeeToVehicle}"/>
-                        </StackPanel>
-
-
-                        <DataGrid IsReadOnly="True" Grid.Row="1" VerticalAlignment="Top" x:Name="Mitarbeiter" ItemsSource="{Binding Relations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedRelation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" CanUserAddRows="False" RowHeaderWidth="0" Margin="10,0,10,0" Height="206" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Width="*" Header="Mitarbeiter Vorname" Binding="{Binding EmployeeId.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <DataGridTextColumn Width="*" Header="Mitarbeiter Nachname" Binding="{Binding EmployeeId.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <DataGridTextColumn Width="*" Header="Beginn"  Binding="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <DataGridTextColumn Width="*" Header="Ende"  Binding="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            </DataGrid.Columns>
-
-                        </DataGrid>
-
-                    </StackPanel>
-
-                </TabItem>
-            </TabControl>
-
-        </Grid>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

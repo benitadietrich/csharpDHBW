@@ -17,7 +17,7 @@ namespace Server.Mapping
             Map(x => x.StartDate).Not.Nullable();
             Map(x => x.EndDate);
             References(x => x.VehicleId).Column("VehicleId").Not.Nullable();
-            References(x => x.EmployeeId).Column("EmployeeId").Not.Nullable();
+            References(x => x.EmployeeId).Column("EmployeeId");
 
         }
     }

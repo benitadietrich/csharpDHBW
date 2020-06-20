@@ -15,25 +15,33 @@ namespace Client.Controller
 {
     public class AddRelationController
     {
-        public AddRelationWindow addRelationWindow;
+        public AddRelationView addRelationWindow;
         public AddRelationViewModel addRelationViewModel;
 
         public VehicleToEmployeeRelation AddRelation(ServiceClient socket, Vehicle vehicle)
         {
-            addRelationWindow = new AddRelationWindow();
+            addRelationWindow = new AddRelationView();
 
             //Filter wich Employees get shown
             
             List<Employee> emps = socket.GetAllEmployees().ToList();
             List<VehicleToEmployeeRelation> rels = socket.GetRelationFromVehicle(vehicle).ToList();
-            List<Employee> selectedEmps = new List<Employee>();
+            List<Employee> selectedEmps = new List<Employee>(emps);
+
+            emps.ForEach(emp =>
+            {
+                if (rels.Find(rel => rel.EmployeeId.Id == emp.Id) != null)
+                {
+                    selectedEmps.Remove(emp);
+                }
+            });
             
 
             addRelationViewModel = new AddRelationViewModel()
             {
                 AddCommand = new RelayCommand(ExecuteAddCommand),
                 CancelCommand = new RelayCommand(ExecuteCancelCommand),
-                Employees = new ObservableCollection<Employee>(emps),
+                Employees = new ObservableCollection<Employee>(selectedEmps),
                 Vehicle = vehicle
             };
 

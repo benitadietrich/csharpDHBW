@@ -46,6 +46,7 @@ namespace Server
         {
             try
             {
+                vehicle.LicensePlate = vehicle.LicensePlate.ToLower().Replace(" ", "-");
                 _vehicleRepository.Save(vehicle);
                 return true;
             }

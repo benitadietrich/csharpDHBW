@@ -46,7 +46,7 @@ namespace Client
             containerBuilder.RegisterType<AddEmployeeView>();
             containerBuilder.RegisterType<AddUserView>();
 
-            containerBuilder.RegisterType<CostMonthView>();
+            containerBuilder.RegisterType<CostsMonthlyView>();
             containerBuilder.RegisterType<EmployeeView>();
             containerBuilder.RegisterType<ContainerView>();
             containerBuilder.RegisterType<HomeView>();

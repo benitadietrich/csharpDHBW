@@ -17,7 +17,7 @@ namespace Server.Models
         public DateTime StartDate { get; set; }
 
         [DataMember]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         [DataMember]
         public Vehicle VehicleId { get; set; }

@@ -13,8 +13,10 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"></RowDefinition>
             <RowDefinition Height="20*"></RowDefinition>
@@ -26,16 +28,18 @@
             <ColumnDefinition Width="50*"></ColumnDefinition>
             <ColumnDefinition Width="50*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        <TextBox Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Kennzeichen" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding LicensePlate}"></TextBox>
-        <TextBox Grid.Row="0" Grid.Column="1" materialDesign:HintAssist.Hint="Marke" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Brand}"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="0" materialDesign:HintAssist.Hint="Model" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Model}"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Versicherung/Jahr (EUR)" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Insurance}"></TextBox>
 
-        <DatePicker Grid.Row="2" Grid.Column="0" materialDesign:HintAssist.Hint="Start" SelectedDate="{Binding LeasingFrom}" Width="250"></DatePicker>
-        <DatePicker Grid.Row="2" Grid.Column="1" materialDesign:HintAssist.Hint="Ende" SelectedDate="{Binding LeasingTo}" Width="250"></DatePicker>
-        <TextBox Grid.Row="3" Grid.Column="0" materialDesign:HintAssist.Hint="Leasingrate (EUR)" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding LeasingRate}"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Kennzeichen" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Vehicle.LicensePlate}"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" materialDesign:HintAssist.Hint="Marke" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Vehicle.Brand}"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="0" materialDesign:HintAssist.Hint="Model" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Vehicle.Model}"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Versicherung/Jahr (EUR)" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Vehicle.Insurance}"></TextBox>
+
+        <DatePicker Grid.Row="2" Grid.Column="0" materialDesign:HintAssist.Hint="Von" SelectedDate="{Binding Vehicle.LeasingFrom, TargetNullValue={x:Static sys:DateTime.Now}}" Width="250"></DatePicker>
+        <DatePicker Grid.Row="2" Grid.Column="1" materialDesign:HintAssist.Hint="Bis" SelectedDate="{Binding Vehicle.LeasingTo, TargetNullValue={x:Static sys:DateTime.Now}}" Width="250"></DatePicker>
+        <TextBox Grid.Row="3" Grid.Column="0" materialDesign:HintAssist.Hint="Leasingrate (EUR)" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Width="250" Text="{Binding Vehicle.LeasingRate}"></TextBox>
 
         <Button Content="Hinzufügen" Grid.Row="4" Grid.ColumnSpan="2" Width="250" Command="{Binding AddCommand}"></Button>
+
+        
     </Grid>
 </Window>

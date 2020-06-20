@@ -1,0 +1,42 @@
+﻿<Window x:Class="Client.Views.AddRelationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Views"
+        mc:Ignorable="d"
+        Title="Neue Relation anlegen" Height="450" Width="700" WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="70*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Style="{StaticResource MaterialDesignLabel}" Grid.Row="0" Content="{Binding Vehicle.LicensePlate}"/>
+        <DataGrid IsReadOnly="True" Grid.Row="1" Height="220" Margin="10"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="10*" Header="Nr." Binding="{Binding EmployeeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Width="30*" Header="Vorname"  Binding="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Width="30*" Header="Nachanme"  Binding="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Width="30*" Header="Bereich"  Binding="{Binding BusinessUnitId.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DatePicker Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Von" SelectedDate="{Binding Relation.StartDate, TargetNullValue={x:Static sys:DateTime.Now}}"></DatePicker>
+        <DatePicker Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Bis" SelectedDate="{Binding Relation.EndDate}"></DatePicker>
+        <Button Grid.Row="3" Width="200" Content="Hinzufügen" HorizontalAlignment="Left" Margin="60,0,0,0" Command="{Binding AddCommand}"></Button>
+        <Button Grid.Row="3" Width="200" Content="Abbrechen" HorizontalAlignment="Right" Margin="0,0,60,0" Command="{Binding CancelCommand}"></Button>
+
+
+    </Grid>
+</Window>

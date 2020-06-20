@@ -3,11 +3,11 @@
 namespace Client.Views
 {
     /// <summary>
-    /// Interaktionslogik für AddVehicleView.xaml
+    /// Interaktionslogik für AddRelationWindow.xaml
     /// </summary>
-    public partial class AddVehicleView : Window
+    public partial class AddRelationView : Window
     {
-        public AddVehicleView()
+        public AddRelationView()
         {
             InitializeComponent();
         }

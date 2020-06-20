@@ -42,7 +42,7 @@
 
                     <MenuItem Header="Start" Padding="10,10,-30,7" Command="{Binding OpenHomeCommand}" Width="Auto" />
                     <Separator Height="1" />
-                    <MenuItem Header="Kosten/Monat" Padding="10,10,-30,7" Width="Auto"/>
+                    <MenuItem Header="Kosten/Monat" Command="{Binding OpenCostsMonthCommand}" Padding="10,10,-30,7" Width="Auto"/>
                     <Separator Height="1" />
                     <MenuItem Header="Kosten/Geschäftsbereich" Padding="10,10,-125,7" Width="Auto"/>
                     <Separator Height="1" />
@@ -110,6 +110,9 @@
                     </DataTemplate>
                     <DataTemplate x:Key="vehicleViewTemplate">
                         <views:VehiclesView />
+                    </DataTemplate>
+                    <DataTemplate x:Key="costsMonthViewTemplate">
+                        <views:CostsMonthlyView />
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>

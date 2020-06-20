@@ -12,12 +12,12 @@ namespace Client.Controller
 {
     public class AddVehicleController
     {
-        public AddVehicleWindow addVehicleWindow;
+        public AddVehicleView addVehicleWindow;
         public AddVehicleViewModel addVehicleViewModel;
 
         public Vehicle AddVehicle()
         {
-            addVehicleWindow = new AddVehicleWindow();
+            addVehicleWindow = new AddVehicleView();
             addVehicleViewModel = new AddVehicleViewModel()
             {
                 AddCommand = new RelayCommand(ExecuteAddCommand),
