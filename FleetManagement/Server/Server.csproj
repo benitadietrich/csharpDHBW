@@ -135,8 +135,11 @@
     <Compile Include="Framework\VehicleRepository.cs" />
     <Compile Include="Framework\VehicleToEmployeeRelationRepository.cs" />
     <Compile Include="Interfaces\IBusinessUnitRepository.cs" />
+    <Compile Include="Interfaces\IEmployeeRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Interfaces\IVehicleRepository.cs" />
+    <Compile Include="Interfaces\IVehicleToEmployeeRelation.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Mapping\BusinessUnitMap.cs" />
     <Compile Include="Mapping\EmployeeMap.cs" />

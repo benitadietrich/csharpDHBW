@@ -1,27 +1,43 @@
-﻿using Server.Framework;
+﻿using Autofac;
+using Server.Framework;
 using Server.Interfaces;
 using Server.Models;
-using System;
 using System.Collections.Generic;
 
 namespace Server
 {
     public class Service : IService
     {
+        public IContainer Container { get; private set; }
+
         private static readonly string _DATABASE = "Database/FleetManagement.db";
         private IUserRepository _userRepository;
-        private EmployeeRepository _employeeReposiotry = new EmployeeRepository(_DATABASE);
+        private IEmployeeRepository _employeeReposiotry;
         private IBusinessUnitRepository _businessUnitRepository;
-        private VehicleRepository _vehicleRepository = new VehicleRepository(_DATABASE);
-        private VehicleToEmployeeRelationRepository _relationRepository = new VehicleToEmployeeRelationRepository(_DATABASE);
+        private IVehicleRepository _vehicleRepository;
+        private IVehicleToEmployeeRelation _relationRepository;
 
         public Service()
         {
-            _userRepository  = new UserRepository(_DATABASE);
-            _businessUnitRepository = new BusinessUnitRepository(_DATABASE);
+            var containerBuilder = new ContainerBuilder();
+
+            containerBuilder.RegisterType<UserRepository>().As<IUserRepository>();
+            containerBuilder.RegisterType<BusinessUnitRepository>().As<IBusinessUnitRepository>();
+            containerBuilder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>();
+            containerBuilder.RegisterType<VehicleRepository>().As<IVehicleRepository>();
+            containerBuilder.RegisterType<VehicleToEmployeeRelationRepository>().As<IVehicleToEmployeeRelation>();
+
+            Container = containerBuilder.Build();
+
+            _userRepository = Container.Resolve<IUserRepository>(new NamedParameter("databaseFile", _DATABASE));
+            _businessUnitRepository = Container.Resolve<IBusinessUnitRepository>(new NamedParameter("databaseFile", _DATABASE));
+            _employeeReposiotry = Container.Resolve<IEmployeeRepository>(new NamedParameter("databaseFile", _DATABASE));
+            _vehicleRepository = Container.Resolve<IVehicleRepository>(new NamedParameter("databaseFile", _DATABASE));
+            _relationRepository = Container.Resolve<IVehicleToEmployeeRelation>(new NamedParameter("databaseFile", _DATABASE));
+
         }
 
-        public Service(IUserRepository u, EmployeeRepository e, IBusinessUnitRepository b, VehicleRepository v, VehicleToEmployeeRelationRepository r)
+        public Service(IUserRepository u, IEmployeeRepository e, IBusinessUnitRepository b, IVehicleRepository v, IVehicleToEmployeeRelation r)
         {
             _userRepository = u;
             _employeeReposiotry = e;
@@ -33,12 +49,14 @@ namespace Server
         public bool AddBusinessUnit(BusinessUnit businessUnit)
         {
             var b = _businessUnitRepository.GetBusinessUnit(businessUnit.Id);
-            if (b != null)
+            var be = _businessUnitRepository.GetBusinessUnitName(businessUnit.Name.ToLower());
+            if (b != null || be != null)
             {
                 return false;
             }
             else
             {
+                businessUnit.Name = businessUnit.Name.ToLower();
                 _businessUnitRepository.Save(businessUnit);
                 return true;
             }
@@ -60,16 +78,17 @@ namespace Server
 
         public bool AddVehicle(Vehicle vehicle)
         {
-            try
+            vehicle.LicensePlate = vehicle.LicensePlate.ToLower().Replace(" ", "-");
+            if (_vehicleRepository.GetByLicense(vehicle.LicensePlate) == null)
             {
-                vehicle.LicensePlate = vehicle.LicensePlate.ToLower().Replace(" ", "-");
                 _vehicleRepository.Save(vehicle);
                 return true;
             }
-            catch
+            else
             {
                 return false;
             }
+
         }
 
         public List<BusinessUnit> GetAllBusinessUnits()
@@ -138,13 +157,13 @@ namespace Server
 
         }
 
-        public bool CanRemoveBusinessUnit(BusinessUnit businessUnit)
+        public bool CannotRemoveBusinessUnit(BusinessUnit businessUnit)
         {
             var b = _businessUnitRepository.GetBusinessUnit(businessUnit.Id);
             return _employeeReposiotry.IsEmployeeReferred(b);
         }
 
-        public bool CanRemoveEmployee(Employee emp)
+        public bool CannotRemoveEmployee(Employee emp)
         {
             var e = _employeeReposiotry.GetEmployee(emp.Id);
             return _vehicleRepository.IsVehicleReferredToEmp(e);
@@ -182,7 +201,8 @@ namespace Server
             {
                 _userRepository.UpdateUser(newUser);
                 return true;
-            } catch
+            }
+            catch
             {
                 return false;
             }
@@ -219,14 +239,31 @@ namespace Server
 
         }
 
-        public void EditBusinessUnit(BusinessUnit businessUnit)
+        public bool EditBusinessUnit(BusinessUnit businessUnit)
         {
-            _businessUnitRepository.UpdateBusinessUnit(businessUnit);
+            try
+            {
+                _businessUnitRepository.UpdateBusinessUnit(businessUnit);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void EditEmployee(Employee emp)
+        public bool EditEmployee(Employee emp)
         {
-            _employeeReposiotry.UpdateEmployee(emp);
+            try
+            {
+                _employeeReposiotry.UpdateEmployee(emp);
+                return true;
+
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<VehicleToEmployeeRelation> GetAllRelations()
@@ -267,9 +304,18 @@ namespace Server
             return _relationRepository.GetRelationFromVehicle(vehicle);
         }
 
-        public void EditVehicle(Vehicle veh)
+        public bool EditVehicle(Vehicle veh)
         {
-            _vehicleRepository.UpdateVehicle(veh);
+            try
+            {
+                _vehicleRepository.UpdateVehicle(veh);
+                return true;
+
+            }
+            catch
+            {
+                return false;
+            }
         }
 
     }

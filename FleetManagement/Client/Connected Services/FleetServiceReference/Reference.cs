@@ -46,6 +46,9 @@ namespace Client.FleetServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ModelField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VersionField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -160,6 +163,19 @@ namespace Client.FleetServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -199,6 +215,9 @@ namespace Client.FleetServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VersionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -301,6 +320,19 @@ namespace Client.FleetServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -328,6 +360,9 @@ namespace Client.FleetServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VersionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -378,6 +413,19 @@ namespace Client.FleetServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -414,6 +462,9 @@ namespace Client.FleetServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VersionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -503,6 +554,19 @@ namespace Client.FleetServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -536,6 +600,9 @@ namespace Client.FleetServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Client.FleetServiceReference.Vehicle VehicleIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VersionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -608,6 +675,19 @@ namespace Client.FleetServiceReference {
                 if ((object.ReferenceEquals(this.VehicleIdField, value) != true)) {
                     this.VehicleIdField = value;
                     this.RaisePropertyChanged("VehicleId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
                 }
             }
         }
@@ -699,10 +779,10 @@ namespace Client.FleetServiceReference {
         System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.User>> GetAllUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteUser", ReplyAction="http://tempuri.org/IService/DeleteUserResponse")]
-        void DeleteUser(Client.FleetServiceReference.User user);
+        bool DeleteUser(Client.FleetServiceReference.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteUser", ReplyAction="http://tempuri.org/IService/DeleteUserResponse")]
-        System.Threading.Tasks.Task DeleteUserAsync(Client.FleetServiceReference.User user);
+        System.Threading.Tasks.Task<bool> DeleteUserAsync(Client.FleetServiceReference.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddUser", ReplyAction="http://tempuri.org/IService/AddUserResponse")]
         bool AddUser(Client.FleetServiceReference.User user);
@@ -711,34 +791,34 @@ namespace Client.FleetServiceReference {
         System.Threading.Tasks.Task<bool> AddUserAsync(Client.FleetServiceReference.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditUser", ReplyAction="http://tempuri.org/IService/EditUserResponse")]
-        void EditUser(Client.FleetServiceReference.User newUser);
+        bool EditUser(Client.FleetServiceReference.User newUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditUser", ReplyAction="http://tempuri.org/IService/EditUserResponse")]
-        System.Threading.Tasks.Task EditUserAsync(Client.FleetServiceReference.User newUser);
+        System.Threading.Tasks.Task<bool> EditUserAsync(Client.FleetServiceReference.User newUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditBusinessUnit", ReplyAction="http://tempuri.org/IService/EditBusinessUnitResponse")]
-        void EditBusinessUnit(Client.FleetServiceReference.BusinessUnit businessUnit);
+        bool EditBusinessUnit(Client.FleetServiceReference.BusinessUnit businessUnit);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditBusinessUnit", ReplyAction="http://tempuri.org/IService/EditBusinessUnitResponse")]
-        System.Threading.Tasks.Task EditBusinessUnitAsync(Client.FleetServiceReference.BusinessUnit businessUnit);
+        System.Threading.Tasks.Task<bool> EditBusinessUnitAsync(Client.FleetServiceReference.BusinessUnit businessUnit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CanRemoveBusinessUnit", ReplyAction="http://tempuri.org/IService/CanRemoveBusinessUnitResponse")]
-        bool CanRemoveBusinessUnit(Client.FleetServiceReference.BusinessUnit businessUnit);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CannotRemoveBusinessUnit", ReplyAction="http://tempuri.org/IService/CannotRemoveBusinessUnitResponse")]
+        bool CannotRemoveBusinessUnit(Client.FleetServiceReference.BusinessUnit businessUnit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CanRemoveBusinessUnit", ReplyAction="http://tempuri.org/IService/CanRemoveBusinessUnitResponse")]
-        System.Threading.Tasks.Task<bool> CanRemoveBusinessUnitAsync(Client.FleetServiceReference.BusinessUnit businessUnit);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CannotRemoveBusinessUnit", ReplyAction="http://tempuri.org/IService/CannotRemoveBusinessUnitResponse")]
+        System.Threading.Tasks.Task<bool> CannotRemoveBusinessUnitAsync(Client.FleetServiceReference.BusinessUnit businessUnit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CanRemoveEmployee", ReplyAction="http://tempuri.org/IService/CanRemoveEmployeeResponse")]
-        bool CanRemoveEmployee(Client.FleetServiceReference.Employee emp);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CannotRemoveEmployee", ReplyAction="http://tempuri.org/IService/CannotRemoveEmployeeResponse")]
+        bool CannotRemoveEmployee(Client.FleetServiceReference.Employee emp);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CanRemoveEmployee", ReplyAction="http://tempuri.org/IService/CanRemoveEmployeeResponse")]
-        System.Threading.Tasks.Task<bool> CanRemoveEmployeeAsync(Client.FleetServiceReference.Employee emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditEmployee", ReplyAction="http://tempuri.org/IService/EditEmployeeResponse")]
-        void EditEmployee(Client.FleetServiceReference.Employee emp);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CannotRemoveEmployee", ReplyAction="http://tempuri.org/IService/CannotRemoveEmployeeResponse")]
+        System.Threading.Tasks.Task<bool> CannotRemoveEmployeeAsync(Client.FleetServiceReference.Employee emp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditEmployee", ReplyAction="http://tempuri.org/IService/EditEmployeeResponse")]
-        System.Threading.Tasks.Task EditEmployeeAsync(Client.FleetServiceReference.Employee emp);
+        bool EditEmployee(Client.FleetServiceReference.Employee emp);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditEmployee", ReplyAction="http://tempuri.org/IService/EditEmployeeResponse")]
+        System.Threading.Tasks.Task<bool> EditEmployeeAsync(Client.FleetServiceReference.Employee emp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllRelations", ReplyAction="http://tempuri.org/IService/GetAllRelationsResponse")]
         System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation> GetAllRelations();
@@ -765,10 +845,10 @@ namespace Client.FleetServiceReference {
         System.Threading.Tasks.Task<System.Collections.Generic.List<Client.FleetServiceReference.VehicleToEmployeeRelation>> GetRelationFromVehicleAsync(Client.FleetServiceReference.Vehicle vehicle);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditVehicle", ReplyAction="http://tempuri.org/IService/EditVehicleResponse")]
-        void EditVehicle(Client.FleetServiceReference.Vehicle veh);
+        bool EditVehicle(Client.FleetServiceReference.Vehicle veh);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/EditVehicle", ReplyAction="http://tempuri.org/IService/EditVehicleResponse")]
-        System.Threading.Tasks.Task EditVehicleAsync(Client.FleetServiceReference.Vehicle veh);
+        System.Threading.Tasks.Task<bool> EditVehicleAsync(Client.FleetServiceReference.Vehicle veh);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -894,11 +974,11 @@ namespace Client.FleetServiceReference {
             return base.Channel.GetAllUsersAsync();
         }
         
-        public void DeleteUser(Client.FleetServiceReference.User user) {
-            base.Channel.DeleteUser(user);
+        public bool DeleteUser(Client.FleetServiceReference.User user) {
+            return base.Channel.DeleteUser(user);
         }
         
-        public System.Threading.Tasks.Task DeleteUserAsync(Client.FleetServiceReference.User user) {
+        public System.Threading.Tasks.Task<bool> DeleteUserAsync(Client.FleetServiceReference.User user) {
             return base.Channel.DeleteUserAsync(user);
         }
         
@@ -910,43 +990,43 @@ namespace Client.FleetServiceReference {
             return base.Channel.AddUserAsync(user);
         }
         
-        public void EditUser(Client.FleetServiceReference.User newUser) {
-            base.Channel.EditUser(newUser);
+        public bool EditUser(Client.FleetServiceReference.User newUser) {
+            return base.Channel.EditUser(newUser);
         }
         
-        public System.Threading.Tasks.Task EditUserAsync(Client.FleetServiceReference.User newUser) {
+        public System.Threading.Tasks.Task<bool> EditUserAsync(Client.FleetServiceReference.User newUser) {
             return base.Channel.EditUserAsync(newUser);
         }
         
-        public void EditBusinessUnit(Client.FleetServiceReference.BusinessUnit businessUnit) {
-            base.Channel.EditBusinessUnit(businessUnit);
+        public bool EditBusinessUnit(Client.FleetServiceReference.BusinessUnit businessUnit) {
+            return base.Channel.EditBusinessUnit(businessUnit);
         }
         
-        public System.Threading.Tasks.Task EditBusinessUnitAsync(Client.FleetServiceReference.BusinessUnit businessUnit) {
+        public System.Threading.Tasks.Task<bool> EditBusinessUnitAsync(Client.FleetServiceReference.BusinessUnit businessUnit) {
             return base.Channel.EditBusinessUnitAsync(businessUnit);
         }
         
-        public bool CanRemoveBusinessUnit(Client.FleetServiceReference.BusinessUnit businessUnit) {
-            return base.Channel.CanRemoveBusinessUnit(businessUnit);
+        public bool CannotRemoveBusinessUnit(Client.FleetServiceReference.BusinessUnit businessUnit) {
+            return base.Channel.CannotRemoveBusinessUnit(businessUnit);
         }
         
-        public System.Threading.Tasks.Task<bool> CanRemoveBusinessUnitAsync(Client.FleetServiceReference.BusinessUnit businessUnit) {
-            return base.Channel.CanRemoveBusinessUnitAsync(businessUnit);
+        public System.Threading.Tasks.Task<bool> CannotRemoveBusinessUnitAsync(Client.FleetServiceReference.BusinessUnit businessUnit) {
+            return base.Channel.CannotRemoveBusinessUnitAsync(businessUnit);
         }
         
-        public bool CanRemoveEmployee(Client.FleetServiceReference.Employee emp) {
-            return base.Channel.CanRemoveEmployee(emp);
+        public bool CannotRemoveEmployee(Client.FleetServiceReference.Employee emp) {
+            return base.Channel.CannotRemoveEmployee(emp);
         }
         
-        public System.Threading.Tasks.Task<bool> CanRemoveEmployeeAsync(Client.FleetServiceReference.Employee emp) {
-            return base.Channel.CanRemoveEmployeeAsync(emp);
+        public System.Threading.Tasks.Task<bool> CannotRemoveEmployeeAsync(Client.FleetServiceReference.Employee emp) {
+            return base.Channel.CannotRemoveEmployeeAsync(emp);
         }
         
-        public void EditEmployee(Client.FleetServiceReference.Employee emp) {
-            base.Channel.EditEmployee(emp);
+        public bool EditEmployee(Client.FleetServiceReference.Employee emp) {
+            return base.Channel.EditEmployee(emp);
         }
         
-        public System.Threading.Tasks.Task EditEmployeeAsync(Client.FleetServiceReference.Employee emp) {
+        public System.Threading.Tasks.Task<bool> EditEmployeeAsync(Client.FleetServiceReference.Employee emp) {
             return base.Channel.EditEmployeeAsync(emp);
         }
         
@@ -982,11 +1062,11 @@ namespace Client.FleetServiceReference {
             return base.Channel.GetRelationFromVehicleAsync(vehicle);
         }
         
-        public void EditVehicle(Client.FleetServiceReference.Vehicle veh) {
-            base.Channel.EditVehicle(veh);
+        public bool EditVehicle(Client.FleetServiceReference.Vehicle veh) {
+            return base.Channel.EditVehicle(veh);
         }
         
-        public System.Threading.Tasks.Task EditVehicleAsync(Client.FleetServiceReference.Vehicle veh) {
+        public System.Threading.Tasks.Task<bool> EditVehicleAsync(Client.FleetServiceReference.Vehicle veh) {
             return base.Channel.EditVehicleAsync(veh);
         }
     }

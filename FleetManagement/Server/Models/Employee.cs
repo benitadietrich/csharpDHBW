@@ -31,6 +31,9 @@ namespace Server.Models
         [DataMember]
         public BusinessUnit BusinessUnitId { get; set; }
 
+        [DataMember]
+        public int Version { get; set; }
+
 
     }
 }

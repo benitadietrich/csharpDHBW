@@ -704,7 +704,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IService_CanRemoveBusinessUnit_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IService_CannotRemoveBusinessUnit_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -723,7 +723,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IService_CanRemoveBusinessUnit_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IService_CannotRemoveBusinessUnit_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -742,7 +742,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IService_CanRemoveEmployee_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IService_CannotRemoveEmployee_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -761,7 +761,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IService_CanRemoveEmployee_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IService_CannotRemoveEmployee_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1111,17 +1111,17 @@
   <wsdl:message name="IService_EditBusinessUnit_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditBusinessUnitResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_CanRemoveBusinessUnit_InputMessage">
-    <wsdl:part name="parameters" element="tns:CanRemoveBusinessUnit" />
+  <wsdl:message name="IService_CannotRemoveBusinessUnit_InputMessage">
+    <wsdl:part name="parameters" element="tns:CannotRemoveBusinessUnit" />
   </wsdl:message>
-  <wsdl:message name="IService_CanRemoveBusinessUnit_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CanRemoveBusinessUnitResponse" />
+  <wsdl:message name="IService_CannotRemoveBusinessUnit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CannotRemoveBusinessUnitResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_CanRemoveEmployee_InputMessage">
-    <wsdl:part name="parameters" element="tns:CanRemoveEmployee" />
+  <wsdl:message name="IService_CannotRemoveEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:CannotRemoveEmployee" />
   </wsdl:message>
-  <wsdl:message name="IService_CanRemoveEmployee_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CanRemoveEmployeeResponse" />
+  <wsdl:message name="IService_CannotRemoveEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CannotRemoveEmployeeResponse" />
   </wsdl:message>
   <wsdl:message name="IService_EditEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:EditEmployee" />
@@ -1224,13 +1224,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/EditBusinessUnit" message="tns:IService_EditBusinessUnit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/EditBusinessUnitResponse" message="tns:IService_EditBusinessUnit_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CanRemoveBusinessUnit">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/CanRemoveBusinessUnit" message="tns:IService_CanRemoveBusinessUnit_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/CanRemoveBusinessUnitResponse" message="tns:IService_CanRemoveBusinessUnit_OutputMessage" />
+    <wsdl:operation name="CannotRemoveBusinessUnit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CannotRemoveBusinessUnit" message="tns:IService_CannotRemoveBusinessUnit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CannotRemoveBusinessUnitResponse" message="tns:IService_CannotRemoveBusinessUnit_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CanRemoveEmployee">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/CanRemoveEmployee" message="tns:IService_CanRemoveEmployee_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/CanRemoveEmployeeResponse" message="tns:IService_CanRemoveEmployee_OutputMessage" />
+    <wsdl:operation name="CannotRemoveEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CannotRemoveEmployee" message="tns:IService_CannotRemoveEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CannotRemoveEmployeeResponse" message="tns:IService_CannotRemoveEmployee_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="EditEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/EditEmployee" message="tns:IService_EditEmployee_InputMessage" />
@@ -1436,25 +1436,25 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CanRemoveBusinessUnit">
-      <soap12:operation soapAction="http://tempuri.org/IService/CanRemoveBusinessUnit" style="document" />
+    <wsdl:operation name="CannotRemoveBusinessUnit">
+      <soap12:operation soapAction="http://tempuri.org/IService/CannotRemoveBusinessUnit" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IService_CanRemoveBusinessUnit_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IService_CannotRemoveBusinessUnit_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IService_CanRemoveBusinessUnit_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IService_CannotRemoveBusinessUnit_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CanRemoveEmployee">
-      <soap12:operation soapAction="http://tempuri.org/IService/CanRemoveEmployee" style="document" />
+    <wsdl:operation name="CannotRemoveEmployee">
+      <soap12:operation soapAction="http://tempuri.org/IService/CannotRemoveEmployee" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IService_CanRemoveEmployee_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IService_CannotRemoveEmployee_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IService_CanRemoveEmployee_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IService_CannotRemoveEmployee_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

@@ -14,6 +14,7 @@ namespace Server.Mapping
             Map(x => x.Username).Length(20).Not.Nullable();
             Map(x => x.Password).Length(60).Not.Nullable();
             Map(x => x.IsAdmin).Not.Nullable();
+            Version(x => x.Version).Not.Nullable().Default(1);
         }
     }
 }

@@ -1,14 +1,10 @@
-﻿using Server.Models;
-using System;
-using System.Collections.Generic;
+﻿using Server.Interfaces;
+using Server.Models;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server.Framework
 {
-    public class VehicleRepository : Repository<Vehicle>
+    public class VehicleRepository : Repository<Vehicle>, IVehicleRepository
     {
         public VehicleRepository(string databaseFile) : base(databaseFile)
         {
@@ -47,6 +43,24 @@ namespace Server.Framework
                     transaction.Commit();
                 }
             }
+        }
+
+        public Vehicle GetByLicense(string license)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                try
+                {
+                    return session.Query<Vehicle>()
+                      .Where(x => x.LicensePlate == license).FirstOrDefault();
+                }
+                catch
+                {
+                    return null;
+                }
+
+            }
+
         }
     }
 }

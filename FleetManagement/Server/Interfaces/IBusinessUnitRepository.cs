@@ -7,5 +7,7 @@ namespace Server.Interfaces
         BusinessUnit GetBusinessUnit(int id);
 
         bool UpdateBusinessUnit(BusinessUnit businessUnit);
+
+        BusinessUnit GetBusinessUnitName(string name);
     }
 }

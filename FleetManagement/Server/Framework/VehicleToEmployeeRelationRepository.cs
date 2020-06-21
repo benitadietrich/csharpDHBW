@@ -1,9 +1,10 @@
-﻿using Server.Models;
+﻿using Server.Interfaces;
+using Server.Models;
 using System.Collections.Generic;
 
 namespace Server.Framework
 {
-    public class VehicleToEmployeeRelationRepository : Repository<VehicleToEmployeeRelation>
+    public class VehicleToEmployeeRelationRepository : Repository<VehicleToEmployeeRelation>, IVehicleToEmployeeRelation
     {
         public VehicleToEmployeeRelationRepository(string databaseFile) : base(databaseFile)
         {

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Client.Controller
 {
-    class CostsMonthlyController : SubmoduleController
+    public class CostsMonthlyController : SubmoduleController
     {
         ServiceClient socket;
         ContainerViewModel container;
@@ -24,6 +24,7 @@ namespace Client.Controller
             this.socket = socket;
             this.container = container;
         }
+
 
         public override ViewModelBase Initialize()
         {
@@ -44,7 +45,9 @@ namespace Client.Controller
         {
             var res = new List<CostsMonthlyModel>();
             var veh = socket.GetAllVehicles();
-            if (veh.Count() == 0) return null;
+            if (veh.Count() == 0)
+                return null;
+
             var min = veh.Min(v => v.LeasingFrom);
             var max = veh.Max(v => v.LeasingTo);
 

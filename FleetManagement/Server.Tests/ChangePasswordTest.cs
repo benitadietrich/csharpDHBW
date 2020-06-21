@@ -22,7 +22,7 @@ namespace Server.Tests
             Lastname = "Bond",
             Username = "James007",
             IsAdmin = false,
-            Password = "$2a$11$.XPMa.x8aqtq21Kgk9TLQO8.6HXzT7Xp42ajiwQWGY.HXOUoTFmRy",
+            Password = BCrypt.Net.BCrypt.HashPassword("geheim"),
         };
 
         [ClassInitialize]

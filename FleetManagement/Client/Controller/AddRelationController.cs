@@ -35,15 +35,17 @@ namespace Client.Controller
                     selectedEmps.Remove(emp);
                 }
             });
-            
+
 
             addRelationViewModel = new AddRelationViewModel()
             {
                 AddCommand = new RelayCommand(ExecuteAddCommand),
                 CancelCommand = new RelayCommand(ExecuteCancelCommand),
                 Employees = new ObservableCollection<Employee>(selectedEmps),
-                Vehicle = vehicle
+                Vehicle = vehicle,
             };
+
+            addRelationViewModel.Relation.StartDate = System.DateTime.Now;
 
             addRelationWindow.DataContext = addRelationViewModel;
 
@@ -51,8 +53,6 @@ namespace Client.Controller
             {
                 var relation = addRelationViewModel.Relation;
                 relation.EmployeeId = addRelationViewModel.SelectedEmployee;
-                relation.StartDate = DateTime.UtcNow;
-                relation.EndDate = null;
                 relation.VehicleId = vehicle;
                 return relation;
             }

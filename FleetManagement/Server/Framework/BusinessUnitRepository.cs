@@ -33,6 +33,24 @@ namespace Server.Framework
             }
         }
 
+        public BusinessUnit GetBusinessUnitName(string name)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                try
+                {
+                    return session.Query<BusinessUnit>()
+                           .Where(x => x.Name == name).FirstOrDefault();
+
+                }
+                catch
+                {
+                    return null;
+                }
+
+            }
+        }
+
         public bool UpdateBusinessUnit(BusinessUnit businessUnit)
         {
             using (var session = NHibernateHelper.OpenSession())

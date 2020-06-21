@@ -21,6 +21,7 @@ namespace Server.Mapping
             Map(x => x.LeasingFrom).Not.Nullable();
             Map(x => x.LeasingTo).Not.Nullable();
             Map(x => x.LeasingRate).Precision(2);
+            Version(x => x.Version).Not.Nullable().Default(1);
         }
     }
 }

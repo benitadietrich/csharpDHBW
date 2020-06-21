@@ -34,5 +34,8 @@ namespace Server.Models
         [DataMember]
         public float LeasingRate { get; set; }
 
+        [DataMember]
+        public int Version { get; set; }
+
     }
 }

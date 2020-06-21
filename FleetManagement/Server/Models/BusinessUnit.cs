@@ -22,6 +22,9 @@ namespace Server.Models
         [DataMember]
         public string Description { get; set; }
 
+        [DataMember]
+        public int Version { get; set; }
+
 
     }
 

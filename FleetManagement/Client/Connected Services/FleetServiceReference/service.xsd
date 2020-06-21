@@ -174,7 +174,9 @@
   </xs:element>
   <xs:element name="DeleteUserResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteUserResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddUser">
@@ -200,7 +202,9 @@
   </xs:element>
   <xs:element name="EditUserResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditUserResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditBusinessUnit">
@@ -212,34 +216,36 @@
   </xs:element>
   <xs:element name="EditBusinessUnitResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditBusinessUnitResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CanRemoveBusinessUnit">
+  <xs:element name="CannotRemoveBusinessUnit">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="businessUnit" nillable="true" type="q17:BusinessUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CanRemoveBusinessUnitResponse">
+  <xs:element name="CannotRemoveBusinessUnitResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="CanRemoveBusinessUnitResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="CannotRemoveBusinessUnitResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CanRemoveEmployee">
+  <xs:element name="CannotRemoveEmployee">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Server.Models" minOccurs="0" name="emp" nillable="true" type="q18:Employee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CanRemoveEmployeeResponse">
+  <xs:element name="CannotRemoveEmployeeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="CanRemoveEmployeeResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="CannotRemoveEmployeeResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -252,7 +258,9 @@
   </xs:element>
   <xs:element name="EditEmployeeResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditEmployeeResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAllRelations">
@@ -318,7 +326,9 @@
   </xs:element>
   <xs:element name="EditVehicleResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditVehicleResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

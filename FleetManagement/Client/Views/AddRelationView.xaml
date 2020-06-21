@@ -32,7 +32,7 @@
                 <DataGridTextColumn Width="30*" Header="Bereich"  Binding="{Binding BusinessUnitId.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DatePicker Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Von" SelectedDate="{Binding Relation.StartDate, TargetNullValue={x:Static sys:DateTime.Now}}"></DatePicker>
+        <DatePicker Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Von" SelectedDate="{Binding Relation.StartDate}"></DatePicker>
         <DatePicker Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalContentAlignment="Bottom" Width="250" materialDesign:HintAssist.Hint="Bis" SelectedDate="{Binding Relation.EndDate}"></DatePicker>
         <Button Grid.Row="3" Width="200" Content="Hinzufügen" HorizontalAlignment="Left" Margin="60,0,0,0" Command="{Binding AddCommand}"></Button>
         <Button Grid.Row="3" Width="200" Content="Abbrechen" HorizontalAlignment="Right" Margin="0,0,60,0" Command="{Binding CancelCommand}"></Button>

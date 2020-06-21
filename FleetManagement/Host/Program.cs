@@ -10,20 +10,10 @@ namespace Host
 {
     class Program
     {
-        public static IContainer Container
-        {
-            get;
-            private set;
-        }
 
         static void Main(string[] args)
         {
-            var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterType<UserRepository>().As<IUserRepository>();
-            containerBuilder.RegisterType<BusinessUnitRepository>().As<IBusinessUnitRepository>();
-
-            Container = containerBuilder.Build();
             
             Uri baseAddress = new Uri("http://localhost:8733/Design_Time_Addresses/Server/Service/");
             using (ServiceHost host = new ServiceHost(typeof(Service), baseAddress))

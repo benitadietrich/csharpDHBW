@@ -16,6 +16,7 @@ namespace Server.Mapping
             Map(x => x.Salutation).Length(50);
             Map(x => x.Title).Length(50);
             References(x => x.BusinessUnitId).Column("BusinessUnitId").Not.Nullable();
+            Version(x => x.Version).Not.Nullable().Default(1);
         }
     }
 }

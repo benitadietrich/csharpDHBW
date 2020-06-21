@@ -1,10 +1,11 @@
-﻿using Server.Models;
+﻿using Server.Interfaces;
+using Server.Models;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Server.Framework
 {
-    public class EmployeeRepository : Repository<Employee>
+    public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
         public EmployeeRepository(string databaseFile) : base(databaseFile)
         {

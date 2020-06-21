@@ -10,6 +10,7 @@
       <xs:element minOccurs="0" name="LeasingTo" type="xs:dateTime" />
       <xs:element minOccurs="0" name="LicensePlate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Vehicle" nillable="true" type="tns:Vehicle" />
@@ -28,6 +29,7 @@
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Salutation" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Employee" nillable="true" type="tns:Employee" />
@@ -36,6 +38,7 @@
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BusinessUnit" nillable="true" type="tns:BusinessUnit" />
@@ -59,6 +62,7 @@
       <xs:element minOccurs="0" name="Lastname" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
@@ -81,6 +85,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="VehicleId" nillable="true" type="tns:Vehicle" />
+      <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="VehicleToEmployeeRelation" nillable="true" type="tns:VehicleToEmployeeRelation" />

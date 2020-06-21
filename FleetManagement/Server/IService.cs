@@ -59,16 +59,16 @@ namespace Server
         bool EditUser(User newUser);
 
         [OperationContract]
-        void EditBusinessUnit(BusinessUnit businessUnit);
+        bool EditBusinessUnit(BusinessUnit businessUnit);
 
         [OperationContract]
-        bool CanRemoveBusinessUnit(BusinessUnit businessUnit);
+        bool CannotRemoveBusinessUnit(BusinessUnit businessUnit);
 
         [OperationContract]
-        bool CanRemoveEmployee(Employee emp);
+        bool CannotRemoveEmployee(Employee emp);
 
         [OperationContract]
-        void EditEmployee(Employee emp);
+        bool EditEmployee(Employee emp);
 
         [OperationContract]
         List<VehicleToEmployeeRelation> GetAllRelations();
@@ -83,7 +83,7 @@ namespace Server
         List<VehicleToEmployeeRelation> GetRelationFromVehicle(Vehicle vehicle);
 
         [OperationContract]
-        void EditVehicle(Vehicle veh);
+        bool EditVehicle(Vehicle veh);
 
     }
 }

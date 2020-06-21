@@ -47,8 +47,9 @@ namespace Client.Controller
             var vehicles = socket.GetAllVehicles();
             var employees = socket.GetAllEmployees();
             var businessUnits = socket.GetAllBusinessUnits();
-            var min = vehicles.Min(v => v.LeasingFrom);
-            var max = vehicles.Max(v => v.LeasingTo);
+
+            if (vehicles.Count == 0)
+                return null;
 
             var relations = socket.GetAllRelations();
 
