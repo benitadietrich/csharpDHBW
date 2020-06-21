@@ -45,6 +45,23 @@ namespace Server.Framework
             }
         }
 
+        public Vehicle GetVehicle(int id)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                try
+                {
+                    return session.Query<Vehicle>()
+                          .Where(x => x.Id == id).FirstOrDefault();
+                }
+                catch
+                {
+                    return null;
+                }
+
+            }
+        }
+
         public Vehicle GetByLicense(string license)
         {
             using (var session = NHibernateHelper.OpenSession())

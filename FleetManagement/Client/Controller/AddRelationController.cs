@@ -1,29 +1,33 @@
 ﻿using Client.FleetServiceReference;
 using Client.Framework;
-using Client.Views;
 using Client.ViewModel;
+using Client.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
     public class AddRelationController
     {
-        public AddRelationView addRelationWindow;
-        public AddRelationViewModel addRelationViewModel;
+        public AddRelationView view;
+        public AddRelationViewModel viewModel;
+        private VehicleToEmployeeRelation relation;
+        private Vehicle vehicle;
+        private ServiceClient socket;
 
-        public VehicleToEmployeeRelation AddRelation(ServiceClient socket, Vehicle vehicle)
+        public AddRelationController(ServiceClient socket, Vehicle vehicle)
         {
-            addRelationWindow = new AddRelationView();
+            this.vehicle = vehicle;
+            this.socket = socket;
+        }
 
-            //Filter wich Employees get shown
-            
+        public VehicleToEmployeeRelation AddRelation()
+        {
+            view = new AddRelationView();
+
             List<Employee> emps = socket.GetAllEmployees().ToList();
             List<VehicleToEmployeeRelation> rels = socket.GetRelationFromVehicle(vehicle).ToList();
             List<Employee> selectedEmps = new List<Employee>(emps);
@@ -37,7 +41,7 @@ namespace Client.Controller
             });
 
 
-            addRelationViewModel = new AddRelationViewModel()
+            viewModel = new AddRelationViewModel()
             {
                 AddCommand = new RelayCommand(ExecuteAddCommand),
                 CancelCommand = new RelayCommand(ExecuteCancelCommand),
@@ -45,33 +49,37 @@ namespace Client.Controller
                 Vehicle = vehicle,
             };
 
-            addRelationViewModel.Relation.StartDate = System.DateTime.Now;
+            viewModel.Relation.StartDate = DateTime.Now;
 
-            addRelationWindow.DataContext = addRelationViewModel;
+            view.DataContext = viewModel;
 
-            if (addRelationWindow.ShowDialog() == true)
-            {
-                var relation = addRelationViewModel.Relation;
-                relation.EmployeeId = addRelationViewModel.SelectedEmployee;
-                relation.VehicleId = vehicle;
-                return relation;
-            }
-            else
-            {
-                return null;
-            }
+
+            return view.ShowDialog() == true ? relation : null;
+
         }
 
         private void ExecuteAddCommand(object obj)
         {
-            addRelationWindow.DialogResult = true;
-            addRelationWindow.Close();
+            relation = viewModel.Relation;
+            relation.EmployeeId = viewModel.SelectedEmployee;
+            relation.VehicleId = vehicle;
+            if (relation != null)
+            {
+                if (!socket.AddRelation(relation))
+                    System.Windows.Forms.MessageBox.Show("Bitte wählen Sie einen Mitarbeiter", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Relation wurde erfolgreich hinzugefügt", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    view.Close();
+                }
+            }
+
         }
 
         private void ExecuteCancelCommand(object obj)
         {
-            addRelationWindow.DialogResult = false;
-            addRelationWindow.Close();
+            view.DialogResult = false;
+            view.Close();
         }
     }
 }

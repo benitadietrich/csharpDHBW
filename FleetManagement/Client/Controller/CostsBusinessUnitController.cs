@@ -2,15 +2,9 @@
 using Client.Framework;
 using Client.Models;
 using Client.ViewModels;
-using MaterialDesignColors.Recommended;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Controller
 {
@@ -53,16 +47,17 @@ namespace Client.Controller
 
             var relations = socket.GetAllRelations();
 
-            var result = businessUnits
-                .Join(employees, b => b.Id, e => e.BusinessUnitId.Id, (b, e) => new { BusinessUnit = b, Employee = e })
-                .Join(relations, be => be.Employee.Id, ve => ve.EmployeeId.Id, (be, ve) => new { BusinessUnitEmployee = be, VehicleEmployee = ve })
-                .Join(vehicles, beve => beve.VehicleEmployee.VehicleId.Id, v => v.Id, (beve, v) => new { beve.BusinessUnitEmployee.BusinessUnit, beve.VehicleEmployee, Vehicle = v })
-                .Select(m => new { m.BusinessUnit, Costs = GetCostsPerVehicle(m.VehicleEmployee, m.Vehicle) })
-                .SelectMany(bv => bv.Costs.Select(c => new { VehicleCost = c, bv.BusinessUnit }))
-                .GroupBy(cb => new { cb.VehicleCost.Month, cb.BusinessUnit })
-                .Select(cb => new CostsBusinessUnitModel { Month = cb.Key.Month, BusinessUnit = cb.Key.BusinessUnit, Costs = cb.Sum(c => c.VehicleCost.Costs) });
+            var result = from b in businessUnits
+                         join e in employees on b.Id equals e.BusinessUnitId.Id
+                         join be in relations on e.Id equals be.EmployeeId.Id
+                         join beve in vehicles on be.VehicleId.Id equals beve.Id
+                         select new { BusinessUnit = b, Costs = GetCostsPerVehicle(be, beve) };
 
-            return result;
+            var res2 = from y in result.SelectMany(bv => bv.Costs.Select(c => new { VehicleCost = c, BUnit = bv.BusinessUnit }))
+                       group y by new { Month = y.VehicleCost.Month, Unit = y.BUnit } into g
+                       select new CostsBusinessUnitModel { Month = string.Format("{0} {1}", g.Key.Month.Year, System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(g.Key.Month.Month)), BusinessUnit = g.Key.Unit, CostsDisplay = string.Format("€ {0}", Convert.ToDecimal(g.Sum(c => c.VehicleCost.Costs)).ToString("0.00")) };
+
+            return res2;
         }
 
         private IEnumerable<(DateTime Month, int Count, decimal Costs)> GetCostsPerVehicle(VehicleToEmployeeRelation vehicleEmployee, Vehicle vehicle)

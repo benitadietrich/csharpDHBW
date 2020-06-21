@@ -29,6 +29,29 @@ namespace Server.Tests
             LicensePlate = "fds-z-123",
             Model = "Swift"
         };
+        private static Vehicle _veh1 = new Vehicle()
+        {
+            Brand = "Opel",
+            Id = 4,
+            Insurance = 1200,
+            LeasingFrom = new DateTime().Date,
+            LeasingTo = new DateTime().Date,
+            LeasingRate = 100,
+            LicensePlate = "s-au-44",
+            Model = "Adam"
+        };
+
+        private static Vehicle _veh1Edited = new Vehicle()
+        {
+            Brand = "Opel",
+            Id = 4,
+            Insurance = 1200,
+            LeasingFrom = new DateTime().Date,
+            LeasingTo = new DateTime().Date,
+            LeasingRate = 100,
+            LicensePlate = "s-ab-44",
+            Model = "Adam"
+        };
 
         private static Vehicle _sameLicense = new Vehicle()
         {
@@ -67,6 +90,7 @@ namespace Server.Tests
         {
             _vehicleRepositroyMock.Setup(x => x.Save(It.IsAny<Vehicle>())).Verifiable();
             _vehicleRepositroyMock.Setup(x => x.GetByLicense("fds-a-123")).Returns(_sameLicense);
+            _vehicleRepositroyMock.Setup(x => x.GetVehicle(4)).Returns(_veh1);
 
             service = new Service(null, _employeeRepositoryMock.Object, null, _vehicleRepositroyMock.Object, _RelationRepositoryMock.Object);
         }
@@ -105,8 +129,7 @@ namespace Server.Tests
         [TestMethod]
         public void TestEditVehicle()
         {
-            _vehicleNew.LicensePlate = "fds-e-123";
-            Assert.IsTrue(service.EditVehicle(_vehicleNew));
+            Assert.IsTrue(service.EditVehicle(_veh1Edited));
         }
     }
 }

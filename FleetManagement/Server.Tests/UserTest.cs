@@ -49,6 +49,22 @@ namespace Server.Tests
             Username = "jamie",
             IsAdmin = false,
         };
+        private static readonly User _user1 = new User
+        {
+            Id = 4,
+            Firstname = "Tony",
+            Lastname = "Stark",
+            Username = "Ironmanss",
+            IsAdmin = false,
+        };
+        private static readonly User _user1Edited = new User
+        {
+            Id = 4,
+            Firstname = "Tony",
+            Lastname = "Stark",
+            Username = "Ironman",
+            IsAdmin = false,
+        };
 
         [ClassInitialize]
         public static void Setup(TestContext context)
@@ -57,6 +73,7 @@ namespace Server.Tests
             _userRepositoryMock.Setup(x => x.Save(It.IsAny<User>())).Verifiable();
             _userRepositoryMock.Setup(x => x.Delete(It.IsAny<User>())).Verifiable();
             _userRepositoryMock.Setup(x => x.UpdateUser(_editUser)).Verifiable();
+            _userRepositoryMock.Setup(x => x.GetUserById(4)).Returns(_user1);
 
             service = new Service(_userRepositoryMock.Object, null, null, null, null);
         }
@@ -76,7 +93,7 @@ namespace Server.Tests
         [TestMethod]
         public void EditUser()
         {
-            Assert.IsTrue(service.EditUser(_editUser));
+            Assert.IsTrue(service.EditUser(_user1Edited));
         }
 
         [TestMethod]

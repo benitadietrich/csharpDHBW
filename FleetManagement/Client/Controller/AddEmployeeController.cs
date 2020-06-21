@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
@@ -46,9 +46,9 @@ namespace Client.Controller
                 Title = viewModel.Title,
                 BusinessUnitId = viewModel.SelectedBusinessUnit
             };
-            if (emp.EmployeeNumber == 0)
+            if (emp.EmployeeNumber == 0|| emp.FirstName == null || emp.FirstName == "" || emp.LastName == "" || emp.LastName == null )
             {
-                MessageBox.Show("Die Personalnummer darf nicht null sein");
+                MessageBox.Show("Ungültige Werte", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -56,20 +56,20 @@ namespace Client.Controller
                 {
                     if (socket.AddEmployee(emp))
                     {
-                        MessageBox.Show("Mitarbeiter wurde erfolgreich hinzugefügt");
+                        MessageBox.Show("Mitarbeiter wurde erfolgreich hinzugefügt","Mitarbeiter hinzugefügt", MessageBoxButtons.OK,MessageBoxIcon.Information);
                         view.DialogResult = true;
                         view.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Diese Personalnummer ist bereits vergeben");
+                        MessageBox.Show("Diese Personalnummer ist bereits vergeben", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
 
                 }
                 catch
                 {
-                    MessageBox.Show("Ein Fehler ist aufgetreten überprüfen Sie ihre Eingaben");
+                    MessageBox.Show("Ein Fehler ist aufgetreten überprüfen Sie ihre Eingaben", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

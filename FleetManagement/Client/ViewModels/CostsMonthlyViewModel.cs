@@ -9,7 +9,7 @@ namespace Client.ViewModels
     class CostsMonthlyViewModel : ViewModelBase
     {
 
-        public Dictionary<DateTime, CostsMonthlyModel> Costs
+        public Dictionary<string, CostsMonthlyModel> Costs 
         {
             get;
             set;

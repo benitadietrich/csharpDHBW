@@ -32,8 +32,6 @@ namespace Client.ViewModels
 
         public  int index { get; set; }
 
-        public List<Employee> EntriesEmployees { get; set; }
-
         public ObservableCollection<BusinessUnit> BusinessUnits { get; set; }
 
         private BusinessUnit selectedBusinessUnit;

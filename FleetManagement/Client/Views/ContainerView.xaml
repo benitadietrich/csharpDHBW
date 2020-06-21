@@ -89,7 +89,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </Menu>
-            
+
         </StackPanel>
         <GridSplitter IsEnabled="False" Grid.Row="1" HorizontalAlignment="Stretch" ShowsPreview="True" Grid.ColumnSpan="2" Background="{StaticResource SecondaryAccentBrush}" IsManipulationEnabled="False"/>
 
@@ -123,6 +123,9 @@
         <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Top" Width="Auto" Grid.RowSpan="3">
             <Image  Source="/Resources/car.png" Height="90" Margin="0,0,0,0" Width="143" />
         </StackPanel>
+
+
+
 
 
     </Grid>

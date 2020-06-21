@@ -21,37 +21,51 @@ namespace Server.Tests
         {
             Id = 1,
             Name = "Human Ressources",
-            Description = "Personalabteilung"
+            Description = "Personalabteilung",
+            Version = 1
         };
 
         private static BusinessUnit _unit2 = new BusinessUnit()
         {
             Id = 3,
             Name = "Produktion",
-            Description = "Produktion von Chips"
+            Description = "Produktion von Chips",
+            Version = 1,
+        };
+
+        private static BusinessUnit _unit2Edited = new BusinessUnit()
+        {
+            Id = 3,
+            Name = "Produktionsabteilung",
+            Description = "Produktion von Chips",
+            Version = 1,
         };
 
         private static BusinessUnit _unitExisting = new BusinessUnit()
         {
             Id = 2,
             Name = "produktion",
-            Description = "Hier findet unsere Produktion von Chips statt"
+            Description = "Hier findet unsere Produktion von Chips statt",
+            Version = 1
         };
 
         private static BusinessUnit _referredU = new BusinessUnit()
         {
             Id = 4,
             Name = "Test",
-            Description = "Testabteilung"
+            Description = "Testabteilung",
+            Version = 1
         };
 
         [ClassInitialize]
         public static void Setup(TestContext context )
         {
             _unitRepositoryMock.Setup(x => x.GetBusinessUnitName("Produktion".ToLower())).Returns(_unit2);
+            _unitRepositoryMock.Setup(x => x.GetBusinessUnit(3)).Returns(_unit2);
             _unitRepositoryMock.Setup(x => x.Save(It.IsAny<BusinessUnit>())).Verifiable();
             _unitRepositoryMock.Setup(x => x.GetBusinessUnit(4)).Returns(_referredU);
-
+            _unitRepositoryMock.Setup(x => x.GetAll()).Returns(new List<BusinessUnit> { _unit2 });
+            
             _employeeRepositoryMock.Setup(x => x.IsEmployeeReferred(_referredU)).Returns(true);
 
             service = new Service(null, _employeeRepositoryMock.Object, _unitRepositoryMock.Object, null, null);
@@ -72,8 +86,7 @@ namespace Server.Tests
         [TestMethod]
         public void EditBU()
         {
-            _unitNew.Name = "personalabteilung";
-            Assert.IsTrue(service.EditBusinessUnit(_unitNew));
+            Assert.IsTrue(service.EditBusinessUnit(_unit2Edited));
         }
 
         [TestMethod]

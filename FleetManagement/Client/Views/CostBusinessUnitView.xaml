@@ -25,7 +25,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="30*" Header="Monat" Binding="{Binding Month, StringFormat=yyyy MMMM, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTextColumn Width="30*" Header="Geschäftsbereich"  Binding="{Binding BusinessUnit.Name, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn Width="30*" Header="Kosten" Binding="{Binding Costs, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Width="30*" Header="Kosten" Binding="{Binding CostsDisplay, UpdateSourceTrigger=PropertyChanged}" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Grid.ColumnSpan="3" Grid.Row="0" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="{StaticResource PrimaryHueMidBrush}" Content="Kosten/Geschäftsbereich" VerticalAlignment="Center" Width="842" Height="25"/>

@@ -14,6 +14,8 @@ namespace Server.Interfaces
 
         void UpdateVehicle(Vehicle veh);
 
+        Vehicle GetVehicle(int id);
+
         Vehicle GetByLicense(string license);
     }
 }

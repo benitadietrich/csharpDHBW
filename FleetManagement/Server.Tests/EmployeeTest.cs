@@ -18,6 +18,7 @@ namespace Server.Tests
         private static readonly Mock<IEmployeeRepository> _employeeRepositoryMock = new Mock<IEmployeeRepository>();
         private static Employee _newEmp = new Employee()
         {
+            Id = 1,
             FirstName = "Hans",
             LastName = "Mueller",
             EmployeeNumber = 1,
@@ -30,6 +31,7 @@ namespace Server.Tests
 
         private static Employee _existingEmp = new Employee()
         {
+            Id = 2,
             FirstName = "Jana",
             LastName = "Maier",
             EmployeeNumber = 2,
@@ -42,6 +44,7 @@ namespace Server.Tests
 
         private static Employee _doubleEmp = new Employee()
         {
+            Id = 3,
             FirstName = "Heinrich",
             LastName = "Schmid",
             EmployeeNumber = 2,
@@ -51,6 +54,18 @@ namespace Server.Tests
             },
             Salutation = "Herr"
         };
+        private static Employee _editedEmp = new Employee()
+        {
+            Id = 2,
+            FirstName = "Jana",
+            LastName = "Mueller",
+            EmployeeNumber = 2,
+            BusinessUnitId = new BusinessUnit()
+            {
+                Name = "Personal"
+            },
+            Salutation = "Frau"
+        };
 
 
         [ClassInitialize]
@@ -58,6 +73,7 @@ namespace Server.Tests
         {
             _employeeRepositoryMock.Setup(x => x.GetEmployeeByNumber(2)).Returns(_existingEmp);
             _employeeRepositoryMock.Setup(x => x.Save(It.IsAny<Employee>())).Verifiable();
+            _employeeRepositoryMock.Setup(x => x.GetEmployee(2)).Returns(_existingEmp);
 
             service = new Service(null, _employeeRepositoryMock.Object, null, null, null);
         }
@@ -78,7 +94,7 @@ namespace Server.Tests
         public void TestEditEmp()
         {
             _existingEmp.FirstName = "Julia";
-            Assert.IsTrue(service.EditEmployee(_existingEmp));
+            Assert.IsTrue(service.EditEmployee(_editedEmp));
         }
     }
 }

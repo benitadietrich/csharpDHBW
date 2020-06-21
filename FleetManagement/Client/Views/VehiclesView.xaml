@@ -54,7 +54,7 @@
                             <DataGridTextColumn Width="30*" Header="Vorname" materialDesign:HintAssist.HelperText="Vorname" Binding="{Binding EmployeeId.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             <DataGridTextColumn Width="30*" Header="Nachname" Binding="{Binding EmployeeId.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             <DataGridTextColumn Width="30*" Header="Beginn"  Binding="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <DataGridTextColumn Width="30*" Header="Ende" Binding="{Binding EndTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <DataGridTextColumn Width="30*" Header="Ende" Binding="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </DataGrid.Columns>
 
                     </DataGrid>

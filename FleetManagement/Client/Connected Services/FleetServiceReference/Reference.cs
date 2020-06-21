@@ -601,9 +601,6 @@ namespace Client.FleetServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Client.FleetServiceReference.Vehicle VehicleIdField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int VersionField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -675,19 +672,6 @@ namespace Client.FleetServiceReference {
                 if ((object.ReferenceEquals(this.VehicleIdField, value) != true)) {
                     this.VehicleIdField = value;
                     this.RaisePropertyChanged("VehicleId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Version {
-            get {
-                return this.VersionField;
-            }
-            set {
-                if ((this.VersionField.Equals(value) != true)) {
-                    this.VersionField = value;
-                    this.RaisePropertyChanged("Version");
                 }
             }
         }

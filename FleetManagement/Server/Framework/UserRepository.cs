@@ -28,6 +28,23 @@ namespace Server.Framework
             }
         }
 
+        public User GetUserById(int id)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                try
+                {
+                    return session.Query<User>()
+                          .Where(x => x.Id == id).FirstOrDefault();
+                }
+                catch
+                {
+                    return null;
+                }
+
+            }
+        }
+
         public bool SetPassword(int userId, string newHash)
         {
             using (var session = NHibernateHelper.OpenSession())

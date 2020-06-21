@@ -10,7 +10,7 @@ namespace Client.Models
 {
     class CostsBusinessUnitModel
     {
-        public DateTime Month { get; set; }
+        public string Month { get; set; }
         public BusinessUnit BusinessUnit { get; set; }
         public decimal Costs { get; set; }
         public string CostsDisplay { get; set; }

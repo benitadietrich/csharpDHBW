@@ -49,17 +49,24 @@ namespace Server
         public bool AddBusinessUnit(BusinessUnit businessUnit)
         {
             var b = _businessUnitRepository.GetBusinessUnit(businessUnit.Id);
-            var be = _businessUnitRepository.GetBusinessUnitName(businessUnit.Name.ToLower());
-            if (b != null || be != null)
+            if (b != null)
             {
                 return false;
             }
-            else
+
+            if (GetAllBusinessUnits() != null)
             {
-                businessUnit.Name = businessUnit.Name.ToLower();
-                _businessUnitRepository.Save(businessUnit);
-                return true;
+                if (GetAllBusinessUnits().Find(x => x.Name.ToLower() == businessUnit.Name.ToLower()) != null)
+                {
+                    return false;
+                }
             }
+
+            businessUnit.Name = businessUnit.Name.ToLower();
+            _businessUnitRepository.Save(businessUnit);
+            return true;
+
+
         }
 
         public bool AddEmployee(Employee emp)
@@ -197,10 +204,23 @@ namespace Server
         public bool EditUser(User newUser)
         {
             try
-
             {
-                _userRepository.UpdateUser(newUser);
-                return true;
+                var temp = _userRepository.GetUserById(newUser.Id);
+                if (temp != null)
+                {
+                    if (temp.Version == newUser.Version)
+                    {
+                        _userRepository.UpdateUser(newUser);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                    return false;
             }
             catch
             {
@@ -227,7 +247,7 @@ namespace Server
             {
                 user.Password = BCrypt.Net.BCrypt.HashPassword("geheim");
             }
-            if (_userRepository.GetUser(user.Username) != null)
+            if (_userRepository.GetUser(user.Username) != null || user.Username == "")
                 return false;
             else
             {
@@ -243,8 +263,16 @@ namespace Server
         {
             try
             {
-                _businessUnitRepository.UpdateBusinessUnit(businessUnit);
-                return true;
+                var temp = _businessUnitRepository.GetBusinessUnit(businessUnit.Id);
+                if (temp == null) return false;
+                if (temp.Version == businessUnit.Version)
+                {
+                    _businessUnitRepository.UpdateBusinessUnit(businessUnit);
+                    return true;
+
+                }
+                else
+                    return false;
             }
             catch
             {
@@ -256,8 +284,16 @@ namespace Server
         {
             try
             {
-                _employeeReposiotry.UpdateEmployee(emp);
-                return true;
+                var temp = _employeeReposiotry.GetEmployee(emp.Id);
+                if (temp == null) return false;
+                if (temp.Version == emp.Version)
+                {
+                    _employeeReposiotry.UpdateEmployee(emp);
+                    return true;
+
+                }
+                else
+                    return false;
 
             }
             catch
@@ -308,8 +344,15 @@ namespace Server
         {
             try
             {
-                _vehicleRepository.UpdateVehicle(veh);
-                return true;
+                var temp = _vehicleRepository.GetVehicle(veh.Id);
+                if (temp == null) return false;
+                if (temp.Version == veh.Version)
+                {
+                    _vehicleRepository.UpdateVehicle(veh);
+                    return true;
+                }
+                else
+                    return false;
 
             }
             catch

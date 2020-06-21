@@ -129,7 +129,6 @@
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\SubmoduleController.cs" />
     <Compile Include="Controller\UserController.cs" />
-    <Compile Include="Controller\VehicleController.cs" />
     <Compile Include="Controller\VehiclesViewController.cs" />
     <Compile Include="Models\CostsBusinessUnitModel.cs" />
     <Compile Include="Models\CostsMonthlyModel.cs" />
@@ -318,6 +317,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Connected Services\FleetServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\FleetServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\FleetServiceReference\Reference.svcmap">

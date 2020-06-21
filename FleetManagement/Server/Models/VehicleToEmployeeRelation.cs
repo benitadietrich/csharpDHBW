@@ -24,9 +24,5 @@ namespace Server.Models
 
         [DataMember]
         public Employee EmployeeId { get; set; }
-
-        [DataMember]
-        public int Version { get; set; }
-
     }
 }

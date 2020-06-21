@@ -6,22 +6,26 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Client.Views"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="450" WindowStartupLocation="CenterScreen">
+        Title="Login" Height="375" Width="450" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="0,0,0,-2" Background="#fff5f5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
             <RowDefinition Height="75"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="75*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Label FontWeight="Bold" FontSize="25" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74"/>
-        <TextBox VerticalContentAlignment="Bottom" materialDesign:HintAssist.Hint="Benutzername" Text="{Binding Username}" Grid.Row="1" Width="350" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
-        <TextBox VerticalContentAlignment="Bottom" materialDesign:HintAssist.Hint="Passwort"  Width="350" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Password}" Grid.Row="2" Grid.ColumnSpan="2" />
-        <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" >
-        <Button materialDesign:ButtonAssist.CornerRadius="5" Grid.Row="3" Width="200"  Command="{Binding LoginCommand}" Content="Anmelden" Grid.ColumnSpan="2" Height="40"/>
-            
+        <StackPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Top" Width="Auto" Grid.Row="0">
+            <Image  Source="/Resources/logo.png" Height="142" Margin="0,0,0,0" Width="368" />
+        </StackPanel>
+        <Label Grid.Row="1" FontWeight="Bold" FontSize="25" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74"/>
+        <TextBox Grid.Row="2" VerticalContentAlignment="Bottom" materialDesign:HintAssist.Hint="Benutzername" Text="{Binding Username}" Width="350" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+        <TextBox VerticalContentAlignment="Bottom" materialDesign:HintAssist.Hint="Passwort"  Width="350" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Password}" Grid.Row="3"  />
+        <StackPanel Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Button materialDesign:ButtonAssist.CornerRadius="5" Width="200"  Command="{Binding LoginCommand}" Content="Anmelden" Height="40"/>
+
         </StackPanel>
 
     </Grid>

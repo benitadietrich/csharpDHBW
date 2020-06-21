@@ -11,6 +11,8 @@ namespace Server.Interfaces
     {
         User GetUser(string username);
 
+        User GetUserById(int id);
+
         bool SetPassword(int userId, string newHash);
 
         bool UpdateUser(User newUser);

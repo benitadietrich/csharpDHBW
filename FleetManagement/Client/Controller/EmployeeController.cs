@@ -8,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace Client.Controller
@@ -45,7 +44,6 @@ namespace Client.Controller
             eViewModel = new EmployeeViewModel()
             {
                 Employees = new ObservableCollection<Employee>(socket.GetAllEmployees()),
-                EntriesEmployees = socket.GetAllEmployees(),
                 SelectedEmployee = null,
                 BusinessUnits = new ObservableCollection<BusinessUnit>(socket.GetAllBusinessUnits()),
                 SelectedBusinessUnit = null,
@@ -62,30 +60,34 @@ namespace Client.Controller
 
         public void ExecuteDeleteCommand(object obj)
         {
-            DialogResult result = (DialogResult)System.Windows.MessageBox.Show("Sind Sie sicher, dass Sie den Mitarbeiter entfernen wollen?", "Relation löschen", (MessageBoxButton)MessageBoxButtons.YesNo);
+            DialogResult result = (DialogResult)MessageBox.Show("Sind Sie sicher, dass Sie den Mitarbeiter entfernen wollen?", "Relation löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                var curr = eViewModel.SelectedEmployee;
-                eViewModel.Employees.Remove(curr);
-                eViewModel.EntriesEmployees.Remove(curr);
-                socket.RemoveEmployee(curr);
+                if (socket.CannotRemoveEmployee(eViewModel.SelectedEmployee) == true)
+                {
+                    MessageBox.Show("Mitarbeiter kann nicht gelöscht werden, da ihm noch Fahrzeuge zugeordnet sind", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    var curr = eViewModel.SelectedEmployee;
+                    socket.RemoveEmployee(curr);
+                }
+                
             }
             else
             {
                 return;
             }
 
+            LoadModel();
+
         }
         public void ExecuteNewCommand(object obj)
         {
             var addEmp = new AddEmployeeController();
-            var emp = addEmp.AddEmp(socket);
+            addEmp.AddEmp(socket);
 
-            if (emp != null)
-            {
-                eViewModel.EntriesEmployees.Add(emp);
-                eViewModel.Employees.Add(emp);
-            }
+            LoadModel();
 
 
         }
@@ -98,37 +100,16 @@ namespace Client.Controller
             {
                 if (selectedEmp.EmployeeNumber == 0)
                 {
-                    System.Windows.MessageBox.Show("Bitte geben Sie eine Personalnummer an!");
+                    MessageBox.Show("Bitte geben Sie eine Personalnummer an!", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
                     selectedEmp.BusinessUnitId = eViewModel.SelectedBusinessUnit;
-                    socket.EditEmployee(selectedEmp);
+                    if (!socket.EditEmployee(selectedEmp))
+                        MessageBox.Show("Speicherung nicht erfolgreich, da die Daten eventuell vin einem anderen Benutzer bearbeitet wurden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
-
-            /*
-
-            var databaseEmps = eViewModel.Employees;
-
-            foreach (Employee emp in (from y in databaseEmps where
-                                      frontEmps.FirstOrDefault(k => k.Id == y.Id) != null select y))
-            {
-                socket.EditEmployee(emp);
-            }
-            
-            */
-            /*            foreach (Employee emp in databaseEmps)
-                        {
-                            foreach (Employee front in frontEmps)
-                            {
-                                if (emp.Id == front.Id)
-                                {
-                                    socket.EditEmployee(emp);
-                                }
-                            }
-                        }*/
 
             LoadModel();
         }
@@ -137,14 +118,7 @@ namespace Client.Controller
         {
             if (eViewModel.SelectedEmployee != null)
             {
-                if (socket.CanRemoveEmployee(eViewModel.SelectedEmployee) == true)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
             else
             {

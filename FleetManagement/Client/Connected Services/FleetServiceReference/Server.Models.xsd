@@ -85,7 +85,6 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="VehicleId" nillable="true" type="tns:Vehicle" />
-      <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="VehicleToEmployeeRelation" nillable="true" type="tns:VehicleToEmployeeRelation" />

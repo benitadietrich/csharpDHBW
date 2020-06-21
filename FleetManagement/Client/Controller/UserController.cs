@@ -2,6 +2,7 @@
 using Client.Framework;
 using Client.ViewModels;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
@@ -52,7 +53,7 @@ namespace Client.Controller
             }
             else if (curr != null)
             {
-                System.Windows.Forms.MessageBox.Show("Ein Fehler ist aufgetreten, bitte versuchen Sie es noch einmal");
+               MessageBox.Show("Ein Fehler ist aufgetreten, bitte versuchen Sie es noch einmal");
             }
 
 
@@ -73,8 +74,9 @@ namespace Client.Controller
             var selectedUser = uViewModel.SelectedUser;
 
             if (selectedUser != null)
-            { 
-                    socket.EditUser(selectedUser);         
+            {
+                if (!socket.EditUser(selectedUser))
+                    MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten","Fehler" ,MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 

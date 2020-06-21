@@ -35,6 +35,7 @@ namespace Server.Framework
 
         public void Save(T entity)
         {
+
             using (var session = NHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())

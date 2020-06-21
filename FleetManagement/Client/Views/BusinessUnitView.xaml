@@ -23,8 +23,8 @@
 
         <DataGrid IsReadOnly="True" Grid.Row="1" Height="253" Margin="10,10,10,0"  VerticalAlignment="Top" Name="Benutzer" ItemsSource="{Binding BusinessUnits}" SelectedItem="{Binding SelectedUnit}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="100" Header="Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTextColumn  Header="Beschreibung"  Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Width="35*" Header="Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Width="65*" Header="Beschreibung"  Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Grid.Row="0" Foreground="White" FontSize="14" VerticalContentAlignment="Center" Background="#f44336" Content="Geschäftsbereichverwaltung" VerticalAlignment="Center" Width="842" Height="25"/>

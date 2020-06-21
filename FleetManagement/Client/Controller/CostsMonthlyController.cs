@@ -41,7 +41,7 @@ namespace Client.Controller
             return viewModel;
         }
 
-        private Dictionary<DateTime, CostsMonthlyModel> GetData()
+        private Dictionary<string, CostsMonthlyModel> GetData()
         {
             var res = new List<CostsMonthlyModel>();
             var veh = socket.GetAllVehicles();
@@ -51,7 +51,7 @@ namespace Client.Controller
             var min = veh.Min(v => v.LeasingFrom);
             var max = veh.Max(v => v.LeasingTo);
 
-            Dictionary<DateTime, CostsMonthlyModel> costsMonthly = new Dictionary<DateTime, CostsMonthlyModel>();
+            Dictionary<string, CostsMonthlyModel> costsMonthly = new Dictionary<string, CostsMonthlyModel>();
 
             for (var i = min; i < max; i = i.AddMonths(1))
             {
@@ -63,7 +63,7 @@ namespace Client.Controller
                     Costs = costs,
                     CostDisplay = string.Format("€ {0}", costs.ToString("0.00"))
                 };
-                costsMonthly.Add(i, x);
+                costsMonthly.Add(string.Format("{0} {1}",i.Year, CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i.Month)), x);
             }
 
             return costsMonthly;

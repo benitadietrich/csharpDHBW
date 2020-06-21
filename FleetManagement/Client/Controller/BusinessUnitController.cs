@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
@@ -47,18 +47,19 @@ namespace Client.Controller
 
         public void ExecuteDeleteCommand(object obj)
         {
-            if (socket.CanRemoveBusinessUnit(bViewModel.SelectedUnit) == true)
+            if (socket.CannotRemoveBusinessUnit(bViewModel.SelectedUnit) == true)
             {
-                MessageBox.Show("Diesem Objekt sind noch Daten zugeordnet.");
+                MessageBox.Show("Diesem Objekt sind noch Daten zugeordnet.", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
 
                 var curr = bViewModel.SelectedUnit;
-                bViewModel.BusinessUnits.Remove(curr);
                 socket.RemoveBusinessUnit(curr);
 
             }
+
+            LoadModel();
 
         }
         public void ExecuteNewCommand(object obj)
@@ -69,7 +70,8 @@ namespace Client.Controller
             {
                 bViewModel.BusinessUnits.Add(unit);
             }
-           
+
+            LoadModel();
 
         }
 
@@ -78,8 +80,10 @@ namespace Client.Controller
             var selectedUnit = bViewModel.SelectedUnit;
 
             if (selectedUnit != null)
-            {      
-                    socket.EditBusinessUnit(selectedUnit);
+            {
+                if (!socket.EditBusinessUnit(selectedUnit))
+                    MessageBox.Show("Die Daten konnten nicht gespeichert werden, da sie eventuell von einem anderen Benutzer bearbeitet wurden.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
 
             LoadModel();

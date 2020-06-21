@@ -1,14 +1,8 @@
 ﻿using Client.FleetServiceReference;
 using Client.Framework;
-using Client.ViewModel;
 using Client.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -44,7 +38,7 @@ namespace Client.Controller
             vehiclesViewModel = new VehiclesViewModel()
             {
                 Vehicles = new ObservableCollection<Vehicle>(socket.GetAllVehicles()),
-                AddEmployeeCommand = new RelayCommand(ExecuteAddEmployeeToVehicleCommand),
+                AddEmployeeCommand = new RelayCommand(ExecuteAddRelationCommand),
                 RemoveEmployeeCommand = new RelayCommand(ExecuteRemoveEmployeeFromVehicleCommand, CanExecuteDeleteEmpCommand),
                 controller = this,
                 SelectedVehicle = null,
@@ -54,48 +48,59 @@ namespace Client.Controller
         }
 
 
-        public void ExecuteNewVehicleCommand(Object obj)
+        public void ExecuteNewVehicleCommand(object obj)
         {
             AddVehicleController addVehicleController = new AddVehicleController();
             Vehicle vehicle = addVehicleController.AddVehicle();
-            if (vehicle == null) return;
-            if (socket.GetAllVehicles().Find(x => x.LicensePlate == vehicle.LicensePlate.ToLower().Replace(" ", "-")) != null)
-                System.Windows.MessageBox.Show("Ein Fahrzeug mit diesem Kennzeichen existiert bereits");
-            if (!socket.AddVehicle(vehicle))
-                System.Windows.MessageBox.Show("Fehler beim Hinzufügen der Fahrzeuge!");
+            if (vehicle == null || vehicle.LicensePlate == null || vehicle.LicensePlate == "" || vehicle.LeasingRate == 0 || vehicle.Insurance == 0 || vehicle.Model == "" || vehicle.Model == null)
+                return;
+            else
+            {
+                if (socket.GetAllVehicles().Find(x => x.LicensePlate == vehicle.LicensePlate.ToLower().Replace(" ", "-")) != null)
+                    System.Windows.Forms.MessageBox.Show("Ein Fahrzeug mit diesem Kennzeichen existiert bereits", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    if (!socket.AddVehicle(vehicle))
+                        System.Windows.Forms.MessageBox.Show("Fehler beim Hinzufügen des Fahrzeugs", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                        System.Windows.Forms.MessageBox.Show("Fahrzeug wurde erfolgreich hinzugefügt", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
 
             LoadModel();
 
         }
 
-        public void ExecuteSaveVehicleCommand(Object obj)
+        public void ExecuteSaveVehicleCommand(object obj)
         {
-
 
             if (vehiclesViewModel.SelectedVehicle != null)
             {
-            ;
-                socket.EditVehicle(vehiclesViewModel.SelectedVehicle);
-
+                if (!socket.EditVehicle(vehiclesViewModel.SelectedVehicle))
+                {
+                    System.Windows.Forms.MessageBox.Show("Die Daten konnten nicht gepseichert werden, da Sie eventuell von einem anderen Benutzer bereits bearbeitet wurden.", "Speicherfehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                };
             }
 
             LoadModel();
         }
 
-        public void ExecuteDeleteVehicleCommand(Object obj)
+        public void ExecuteDeleteVehicleCommand(object obj)
         {
             foreach (VehicleToEmployeeRelation rel in vehiclesViewModel.Relations)
             {
                 socket.RemoveRelation(rel);
             }
             var result = socket.RemoveVehicle(vehiclesViewModel.SelectedVehicle);
-            if (result == false) System.Windows.MessageBox.Show("Fehler beim Löschen des Fahrzeuges!");
+            if (result == false)
+                System.Windows.Forms.MessageBox.Show("Fehler beim Löschen des Fahrzeuges. Versuchen Sie es noch einmal.", "Fehler beim Löschen des Fahrzeugs", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             LoadModel();
 
         }
 
-        public bool CanExecuteDeleteVehCommand(Object obj)
+        public bool CanExecuteDeleteVehCommand(object obj)
         {
             return (vehiclesViewModel.SelectedVehicle != null) ? true : false;
         }
@@ -105,17 +110,14 @@ namespace Client.Controller
             return (vehiclesViewModel.SelectedRelation != null) ? true : false;
         }
 
-        private void ExecuteAddEmployeeToVehicleCommand(Object obj)
+        private void ExecuteAddRelationCommand(object obj)
         {
             if (vehiclesViewModel.SelectedVehicle == null)
-                System.Windows.MessageBox.Show("Bitte wählen Sie ein Fahrzeug.");
+                System.Windows.Forms.MessageBox.Show("Bitte wählen Sie ein Fahrzeug.", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             else
             {
-                var relation = new AddRelationController().AddRelation(socket, vehiclesViewModel.SelectedVehicle);
-
-                if (!socket.AddRelation(relation))
-                    System.Windows.MessageBox.Show("Fehler beim Hinzufügen der Relation");
+                new AddRelationController(socket, vehiclesViewModel.SelectedVehicle).AddRelation();
             }
 
             LoadModel();
@@ -129,7 +131,8 @@ namespace Client.Controller
                 if (dialogResult == DialogResult.Yes)
                 {
                     var result = socket.RemoveRelation(vehiclesViewModel.SelectedRelation);
-                    if (result == false) System.Windows.MessageBox.Show("Fehler beim Löschen der Relation");
+                    if (result == false)
+                        System.Windows.Forms.MessageBox.Show("Fehler beim Löschen der Relation", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if (dialogResult == DialogResult.No)
                 {

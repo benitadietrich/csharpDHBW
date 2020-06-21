@@ -2,12 +2,7 @@
 using Client.Framework;
 using Client.ViewModels;
 using Client.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
@@ -40,24 +35,29 @@ namespace Client.Controller
                 Description = viewModel.Description
             };
 
-            try
+            if (businessUnit.Name == "" || businessUnit.Name == null)
+                MessageBox.Show("Ungültige Eingaben", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
             {
-                if (socket.AddBusinessUnit(businessUnit))
+                try
                 {
-                    MessageBox.Show("Geschäftsbereich wurde erfolgreich hinzugefügt");
-                    view.DialogResult = true;
-                    view.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Der Geschäftsbereich wurde bereits erstellt");
-                }
+                    if (socket.AddBusinessUnit(businessUnit))
+                    {
+                        MessageBox.Show("Geschäftsbereich wurde erfolgreich hinzugefügt", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        view.DialogResult = true;
+                        view.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Der Geschäftsbereich wurde bereits erstellt", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
 
 
-            }
-            catch
-            {
-                MessageBox.Show("Ein Fehler ist aufgetreten überprüfen Sie ihre Eingaben");
+                }
+                catch
+                {
+                    MessageBox.Show("Ein Fehler ist aufgetreten überprüfen Sie ihre Eingaben", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
