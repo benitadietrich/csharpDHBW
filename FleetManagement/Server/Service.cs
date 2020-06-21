@@ -1,4 +1,5 @@
 ﻿using Server.Framework;
+using Server.Interfaces;
 using Server.Models;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,19 @@ namespace Server
     public class Service : IService
     {
         private static readonly string _DATABASE = "Database/FleetManagement.db";
-        private UserRepository _userRepository = new UserRepository(_DATABASE);
+        private IUserRepository _userRepository;
         private EmployeeRepository _employeeReposiotry = new EmployeeRepository(_DATABASE);
-        private BusinessUnitRepository _businessUnitRepository = new BusinessUnitRepository(_DATABASE);
+        private IBusinessUnitRepository _businessUnitRepository;
         private VehicleRepository _vehicleRepository = new VehicleRepository(_DATABASE);
         private VehicleToEmployeeRelationRepository _relationRepository = new VehicleToEmployeeRelationRepository(_DATABASE);
 
         public Service()
         {
+            _userRepository  = new UserRepository(_DATABASE);
+            _businessUnitRepository = new BusinessUnitRepository(_DATABASE);
         }
 
-        public Service(UserRepository u, EmployeeRepository e, BusinessUnitRepository b, VehicleRepository v, VehicleToEmployeeRelationRepository r)
+        public Service(IUserRepository u, EmployeeRepository e, IBusinessUnitRepository b, VehicleRepository v, VehicleToEmployeeRelationRepository r)
         {
             _userRepository = u;
             _employeeReposiotry = e;
@@ -172,16 +175,30 @@ namespace Server
             return _userRepository.GetAll();
         }
 
-        public void EditUser(User newUser)
+        public bool EditUser(User newUser)
         {
-            _userRepository.UpdateUser(newUser);
+            try
+
+            {
+                _userRepository.UpdateUser(newUser);
+                return true;
+            } catch
+            {
+                return false;
+            }
 
         }
 
-        public void DeleteUser(User user)
+        public bool DeleteUser(User user)
         {
             var u = _userRepository.GetUser(user.Username);
-            _userRepository.Delete(u);
+            if (u != null)
+            {
+                _userRepository.Delete(u);
+                return true;
+            }
+            else
+                return false;
         }
 
         public bool AddUser(User user)

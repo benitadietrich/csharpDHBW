@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Server.Interfaces;
+using System.Collections.Generic;
 
 namespace Server.Framework
 {
 
-    public class Repository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
 
         public Repository(string databaseFile)

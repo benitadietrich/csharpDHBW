@@ -71,11 +71,11 @@ namespace Client.Controller
         public void ExecuteSaveVehicleCommand(Object obj)
         {
 
-            var selectedVehicle = vehiclesViewModel.SelectedVehicle;
 
-            if (selectedVehicle != null)
+            if (vehiclesViewModel.SelectedVehicle != null)
             {
-                socket.EditVehicle(selectedVehicle);
+            ;
+                socket.EditVehicle(vehiclesViewModel.SelectedVehicle);
 
             }
 

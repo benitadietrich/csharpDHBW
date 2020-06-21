@@ -1,20 +1,30 @@
-﻿using Server;
+﻿using Autofac;
+using Server;
+using Server.Framework;
+using Server.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
-
 
 namespace Host
 {
     class Program
     {
+        public static IContainer Container
+        {
+            get;
+            private set;
+        }
+
         static void Main(string[] args)
         {
+            var containerBuilder = new ContainerBuilder();
+
+            containerBuilder.RegisterType<UserRepository>().As<IUserRepository>();
+            containerBuilder.RegisterType<BusinessUnitRepository>().As<IBusinessUnitRepository>();
+
+            Container = containerBuilder.Build();
+            
             Uri baseAddress = new Uri("http://localhost:8733/Design_Time_Addresses/Server/Service/");
             using (ServiceHost host = new ServiceHost(typeof(Service), baseAddress))
             {

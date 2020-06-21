@@ -1,4 +1,5 @@
-﻿using Server.Models;
+﻿using Server.Interfaces;
+using Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Server.Framework
 {
-    public class BusinessUnitRepository : Repository<BusinessUnit>
+    public class BusinessUnitRepository : Repository<BusinessUnit>, IBusinessUnitRepository
     {
         public BusinessUnitRepository(string databaseFile) : base(databaseFile)
         {

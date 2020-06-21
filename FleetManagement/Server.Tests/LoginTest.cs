@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Server;
 using Server.Framework;
+using Server.Interfaces;
 using Server.Models;
 
 namespace Client.Tests
@@ -10,12 +11,8 @@ namespace Client.Tests
     [TestClass]
     public class LoginTest
     {
-        private User userNull;
-        private User userValid;
-        private User userInvalid;
-
         private static IService service;
-        private static readonly Mock<UserRepository> _userRepositoryMock = new Mock<UserRepository>();
+        private static readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
         private static readonly User _user = new User
         {
             Id = 1,
@@ -23,11 +20,11 @@ namespace Client.Tests
             Lastname = "Bond",
             Username = "James007",
             IsAdmin = false,
-            Password = "$2y$10$1coNSX5TTw3cUDZdXw1AhOoRw6ewMTcVAU.1YVx.gEzQLpQNnvXjq",
+            Password = "$2a$11$.XPMa.x8aqtq21Kgk9TLQO8.6HXzT7Xp42ajiwQWGY.HXOUoTFmRy",
         };
 
         [ClassInitialize]
-        private static void Setup(TestContext context)
+        public static void Setup(TestContext context)
         {
             _userRepositoryMock.Setup(x => x.GetUser(_user.Username))
                 .Returns(_user);
@@ -37,16 +34,23 @@ namespace Client.Tests
         }
 
         [TestMethod]
-        private static void TestCorrectLogin()
+        public void TestCorrectLogin()
         {
-            var result = service.Login(_user.Username, _user.Password);
-
-            Assert.IsNotNull(result);
+            Assert.IsNotNull(service.Login("James007", "geheim"));
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestIncorrectLogin()
         {
+            Assert.IsNull(service.Login("James007", "falsch"));
         }
+
+        [TestMethod]
+        public void TestUserNull()
+        {
+            Assert.IsNull(service.Login(null, null));
+        }
+
+
     }
 }

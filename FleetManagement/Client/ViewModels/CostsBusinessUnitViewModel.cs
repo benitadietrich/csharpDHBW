@@ -12,6 +12,6 @@ namespace Client.ViewModels
 {
     class CostsBusinessUnitViewModel : ViewModelBase
     {
-        public Dictionary<DateTime, CostsBusinessUnitModel> Costs { get; set; }
+        public IEnumerable<CostsBusinessUnitModel> Costs { get; set; }
     }
 }

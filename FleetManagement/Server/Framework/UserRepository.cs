@@ -1,9 +1,10 @@
-﻿using Server.Models;
+﻿using Server.Interfaces;
+using Server.Models;
 using System.Linq;
 
 namespace Server.Framework
 {
-    public class UserRepository : Repository<User>
+    public class UserRepository : Repository<User>, IUserRepository
     {
         public UserRepository(string databaseFile) : base(databaseFile)
         {

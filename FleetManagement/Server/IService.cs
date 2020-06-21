@@ -50,13 +50,13 @@ namespace Server
         List<User> GetAllUsers();
 
         [OperationContract]
-        void DeleteUser(User user);
+        bool DeleteUser(User user);
 
         [OperationContract]
         bool AddUser(User user);
 
         [OperationContract]
-        void EditUser(User newUser);
+        bool EditUser(User newUser);
 
         [OperationContract]
         void EditBusinessUnit(BusinessUnit businessUnit);

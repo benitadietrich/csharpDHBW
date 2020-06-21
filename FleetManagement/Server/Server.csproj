@@ -134,6 +134,9 @@
     <Compile Include="Framework\UserRepository.cs" />
     <Compile Include="Framework\VehicleRepository.cs" />
     <Compile Include="Framework\VehicleToEmployeeRelationRepository.cs" />
+    <Compile Include="Interfaces\IBusinessUnitRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Mapping\BusinessUnitMap.cs" />
     <Compile Include="Mapping\EmployeeMap.cs" />
